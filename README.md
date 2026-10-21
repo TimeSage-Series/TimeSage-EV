@@ -1,8 +1,8 @@
 <div align="center">
-  <h3>
+  <h2>
     <b>TimeSage-EV</b><br>
     <sub>A Live Benchmark for Agentic Time Series Analysis in Evolving Environments</sub>
-  </h3>
+  </h2>
 </div>
 
 <div align="center">
@@ -55,7 +55,7 @@ period and use `evsandbox sweep --config …` for a whole tier.
 
 ## Core Components
 
-### Scenarios and Tasks
+### 📝 Scenarios and Tasks
 
 A scenario follows one public data series through consecutive releases; each
 release period is an instance, so an agent that carries what it learned from
@@ -67,7 +67,7 @@ earlier periods should do better than one that starts over every time. Each scen
   report rubric
 - a pass threshold for repeatable comparisons across agents.
 
-### Agents
+### 🤖 Agents
 
 Agents are the systems evaluated by the benchmark. They run as subprocesses
 over a JSON-stdio contract, so any language or framework works. Two baselines
@@ -81,7 +81,7 @@ live in `agents/`:
 Both work with Anthropic, OpenAI, OpenRouter or a self-hosted
 OpenAI-compatible endpoint.
 
-### Execution Environment
+### 🌏 Execution Environment
 
 `evsandbox` builds each period's sandbox with no data past the cutoff, spawns
 the agent, records its trace, audits its network access and scores the
@@ -96,14 +96,14 @@ evsandbox sweep --help
 evsandbox episode --help
 ```
 
-### Evaluator
+### 📐 Evaluator
 
 `evbench/evaluator/` scores each answer on four axes — keypoint accuracy,
 keypoint coverage, report faithfulness and report quality — with an LLM judge
 (five backends, including self-hosted models, plus an offline mock), and
 aggregates results with cluster-bootstrap confidence intervals.
 
-### Data Pipeline
+### 📊 Data Pipeline
 
 `evbench/maintainer/` holds each scenario's download and build scripts. It
 refreshes the source data, extends the corpus to new periods without touching
