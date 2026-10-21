@@ -14,11 +14,11 @@ Backends:
   * "openrouter"       — OpenAI-compatible client pointed at openrouter.ai.
                          Routes to any model on OpenRouter (e.g.,
                          `openai/gpt-5.4`).
-  * "spike"            — OpenAI-compatible client pointed at the SPIKE
-                         institutional inference endpoint. `model` must be a
-                         slug configured in TIMESAGE_MODELS_CONFIG (see .env.example).
-                         Zero marginal cost; auto-resolves the vLLM served
-                         model id from /v1/models on the first call.
+  * "self_hosted"      — OpenAI-compatible client pointed at your own
+                         endpoint (vLLM, SGLang, ...): `api_base`, else
+                         SELF_HOSTED_BASE_URL (see .env.example). Zero
+                         marginal cost; auto-resolves the served model id
+                         from /v1/models on the first call.
   * "mock"             — Deterministic stubs (no API). Legacy `mock=True`
                          still works.
 
@@ -51,12 +51,11 @@ CACHE_DIR = Path(os.environ.get("TIMESAGE_EVAL_CACHE")     # empty counts as uns
                  or os.path.expanduser("~/.cache/timesage_eval/judge_cache"))
 
 
-# Self-hosted, OpenAI-compatible endpoints for open-weight judges.
-# Populated from your own config — see evbench/evaluator/model_registry.py
-# and .env.example. Empty by default: the release ships no private endpoints.
-from .model_registry import (  # noqa: E402
-    api_key as _self_hosted_api_key, base_url_for as _self_hosted_base_url,
-    registry_help as _self_hosted_help, served_model_id as _served_model_id,
+# Self-hosted, OpenAI-compatible endpoints for open-weight judges — see
+# evbench/evaluator/self_hosted.py and .env.example.
+from .self_hosted import (  # noqa: E402
+    api_key as _self_hosted_api_key, base_url as _self_hosted_base_url,
+    served_model_id as _served_model_id,
 )
 
 
@@ -123,7 +122,7 @@ class Judge:
     api_base: Optional[str] = None
     api_key: Optional[str] = None
     max_tokens: int = DEFAULT_MAX_TOKENS
-    # Extra request-body fields for OpenAI-compatible backends (spike,
+    # Extra request-body fields for OpenAI-compatible backends (self_hosted,
     # openrouter), e.g. {"chat_template_kwargs": {"thinking": False}}.
     extra_body: dict[str, Any] = field(default_factory=dict)
     # Per-kind request options replacing max_tokens / extra_body for that kind,
@@ -165,17 +164,12 @@ class Judge:
         if self.backend == "openrouter":
             self.api_base = self.api_base or "https://openrouter.ai/api/v1"
             self.api_key = self.api_key or os.environ.get("OPENROUTER_API_KEY")
-        # SPIKE: one endpoint per model. We hold the base URL per-model and
-        # build the OpenAI-compatible client lazily inside _call_spike — both
-        # model and quality_model may point to different SPIKE pods.
-        if self.backend == "spike":
-            self.api_key = self.api_key or _self_hosted_api_key()
-            for m in (self.model, self.quality_model):
-                if _self_hosted_base_url(m) is None:
-                    raise RuntimeError(f"spike backend: {_self_hosted_help(m)}")
-            # Per-model lazily-cached client + resolved served-model id.
-            self._spike_clients: dict[str, Any] = {}
-            self._spike_served_id: dict[str, str] = {}
+        # Self-hosted: one endpoint, which may serve both model and
+        # quality_model; each one's served id is resolved on first use.
+        if self.backend == "self_hosted":
+            self.api_base = _self_hosted_base_url(self.api_base)
+            self.api_key = _self_hosted_api_key(self.api_key)
+            self._served_id: dict[str, str] = {}
         # Claude CLI defaults.
         if self.backend == "claude_cli":
             if self.cli_path is None:
@@ -258,7 +252,7 @@ class Judge:
                                                             with_thinking=True),
             "claude_cli":      lambda: self._call_claude_cli(prompt, model),
             "openrouter":      lambda: self._call_openrouter(prompt, model, max_tokens, extra_body),
-            "spike":           lambda: self._call_spike(prompt, model, max_tokens, extra_body),
+            "self_hosted":     lambda: self._call_self_hosted(prompt, model, max_tokens, extra_body),
         }
         if self.backend not in calls:
             return JudgeResult(text="",
@@ -366,36 +360,29 @@ class Judge:
         cost = float(data.get("total_cost_usd") or 0.0)
         return text, cost
 
-    def _call_spike(self, prompt: str, model: str, max_tokens: int,
-                    extra_body: dict) -> tuple[str, float]:
+    def _call_self_hosted(self, prompt: str, model: str, max_tokens: int,
+                          extra_body: dict) -> tuple[str, float]:
         """OpenAI-compatible call against a self-hosted endpoint.
 
         The endpoint is either a single-model pod or a gateway in front of
         several. The request's `model` field is the *served* model id, picked
-        from /v1/models on the first call (model_registry.served_model_id)
+        from /v1/models on the first call (self_hosted.served_model_id)
         and cached. Cost is recorded as 0 for self-hosted GPUs."""
         from openai import OpenAI
-        client = self._spike_clients.get(model)
-        if client is None:
-            base = _self_hosted_base_url(model)
-            client = OpenAI(base_url=base, api_key=self.api_key or "EMPTY",
-                            timeout=120.0, max_retries=2)
-            self._spike_clients[model] = client
-            # Resolve served-model id (vLLM-internal name, may differ from
-            # the URL slug — the server may report a HF repo path).
+        if self._client is None:
+            self._client = OpenAI(base_url=self.api_base, api_key=self.api_key,
+                                  timeout=120.0, max_retries=2)
+        if model not in self._served_id:
+            # vLLM's --served-model-name may differ from the configured
+            # slug — the server may report a HF repo path.
             try:
-                ids = [m.id for m in client.models.list().data]
+                ids = [m.id for m in self._client.models.list().data]
+                self._served_id[model] = _served_model_id(ids, model)
             except Exception as exc:                                    # noqa: BLE001
                 raise RuntimeError(
-                    f"SPIKE {model}: /v1/models failed ({exc}); pod may be "
-                    f"swapped out — warm with spike_probe.py warm {model}"
-                ) from exc
-            try:
-                self._spike_served_id[model] = _served_model_id(ids, model)
-            except RuntimeError as exc:
-                raise RuntimeError(f"SPIKE {model}: {exc}") from exc
-        served = self._spike_served_id[model]
-        resp = client.chat.completions.create(
+                    f"self_hosted {model} at {self.api_base}: {exc}") from exc
+        served = self._served_id[model]
+        resp = self._client.chat.completions.create(
             model=served,
             max_tokens=max_tokens,
             temperature=0.0,
@@ -525,7 +512,7 @@ def parse_json_maybe(text: str) -> Any:
 # Building a judge from settings
 # ---------------------------------------------------------------------------
 
-BACKENDS = ("mock", "anthropic", "claude_thinking", "claude_cli", "openrouter", "spike")
+BACKENDS = ("mock", "anthropic", "claude_thinking", "claude_cli", "openrouter", "self_hosted")
 
 
 def build_judge(backend: str = "mock",
@@ -534,19 +521,26 @@ def build_judge(backend: str = "mock",
                 thinking: str = "middle",
                 max_tokens: Optional[int] = None,
                 extra_body: Optional[dict] = None,
-                by_kind: Optional[dict] = None) -> Judge:
+                by_kind: Optional[dict] = None,
+                base_url: Optional[str] = None) -> Judge:
     """A Judge from CLI/config settings, filling in each backend's default
     models.
 
     `model` sets both kinds of call; `quality_model` overrides the model used
-    for the report-quality axis only.
+    for the report-quality axis only. `base_url` overrides the self_hosted
+    endpoint.
     """
     if backend not in BACKENDS:
         raise ValueError(f"unknown judge backend {backend!r}; choose from {BACKENDS}")
     if backend == "mock":
         return Judge(mock=True)
+    if backend == "self_hosted" and not model:
+        raise ValueError("self_hosted judge needs a model (--judge-model / judge.model): "
+                         "there is no default for your own endpoint")
 
     overrides: dict = {"backend": backend}
+    if base_url:
+        overrides["api_base"] = base_url
     if model:
         overrides["model"] = model
         overrides["quality_model"] = model       # single model for both kinds
@@ -556,11 +550,8 @@ def build_judge(backend: str = "mock",
     elif backend == "claude_cli":
         overrides["model"] = "sonnet"
         overrides["quality_model"] = "sonnet"
-    elif backend == "spike":
-        overrides["model"] = "DeepSeek-V4-Flash"
-        overrides["quality_model"] = "DeepSeek-V4-Flash"
     # An explicit quality model wins even when `model` is also set (so an
-    # anthropic sonnet/haiku split or a spike Flash+Pro split works).
+    # anthropic sonnet/haiku split or a self-hosted Flash+Pro split works).
     if quality_model:
         overrides["quality_model"] = quality_model
     if backend == "claude_thinking":

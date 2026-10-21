@@ -181,8 +181,7 @@ def scenario_requires_web_search(scenario) -> bool:
     return sid == "iata_air_passenger_monthly_analytical"
 
 
-def _build_instructions(scenario, requires_web_search: bool,
-                        episode_history: list[dict]) -> str:
+def _build_instructions(scenario, requires_web_search: bool) -> str:
     required_keys = list(scenario.answer_schema.get("required") or [])
     web_blurb = ""
     if requires_web_search:
@@ -190,17 +189,6 @@ def _build_instructions(scenario, requires_web_search: bool,
             "\n* web_search(query: str, n: int=5) — audited, time-isolated. "
             "Use this for any web context; raw HTTP is not available."
         )
-    history_blurb = ""
-    if episode_history:
-        parts = ["", "## Episode history (your past evaluations on this scenario)"]
-        for turn in reversed(episode_history):                     # newest first
-            rendered = turn.get("rendered") or ""
-            if rendered:
-                parts.append(rendered)
-        parts.append(
-            "Use the feedback above to improve this turn's answer."
-        )
-        history_blurb = "\n".join(parts)
     imports_blurb = ", ".join(DEFAULT_AUTHORIZED_IMPORTS)
     return (
         f"You are a markets/data analyst. All files you need are in the "
@@ -278,7 +266,6 @@ def _build_instructions(scenario, requires_web_search: bool,
         f"files.\n"
         f"  4. End your run by calling final_answer(answer=..., report=...). "
         f"Nothing else terminates the loop."
-        f"{history_blurb}"
     )
 
 
@@ -288,12 +275,10 @@ class TimeSageSmolAgent:
     def __init__(self, scenario, model, *,
                  audit_path: Optional[Path] = None,
                  cutoff: Optional[str] = None,
-                 episode_history: Optional[list[dict]] = None,
                  max_steps: int = 12,
                  verbosity_level: int = 0,
                  stream_trace_path: Optional[Path] = None):
         self.scenario = scenario
-        self.episode_history = list(episode_history or [])
         self._final = TimeSageFinalAnswer()
         self._compact = CompactMemoryTool()
         self._websearch: Optional[TimeSageWebSearch] = None
@@ -304,8 +289,7 @@ class TimeSageSmolAgent:
                 cutoff=cutoff or "", audit_path=audit_path,
             )
             tools.append(self._websearch)
-        instructions = _build_instructions(scenario, self._requires_web,
-                                           self.episode_history)
+        instructions = _build_instructions(scenario, self._requires_web)
         # Streaming trace writer: callback fires once per ActionStep
         # completion. Survives SIGKILL because every row is fsync'd.
         self._writer: Optional[_TraceWriter] = None

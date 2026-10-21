@@ -2,25 +2,26 @@
 #
 # One file per experiment, kept under version control. Flags on the command
 # line override any value here; anything left out keeps the CLI default.
-# API keys and self-hosted endpoints are not set here — see .env.example.
+# API keys are not set here — see .env.example.
 
 target: sonnet-easy-v1                 # runs land in exp/<target>/
 
 agent:
   name: smolagents_agent               # alias, or `cmd: "python -m my_agent.worker"`
   args:                                # passed to the agent as agent_args
-    lm_provider: anthropic             # anthropic | openai | openrouter | openai_compat | spike
+    lm_provider: anthropic             # anthropic | openai | openrouter | self_hosted
                                        #   (anthropic: pip install -e "agents/smolagents_agent[anthropic]")
     lm_model: claude-sonnet-4-6
     max_steps: 12
 
 judge:
-  backend: anthropic                   # mock | anthropic | claude_thinking | claude_cli | openrouter | spike
+  backend: anthropic                   # mock | anthropic | claude_thinking | claude_cli | openrouter | self_hosted
   model: claude-haiku-4-5-20251001     # keypoint + faithfulness axes
   quality_model: claude-sonnet-4-6     # report-quality axis
   # thinking: middle                   # claude_thinking / claude_cli: low | middle | high
   # max_tokens: 2048                   # judge reply budget
-  # extra_body:                        # spike / openrouter request extras, e.g. turn a
+  # base_url: https://host/v1          # self_hosted: overrides SELF_HOSTED_BASE_URL
+  # extra_body:                        # self_hosted / openrouter request extras, e.g. turn a
   #   chat_template_kwargs: {thinking: false}   # reasoning model's thinking off
   # by_kind:                           # per call kind (coverage | decompose | verify |
   #   verify:                          #   quality), replacing max_tokens / extra_body;

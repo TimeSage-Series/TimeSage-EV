@@ -76,7 +76,7 @@ def _build_judge(args):
     return build_judge(args.judge, args.judge_model,
                        args.judge_quality_model, args.judge_thinking,
                        args.judge_max_tokens, args.judge_extra_body,
-                       args.judge_by_kind)
+                       args.judge_by_kind, args.judge_base_url)
 
 
 def _agent_args(args) -> dict:
@@ -459,7 +459,7 @@ def _add_agent_flags(p):
                         "Default: default-<YYYYMMDD>.")
     p.add_argument("--judge", default="mock",
                    choices=["mock", "anthropic", "claude_thinking",
-                            "claude_cli", "openrouter", "spike"],
+                            "claude_cli", "openrouter", "self_hosted"],
                    help="LLM judge backend for scoring. "
                         "'mock' = deterministic stubs (default). "
                         "'anthropic' = Anthropic SDK (needs ANTHROPIC_API_KEY). "
@@ -468,21 +468,25 @@ def _add_agent_flags(p):
                         "(uses Claude Code OAuth if no ANTHROPIC_API_KEY). "
                         "'openrouter' = OpenAI-compat client at openrouter.ai "
                         "(needs OPENROUTER_API_KEY). "
-                        "'spike' = OpenAI-compat client at SPIKE institutional "
-                        "endpoint (uses SPIKE_API_KEY or 'EMPTY'; zero "
-                        "marginal cost; --judge-model must resolve via TIMESAGE_MODELS_CONFIG).")
+                        "'self_hosted' = OpenAI-compat client at your own endpoint "
+                        "(SELF_HOSTED_BASE_URL or --judge-base-url; key "
+                        "SELF_HOSTED_API_KEY or 'EMPTY'; zero marginal cost; "
+                        "needs --judge-model).")
     p.add_argument("--judge-model", default=None,
                    help="override default judge model. "
                         "claude_cli: 'sonnet' / 'opus' / full id. "
                         "openrouter: e.g. 'openai/gpt-5.4'. "
-                        "spike: e.g. 'DeepSeek-V4-Flash' / 'DeepSeek-V4-Pro' / "
-                        "'GLM-5.1-FP8'. Default depends on backend.")
+                        "self_hosted: the model your endpoint serves, e.g. "
+                        "'DeepSeek-V4-Flash' (required). Default depends on backend.")
+    p.add_argument("--judge-base-url", default=None,
+                   help="self_hosted only: endpoint for the judge, overriding "
+                        "SELF_HOSTED_BASE_URL (when the judge runs on another host).")
     p.add_argument("--judge-quality-model", default=None,
                    help="override judge model used ONLY for the report-quality "
                         "axis (the other 3 axes still use --judge-model). "
                         "Useful when you want a stronger judge for the more "
                         "subjective Quality rubric, e.g. "
-                        "--judge spike --judge-model DeepSeek-V4-Flash "
+                        "--judge self_hosted --judge-model DeepSeek-V4-Flash "
                         "--judge-quality-model DeepSeek-V4-Pro.")
     p.add_argument("--judge-thinking", default="middle",
                    choices=["low", "middle", "high"],
@@ -491,7 +495,7 @@ def _add_agent_flags(p):
     p.add_argument("--judge-max-tokens", type=int, default=None,
                    help="judge reply budget (default 2048).")
     p.add_argument("--judge-extra-body", type=json.loads, default=None, metavar="JSON",
-                   help="extra request-body fields for spike / openrouter judges, e.g. "
+                   help="extra request-body fields for self_hosted / openrouter judges, e.g. "
                         "'{\"chat_template_kwargs\": {\"thinking\": false}}' to turn "
                         "a reasoning model's thinking off.")
     p.add_argument("--judge-by-kind", type=json.loads, default=None, metavar="JSON",

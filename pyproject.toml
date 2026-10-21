@@ -31,7 +31,6 @@ maintainer = [
     "huggingface_hub",
 ]
 dev = [
-    "pytest>=8",
     "ruff>=0.5",
 ]
 
@@ -57,4 +56,4 @@ build-backend = "setuptools.build_meta"
 # evbench/maintainer/ is build code run as scripts, evbench/tasks/ is data the
 # engine reads in place, and evbench/scenarios/ is a separate data repo.
 [tool.setuptools]
-packages = ["evbench", "evbench.engine", "evbench.evaluator", "evbench.evaluator.scorers", "evbench.evaluator.tests"]
+packages = ["evbench", "evbench.engine", "evbench.evaluator", "evbench.evaluator.scorers"]

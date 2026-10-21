@@ -2,8 +2,9 @@
 
 A config pins what decides a result — the agent and its model, the judge,
 the isolation — so a run can be repeated and compared. Command-line flags
-override it; the CLI's own defaults fill whatever neither sets. Secrets and
-endpoints stay in the environment (.env.example).
+override it; the CLI's own defaults fill whatever neither sets. Secrets stay
+in the environment (.env.example), and so does the default self-hosted
+endpoint; `judge.base_url` / `agent.args.lm_base_url` only override it.
 
     target: sonnet-easy-v1
     agent:
@@ -11,11 +12,12 @@ endpoints stay in the environment (.env.example).
       args: {lm_provider: anthropic, lm_model: claude-sonnet-4-6, max_steps: 12}
     judge:
       backend: anthropic                # mock | anthropic | claude_thinking |
-      model: claude-haiku-4-5-20251001  #   claude_cli | openrouter | spike
+      model: claude-haiku-4-5-20251001  #   claude_cli | openrouter | self_hosted
       quality_model: claude-sonnet-4-6
       thinking: middle
       max_tokens: 2048                  # judge reply budget
-      extra_body: {}                    # spike / openrouter request extras, e.g.
+      base_url: https://host/v1         # self_hosted: overrides SELF_HOSTED_BASE_URL
+      extra_body: {}                    # self_hosted / openrouter request extras, e.g.
                                         #   {chat_template_kwargs: {thinking: false}}
       by_kind:                          # per call kind (coverage | decompose |
         verify:                         #   verify | quality): replaces the above
@@ -53,7 +55,7 @@ AGENT_KEYS = {"name": "agent", "cmd": "agent_cmd"}          # plus `args`
 JUDGE_KEYS = {"backend": "judge", "model": "judge_model",
               "quality_model": "judge_quality_model", "thinking": "judge_thinking",
               "max_tokens": "judge_max_tokens", "extra_body": "judge_extra_body",
-              "by_kind": "judge_by_kind"}
+              "by_kind": "judge_by_kind", "base_url": "judge_base_url"}
 
 #: Values argparse would check with `choices`; config values bypass that.
 CHOICES = {
@@ -61,7 +63,7 @@ CHOICES = {
     "mode": ("independent", "episode"),
     "strategy": ("pass_through", "persona"),
     "feedback_mode": ("none", "score", "detailed"),
-    "judge": ("mock", "anthropic", "claude_thinking", "claude_cli", "openrouter", "spike"),
+    "judge": ("mock", "anthropic", "claude_thinking", "claude_cli", "openrouter", "self_hosted"),
     "judge_thinking": ("low", "middle", "high"),
 }
 

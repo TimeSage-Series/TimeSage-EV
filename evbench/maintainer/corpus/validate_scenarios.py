@@ -47,7 +47,7 @@ def code_dir(scenario_dir: Path) -> Path:
     """The evbench/maintainer/ counterpart of a data-tree scenario directory.
 
     Matched on <tier>/<domain>/<id>, so any data tree works — evbench/scenarios/,
-    scenarios_unfinished/, scenarios_hf/.
+    scenarios_unfinished/, scenarios_wkspace/.
     """
     return SCENARIOS_CODE.joinpath(*scenario_dir.resolve().parts[-3:])
 

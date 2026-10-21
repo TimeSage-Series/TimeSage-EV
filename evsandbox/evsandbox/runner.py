@@ -44,7 +44,6 @@ from .feedback import (                                                # noqa: E
 import select as _select                                               # noqa: E402
 from .protocol import (                                               # noqa: E402
     ENV_AUDIT_PATH, ENV_CUTOFF, ENV_RUN_ID, ENV_SEARXNG, ENV_TRACE_PATH,
-    EpisodeTurn,
     STATUS_AGENT_CRASH, STATUS_INCOMPLETE, STATUS_OK, STATUS_TIMEOUT,
     STATUS_LEAKAGE,
 )
@@ -255,14 +254,10 @@ def _agent_env(world_root: Path, period: str, scenario, run_id: str,
     }
     if "ANTHROPIC_API_KEY" in os.environ:
         env["ANTHROPIC_API_KEY"] = os.environ["ANTHROPIC_API_KEY"]
-    # Self-hosted model registry (evbench.evaluator.model_registry). Made
-    # absolute: the agent's cwd is the sandbox, not the caller's cwd.
-    if os.environ.get("TIMESAGE_MODELS_CONFIG"):
-        env["TIMESAGE_MODELS_CONFIG"] = str(Path(os.environ["TIMESAGE_MODELS_CONFIG"]).resolve())
-    # OpenAI-compatible / SPIKE-1 (vLLM) backend passthroughs. The agent
+    # OpenAI-compatible / self-hosted (vLLM) backend passthroughs. The agent
     # forms its own client; we just need to forward the URL/key and any
     # proxy config required by the host's VPN setup.
-    for k in ("SPIKE_BASE_URL", "SPIKE_API_KEY", "OPENAI_API_KEY",
+    for k in ("SELF_HOSTED_BASE_URL", "SELF_HOSTED_API_KEY", "OPENAI_API_KEY",
               "OPENROUTER_API_KEY", "OPENROUTER_BASE_URL",
               "HTTPS_PROXY", "HTTP_PROXY", "NO_PROXY",
               "https_proxy", "http_proxy", "no_proxy"):
@@ -320,15 +315,13 @@ def _invoke_agent(world, scenario, scenario_dir, period,
                   prompt, audit_path, run_id, run_dir,
                   agent_cmd: str, agent_args: dict,
                   timeout_s: int,
-                  episode_history: Optional[list[EpisodeTurn]] = None,
                   isolation: str = "none"):
     env = _agent_env(world.root, period, scenario, run_id, run_dir, audit_path)
     req = {
-        "scenario_dir":    str(scenario_dir),
-        "period":          period,
-        "prompt":          prompt,
-        "agent_args":      agent_args,
-        "episode_history": [_turn_to_dict(t) for t in (episode_history or [])],
+        "scenario_dir": str(scenario_dir),
+        "period":       period,
+        "prompt":       prompt,
+        "agent_args":   agent_args,
     }
     cmd = shlex.split(agent_cmd)
     if isolation == "bwrap":
@@ -390,19 +383,6 @@ def _invoke_agent(world, scenario, scenario_dir, period,
 # Single-run orchestration
 # ---------------------------------------------------------------------------
 
-def _turn_to_dict(t: EpisodeTurn) -> dict:
-    return {
-        "period":             t.period,
-        "aggregate":          t.aggregate,
-        "passed":             t.passed,
-        "axis_scores":        t.axis_scores,
-        "structured_answer":  t.structured_answer,
-        "keypoint_results":   t.keypoint_results,
-        "faithfulness_notes": t.faithfulness_notes,
-        "rendered":           t.rendered,
-    }
-
-
 def run_one(scenario_dir: Path,
             period: str,
             *,
@@ -412,7 +392,6 @@ def run_one(scenario_dir: Path,
             agent_args: Optional[dict] = None,
             score: bool = True,
             timeout_s: int = 300,
-            episode_history: Optional[list[EpisodeTurn]] = None,
             target: Optional[str] = None,
             judge: Optional[Judge] = None,
             isolation: str = "none") -> dict:
@@ -420,9 +399,6 @@ def run_one(scenario_dir: Path,
 
     `isolation` is "none" (plain subprocess, cwd = sandbox) or "bwrap"
     (see evsandbox.isolation: the agent sees only the sandbox and code).
-
-    `episode_history` is the ordered list of past EpisodeTurn objects from
-    this episode. Empty (or None) for independent-mode sweep.
 
     Output dir: exp/<target>/<llm-slug>/<tier>/<scenario-id>/<period>/.
     `target` defaults to ``default-<YYYYMMDD>`` when not provided. The
@@ -452,7 +428,6 @@ def run_one(scenario_dir: Path,
             world, scenario, scenario_dir, period,
             full_prompt, audit_path, run_id, run_dir,
             agent_cmd, agent_args, timeout_s,
-            episode_history=episode_history,
             isolation=isolation,
         )
 
@@ -624,7 +599,7 @@ def run_episode(scenario_dir: Path, *,
         periods = _list_periods(scenario_dir)
     if not periods:
         return {"scenario_dir": str(scenario_dir), "periods": [],
-                "turns": [], "history": []}
+                "turns": []}
 
     agent_args = dict(agent_args or {})
     agent_cmd = agent_cmd or _default_agent_cmd()
@@ -1005,7 +980,6 @@ def run_episode(scenario_dir: Path, *,
         "status":       episode_status,
         "n_ok":         n_ok,
         "n_total":      len(periods),
-        "history":      [],   # legacy field; episode_history is now in-memory
     }
 
 

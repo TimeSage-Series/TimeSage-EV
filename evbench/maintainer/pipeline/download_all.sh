@@ -28,7 +28,7 @@ PY="${TIMESAGE_PYTHON:-$REPO_ROOT/.venv/bin/python}"
 # Where the scenario scripts write. Exported because the scripts' own default
 # is the released scenarios/ tree, and an unset variable used to land fresh
 # downloads there. Same default as format_all.sh.
-export TIMESAGE_DATA_ROOT="${TIMESAGE_DATA_ROOT:-$REPO_ROOT/scenarios_hf}"
+export TIMESAGE_DATA_ROOT="${TIMESAGE_DATA_ROOT:-$REPO_ROOT/scenarios_wkspace}"
 
 JOBS=1
 TIMEOUT=1800

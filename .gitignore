@@ -5,10 +5,10 @@
 *.key
 
 # Scenario data trees — never committed here.
-#   evbench/scenarios/  built scenarios; its own git repo, published to Hugging Face
-#   scenarios_hf/       pipeline working tree, populated by download_all.sh
+#   evbench/scenarios/   built scenarios; its own git repo, published to Hugging Face
+#   scenarios_wkspace/   pipeline working tree, populated by download_all.sh
 /evbench/scenarios/
-/scenarios_hf/
+/scenarios_wkspace/
 /scenarios_unfinished/
 
 # Pipeline, evaluator and sandbox run output
@@ -25,7 +25,6 @@ venv/
 **/*.egg-info/
 build/
 dist/
-**/.pytest_cache/
 **/.ruff_cache/
 **/.mypy_cache/
 

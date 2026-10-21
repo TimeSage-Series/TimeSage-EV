@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Append newly generated periods to the released corpus.
 
-The pipeline writes into the data tree (`scenarios_hf/`, or $TIMESAGE_DATA_ROOT).
+The pipeline writes into the data tree (`scenarios_wkspace/`, or $TIMESAGE_DATA_ROOT).
 The released corpus in `evbench/scenarios/` is what evaluation reads, and its existing
 periods are frozen: they are what the published results were scored on, and a
 regenerated copy differs wherever the publisher has since revised history.
@@ -31,7 +31,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 REFERENCE = REPO_ROOT / "evbench" / "scenarios"
 SCENARIOS_CODE = REPO_ROOT / "evbench" / "maintainer"
-DATA_ROOT = Path(os.environ.get("TIMESAGE_DATA_ROOT", REPO_ROOT / "scenarios_hf"))
+DATA_ROOT = Path(os.environ.get("TIMESAGE_DATA_ROOT", REPO_ROOT / "scenarios_wkspace"))
 
 CORE = ("timeseries.csv", "gt_evidence.md", "instance.json", "ground_truth.json")
 SOURCE_DIRS = ("gt_source", "timeseries_source")

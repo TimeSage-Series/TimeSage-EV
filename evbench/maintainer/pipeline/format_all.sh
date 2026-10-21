@@ -28,7 +28,7 @@ REPO_ROOT="$(cd "$CODE_ROOT/../.." && pwd)"
 LOG_DIR="$REPO_ROOT/logs/format"
 PY="${TIMESAGE_PYTHON:-$REPO_ROOT/.venv/bin/python}"
 [ -x "$PY" ] || PY="$(command -v python3 || true)"
-DATA_ROOT="${TIMESAGE_DATA_ROOT:-$REPO_ROOT/scenarios_hf}"
+DATA_ROOT="${TIMESAGE_DATA_ROOT:-$REPO_ROOT/scenarios_wkspace}"
 
 JOBS=1
 TIMEOUT=1800

@@ -321,12 +321,3 @@ def _emit_quality_detail(lines: list[str], detail: dict,
             snippet = snippet[:400] + "…"
         lines.append(f"   - Judge rationale: {snippet}")
 
-
-def render_episode_history(history: list[EpisodeTurn]) -> str:
-    if not history:
-        return ""
-    parts = ["[Episode history — your past evaluations]\n"]
-    for turn in reversed(history):
-        parts.append(turn.rendered)
-        parts.append("")
-    return "\n".join(parts).strip()

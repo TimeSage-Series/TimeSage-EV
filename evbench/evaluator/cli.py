@@ -1,8 +1,7 @@
-"""CLI: score a single run, score a tier, score the full sweep, render reports.
+"""CLI: score a single run, render reports.
 
 Usage:
   eval-suite score <scenario_dir> <period> <run_record.json> [--mock-judge]
-  eval-suite sweep [--tier easy|middle|hard] [--mock-judge]
   eval-suite report <records_glob>
 """
 from __future__ import annotations
@@ -23,7 +22,6 @@ from .scorers import accuracy, coverage, faithfulness, quality
 
 
 REPORT_DIR = Path(__file__).resolve().parent / "reports"
-FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
 def _load_run_record(path: Path) -> RunRecord:
@@ -302,42 +300,6 @@ def _add_ci_flags(p: argparse.ArgumentParser) -> None:
     p.add_argument("--ci-seed", type=int, default=0)
 
 
-def cmd_sweep(args: argparse.Namespace) -> int:
-    # Discover all scenarios with a run_record under fixtures/ or specified directory.
-    root = Path(args.scenarios_root).resolve()
-    fixtures_root = Path(args.fixtures_root or FIXTURES_DIR).resolve()
-    judge = _judge(args)
-    records: list[ScoreRecord] = []
-    for fixture_dir in fixtures_root.iterdir() if fixtures_root.exists() else []:
-        if not fixture_dir.is_dir():
-            continue
-        ref_path = fixture_dir / "scenario_ref.txt"
-        if not ref_path.exists():
-            continue
-        scen_dir = Path(ref_path.read_text().strip())
-        if not scen_dir.is_absolute():
-            scen_dir = fixture_dir / scen_dir
-        scen_dir = scen_dir.resolve()
-        if args.tier and (args.tier not in str(scen_dir)):
-            continue
-        # Run all sample run files in this fixture
-        for run_file in fixture_dir.glob("agent_output*.json"):
-            run = _load_run_record(run_file)
-            rec = _score_one(scen_dir, run.period, run, judge)
-            records.append(rec)
-    if not records:
-        print("no runs found")
-        return 1
-    agg = aggregate(records, run_summary_id=args.summary_id or "sweep",
-                    **_aggregate_kwargs_from_args(args))
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    agg_path = REPORT_DIR / f"{agg.run_summary_id}__aggregation.json"
-    agg_path.write_text(agg.model_dump_json(indent=2))
-    print(render_ascii_matrix(agg))
-    print(f"\nwrote {agg_path}")
-    return 0
-
-
 def cmd_report(args: argparse.Namespace) -> int:
     import glob as _glob
     pattern = args.records_glob
@@ -368,15 +330,6 @@ def main(argv: Iterable[str] | None = None) -> int:
     ps.add_argument("run_record")
     ps.add_argument("--mock-judge", action="store_true")
     ps.set_defaults(func=cmd_score)
-
-    psw = sub.add_parser("sweep", help="score all fixtures and aggregate")
-    psw.add_argument("--scenarios-root", default="evbench/scenarios")
-    psw.add_argument("--fixtures-root", default=None)
-    psw.add_argument("--tier", choices=["easy", "middle", "hard"])
-    psw.add_argument("--summary-id", default=None)
-    psw.add_argument("--mock-judge", action="store_true")
-    _add_ci_flags(psw)
-    psw.set_defaults(func=cmd_sweep)
 
     pr = sub.add_parser("report",
                         help="aggregate from existing score-record files; "

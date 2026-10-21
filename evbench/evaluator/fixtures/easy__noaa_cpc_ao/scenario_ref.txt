@@ -1,1 +1,0 @@
-../../../scenarios/easy/climate/noaa_cpc_ao_monthly_phase

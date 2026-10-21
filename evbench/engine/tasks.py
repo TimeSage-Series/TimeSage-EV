@@ -126,7 +126,7 @@ TASKS_ROOT = Path(__file__).resolve().parents[1] / "tasks"
 def task_dir(scenario_dir: Path) -> Path:
     """The task contract directory for a scenario.
 
-    `scenario_dir` is a data-tree path (`evbench/scenarios/`, `scenarios_hf/`,
+    `scenario_dir` is a data-tree path (`evbench/scenarios/`, `scenarios_wkspace/`,
     or $TIMESAGE_DATA_ROOT) holding instances/ and gt_source/; the contract is
     at the same `<tier>/<domain>/<id>` under TASKS_ROOT. A local
     `environment/` in the data tree still wins, for old checkouts.

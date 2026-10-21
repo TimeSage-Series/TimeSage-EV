@@ -9,10 +9,10 @@ sees a filesystem assembled from explicit mounts and nothing else:
     /usr, /etc   the host system (read-only)
     <prefix>     the Python interpreter + site-packages (read-only)
     <code>       evsandbox, agents, and evbench's engine/evaluator/tasks (read-only)
-    <config>     the DNS resolver config and $TIMESAGE_MODELS_CONFIG (read-only)
+    <config>     the DNS resolver config (read-only)
 
-The data trees (evbench/scenarios/, scenarios_hf/), the maintainer, exp/ and
-the evaluator's fixtures are not mounted. The network is shared: agents call
+The data trees (evbench/scenarios/, scenarios_wkspace/), the maintainer, exp/ and
+the evaluator's score reports are not mounted. The network is shared: agents call
 LLM APIs, and web access is audited separately (network.py).
 
 bwrap needs no root and no daemon, only unprivileged user namespaces.
@@ -37,14 +37,8 @@ CODE_MOUNTS = (
     REPO / "evbench" / "evaluator",
     REPO / "evbench" / "tasks",
 )
-#: Env vars naming a host file the agent needs to read; the file is mounted
-#: read-only at the same path.
-FILE_ENV_VARS = ("TIMESAGE_MODELS_CONFIG",)
-
-#: Inside the code mounts, but holding answers: an agent output with its
-#: ground truth, and aggregated score reports.
+#: Inside the code mounts, but holding answers: aggregated score reports.
 MASKED = (
-    REPO / "evbench" / "evaluator" / "fixtures",
     REPO / "evbench" / "evaluator" / "reports",
 )
 
@@ -77,10 +71,6 @@ def bwrap_command(cmd: list[str], env: dict[str, str], *,
         p = Path(tok)
         if p.is_absolute() and p.is_file() and not _under(p.resolve(), ro):
             ro.append(p.resolve())
-    for var in FILE_ENV_VARS:
-        p = Path(env[var]) if env.get(var) else None
-        if p is not None and p.is_file() and not _under(p, ro):
-            ro.append(p)
     # /etc/resolv.conf is often a symlink into /run (systemd-resolved);
     # without its target the agent cannot resolve any API host.
     resolv = Path("/etc/resolv.conf").resolve()

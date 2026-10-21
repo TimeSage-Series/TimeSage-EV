@@ -33,7 +33,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 REFERENCE = REPO_ROOT / "evbench" / "scenarios"
-DATA_ROOT = Path(os.environ.get("TIMESAGE_DATA_ROOT", REPO_ROOT / "scenarios_hf"))
+DATA_ROOT = Path(os.environ.get("TIMESAGE_DATA_ROOT", REPO_ROOT / "scenarios_wkspace"))
 
 FILES = ("ground_truth.json", "timeseries.csv", "gt_evidence.md",
          "instance.json")

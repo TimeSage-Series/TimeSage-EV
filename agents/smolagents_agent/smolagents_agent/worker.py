@@ -115,7 +115,6 @@ def _run_single(req: dict) -> int:
     prompt          = req["prompt"]
     agent_args      = req.get("agent_args") or {}
     lm_model        = agent_args.get("lm_model", "")
-    episode_history = req.get("episode_history") or []
     max_steps       = int(agent_args.get("max_steps") or 12)
     verbosity       = int(agent_args.get("verbosity") or 0)
 
@@ -145,7 +144,6 @@ def _run_single(req: dict) -> int:
     agent = TimeSageSmolAgent(
         scenario, model,
         audit_path=audit_path, cutoff=cutoff,
-        episode_history=episode_history,
         max_steps=max_steps, verbosity_level=verbosity,
         stream_trace_path=stream_trace_path,
     )
@@ -323,7 +321,6 @@ def _run_episode(setup: dict) -> int:
     agent = TimeSageSmolAgent(
         scenario, model,
         audit_path=audit_path, cutoff=cutoff,
-        episode_history=[],
         max_steps=max_steps, verbosity_level=verbosity,
         stream_trace_path=stream_trace_path,
     )

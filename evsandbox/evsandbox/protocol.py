@@ -93,10 +93,8 @@ def apply_period_cutoff(msg: dict) -> str:
 class EpisodeTurn:
     """One past period's evaluation, fed back to the agent on the next turn.
 
-    Only populated when the runner is in `episode` mode. All periods listed
-    here are strictly < the current request's `period`; the runner enforces
-    this invariant by building history *after* scoring each turn and
-    appending it to the next turn's request.
+    Built only in `episode` mode, after the period is scored; its `rendered`
+    markdown is prepended to the next period's prompt.
     """
     period: str                                # the past period this turn refers to
     aggregate: float                           # score record aggregate
@@ -126,9 +124,6 @@ class AgentRequest:
     prompt:       str                        # the rephrased user-facing prompt
     agent_args:   dict[str, Any] = field(default_factory=dict)
                                               # agent-specific (lm_model, seed, ...)
-    episode_history: list[EpisodeTurn] = field(default_factory=list)
-                                              # ordered oldest-first; [] when running
-                                              # in independent (non-episode) mode
 
 
 @dataclass

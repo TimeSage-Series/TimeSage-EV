@@ -1,20 +1,20 @@
-# DeepSeek-V41-Flash as both agent and judge, on the self-hosted (spike) endpoint.
+# DeepSeek-V41-Flash as both agent and judge, on a self-hosted endpoint.
 #
 #   evsandbox sweep --config experiments/deepseek_v41_flash.yaml
 #
-# Needs in .env: SPIKE_API_KEY, plus the endpoint — SPIKE_BASE_URL, or a
-# TIMESAGE_MODELS_CONFIG file naming DeepSeek-V41-Flash-1017-FP8.
+# Needs in .env: SELF_HOSTED_BASE_URL, an endpoint serving
+# DeepSeek-V41-Flash-1017-FP8, and SELF_HOSTED_API_KEY if it checks one.
 
 target: deepseek-v41-flash
 
 agent:
   name: smolagents_agent
   args:
-    lm_provider: spike
+    lm_provider: self_hosted
     lm_model: DeepSeek-V41-Flash-1017-FP8
 
 judge:
-  backend: spike
+  backend: self_hosted
   model: DeepSeek-V41-Flash-1017-FP8   # also used for the report-quality axis
   # DeepSeek-V4.1 reasons before answering; with reasoning on it can spend
   # the whole reply budget thinking and return nothing. Coverage, fact

@@ -1,12 +1,10 @@
 """Model factory for the smolagents-based TimeSage agent.
 
 Routing rules:
-  * lm_provider="spike" (or lm_model resolves via TIMESAGE_MODELS_CONFIG)
-        → OpenAIServerModel pointed at the self-hosted endpoint, with
-          served-model-name auto-resolved via /v1/models.
-  * lm_provider="openai_compat"
-        → OpenAIServerModel pointed at agent_args.lm_base_url
-          (or env SPIKE_BASE_URL).
+  * lm_provider="self_hosted"
+        → OpenAIServerModel pointed at agent_args.lm_base_url (or env
+          SELF_HOSTED_BASE_URL), with the served model name auto-resolved
+          via /v1/models.
   * lm_provider="openai"
         → OpenAIServerModel against api.openai.com (uses OPENAI_API_KEY).
   * lm_provider="anthropic"
@@ -32,9 +30,9 @@ import os
 from typing import Any
 
 
-from evbench.evaluator.model_registry import (  # noqa: E402
-    api_key as _self_hosted_api_key, base_url_for as _self_hosted_base_url,
-    registry_help as _self_hosted_help, served_model_id as _served_model_id,
+from evbench.evaluator.self_hosted import (  # noqa: E402
+    api_key as _self_hosted_api_key, base_url as _self_hosted_base_url,
+    served_model_id as _served_model_id,
 )
 
 
@@ -117,33 +115,10 @@ def build_model(lm_model: str, agent_args: dict) -> Any:
     temperature = float(agent_args.get("temperature") or 0.0)
     timeout = float(agent_args.get("timeout") or 600.0)
 
-    if provider == "spike" or _self_hosted_base_url(lm_model):
-        base_url = _self_hosted_base_url(lm_model)
-        if base_url is None:
-            raise RuntimeError(
-                _self_hosted_help(lm_model)
-            )
-        api_key = _self_hosted_api_key()
-        served = _resolve_served_model_id(base_url, api_key, lm_model)
-        return OpenAIServerModel(
-            model_id=served,
-            api_base=base_url,
-            api_key=api_key,
-            client_kwargs={"timeout": timeout, "max_retries": 2},
-            max_tokens=max_tokens,
-            temperature=temperature,
-        )
-
-    if provider == "openai_compat":
-        base_url = agent_args.get("lm_base_url") or os.environ.get("SPIKE_BASE_URL")
-        if not base_url:
-            raise RuntimeError(
-                "lm_provider=openai_compat requires agent_args.lm_base_url "
-                "or env SPIKE_BASE_URL"
-            )
-        api_key = (agent_args.get("lm_api_key")
-                   or os.environ.get("SPIKE_API_KEY", "EMPTY"))
-        served = lm_model or _resolve_served_model_id(base_url, api_key)
+    if provider == "self_hosted":
+        base_url = _self_hosted_base_url(agent_args.get("lm_base_url"))
+        api_key = _self_hosted_api_key(agent_args.get("lm_api_key"))
+        served = _resolve_served_model_id(base_url, api_key, lm_model or None)
         return OpenAIServerModel(
             model_id=served,
             api_base=base_url,
@@ -217,5 +192,5 @@ def build_model(lm_model: str, agent_args: dict) -> Any:
 
     raise RuntimeError(
         f"unknown lm_provider={provider!r}; supported: "
-        f"spike, openai_compat, openai, anthropic, openrouter"
+        f"self_hosted, openai, anthropic, openrouter"
     )
