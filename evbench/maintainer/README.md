@@ -59,39 +59,3 @@ read past reports in its sandbox:
 ```bash
 python evbench/maintainer/corpus/fetch_gt_source.py --tier easy     # or --scenario <id>, --verify-only
 ```
-
-## Known limitations
-
-- **Narrative evidence.** Regenerating a released period may show
-  whitespace-level diffs in the narrative block of `gt_evidence.md`; new
-  periods are unaffected.
-- **No rule-level checks.** Validation does not recompute answers from the
-  raw series or verify quoted spans against the source.
-- **No anonymization.** The released corpus was PII-scrubbed (names →
-  `PERSON_A`, phones and emails → `[REDACTED]`), but the scrubber is not
-  included. **Re-running `format.py gt` re-introduces personal data** in
-  these scenarios — re-scrub before publishing them:
-
-  ```
-  easy/agriculture/usda_chicken_layers_yoy_phase_monthly
-  easy/agriculture/usda_cold_storage_butter_band_monthly
-  easy/agriculture/usda_cold_storage_pork_band_monthly
-  easy/climate/noaa_cpc_mjo_phase_weekly
-  middle/agriculture/usda_drought_monitor_us_regional_brief
-  middle/agriculture/usda_wasde_crop_balance_monthly_brief
-  middle/climate/noaa_ncei_global_climate_monthly_brief
-  middle/climate/noaa_ncei_us_climate_monthly_brief
-  middle/finance/dallas_fed_texas_manufacturing_brief
-  middle/healthcare/bls_jolts_healthcare_monthly_brief
-  middle/healthcare/bls_us_health_employment_monthly_brief
-  middle/transportation/ata_truck_tonnage_monthly_brief
-  middle/transportation/bls_ppi_freight_transport_modes_monthly_brief
-  middle/transportation/portla_monthly_cargo_stats_brief
-  hard/agriculture/usda_fas_world_agricultural_production_monthly_attribution
-  hard/climate/iri_enso_quick_look_monthly
-  hard/climate/noaa_cpc_enso_diagnostic_discussion_monthly
-  hard/finance/bea_pce_inflation_monthly_attribution
-  hard/finance/ecb_monetary_policy_statement_attribution
-  hard/healthcare/cdc_resp_net_weekly_dominant_pathogen
-  hard/transportation/cass_freight_index_monthly_analytical
-  ```

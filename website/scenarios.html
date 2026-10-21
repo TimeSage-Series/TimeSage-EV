@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scenarios · TimeSage-EV</title>
+  <meta name="description" content="Browse every TimeSage-EV scenario: the public data series, its publisher, release cadence, tier and the periods covered." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+</head>
+<body data-page="scenarios">
+
+  <div id="site-nav"></div>
+
+  <section class="page-head" style="padding-bottom:8px">
+    <div class="container">
+      <p class="section-kicker">Task suite</p>
+      <h1 class="section-title">Scenarios</h1>
+    </div>
+  </section>
+
+  <section style="padding-bottom:80px">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="seg" id="f-tier" role="group" aria-label="Tier" data-tier-control></div>
+        <select id="f-domain" aria-label="Domain"></select>
+        <select id="f-cadence" aria-label="Cadence"></select>
+        <input type="search" id="f-search" placeholder="Search name, source or id…" aria-label="Search scenarios" />
+        <span class="result-count" id="result-count"></span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="sc-table">
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Tier</th>
+              <th>Domain</th>
+              <th>Source</th>
+              <th>Cadence</th>
+              <th>Periods</th>
+              <th style="text-align:right">Inst.</th>
+            </tr>
+          </thead>
+          <tbody id="sc-body"></tbody>
+        </table>
+      </div>
+      <p class="table-hint">Swipe horizontally to see all columns.</p>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="data/scenarios.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

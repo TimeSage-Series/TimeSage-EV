@@ -12,6 +12,9 @@
 ![](https://img.shields.io/github/forks/TimeSage-Series/TimeSage-EV?color=lightblue)
 ![](https://img.shields.io/badge/PRs-Welcome-green)
 
+**[<a href="https://arxiv.org/abs/2608.14270">Paper Page</a>]** 
+**[<a href="https://timesage-series.github.io/TimeSage-EV/">Website</a>]** 
+
 </div>
 
 **TimeSage-EV** measures how well agents analyze periodically released time series data, a defining challenge for agents that operate over long horizons and are expected to improve continuously.

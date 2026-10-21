@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TimeSage-EV</title>
+  <meta name="description" content="A live benchmark for agentic time series analysis in evolving environments: agents analyze periodically released public data series and should improve across releases." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply the saved or system theme before paint to avoid a flash.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+</head>
+<body data-page="home">
+
+  <div id="site-nav"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <h1 class="hero-title">TimeSage-<span class="logo-ev">EV</span>:
+          <span class="hero-title-sub">Agentic Time Series Analysis in Evolving Environments</span></h1>
+        <p class="hero-subtitle">
+          TimeSage-EV measures <strong>how well agents analyze periodically released time series data</strong>,
+          a defining challenge for agents that operate over long horizons and are expected to improve continuously.
+        </p>
+        <div class="hero-actions">
+          <a href="https://github.com/TimeSage-Series/TimeSage-EV" class="btn-primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Repository
+          </a>
+          <a href="https://arxiv.org/abs/2608.14270" class="btn-primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14 4.5V14a2 2 0 01-2 2H4a2 2 0 01-2-2V2a2 2 0 012-2h5.5L14 4.5zm-3 0A1.5 1.5 0 019.5 3V1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V4.5h-2z"/></svg>
+            Paper
+          </a>
+          <a href="https://huggingface.co/datasets/TimeSage-Series/TimeSage-EV" class="btn-ghost" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><ellipse cx="8" cy="3.5" rx="5.5" ry="2"/><path d="M2.5 3.5v9c0 1.1 2.46 2 5.5 2s5.5-.9 5.5-2v-9"/><path d="M2.5 8c0 1.1 2.46 2 5.5 2s5.5-.9 5.5-2"/></svg>
+            Dataset
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-demo">
+        <div class="loop">
+          <svg viewBox="0 22 560 538" role="img" aria-label="Analysis loop over six periods: the environment releases new data, the agent analyses it and submits a report, the evaluator scores it and sends feedback, then the next period begins.">
+            <g transform="rotate(-90 280 280)">
+              <circle cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="25 100" stroke-dashoffset="0" class="seg-base r-env"></circle>
+              <circle cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="50 100" stroke-dashoffset="-25" class="seg-base r-agent"></circle>
+              <circle cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="25 100" stroke-dashoffset="-75" class="seg-base r-eval"></circle>
+              <circle id="loop-s0" cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="0 100" stroke-dashoffset="0" class="arc r-env"></circle>
+              <circle id="loop-s1" cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="0 100" stroke-dashoffset="-25" class="arc r-agent"></circle>
+              <circle id="loop-s2" cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="0 100" stroke-dashoffset="-50" class="arc r-agent"></circle>
+              <circle id="loop-s3" cx="280" cy="280" r="180" pathLength="100" stroke-dasharray="0 100" stroke-dashoffset="-75" class="arc r-eval"></circle>
+            </g>
+
+            <!-- hub -->
+            <text x="280" y="222" text-anchor="middle" class="eyebrow">Period <tspan id="loop-pnum">1</tspan> / 6</text>
+            <line x1="196" y1="334" x2="364" y2="334" class="axis"></line>
+            <line id="loop-cut" x1="0" y1="236" x2="0" y2="334" class="cut"></line>
+            <path id="loop-spark" class="spark"></path>
+            <g id="loop-pts"></g>
+            <circle id="loop-spark-end" r="6" class="spark-end"></circle>
+
+            <!-- nodes -->
+            <g class="node r-env" id="loop-n0">
+              <circle class="halo" cx="280" cy="100" r="46"></circle>
+              <circle class="bg" cx="280" cy="100" r="31"></circle>
+              <polyline class="glyph" points="266,108 274,98 282,104 294,90"></polyline>
+              <text x="280" y="34" text-anchor="middle" class="tag">ENVIRONMENT</text>
+            </g>
+            <g class="node r-agent" id="loop-n1">
+              <circle class="halo" cx="460" cy="280" r="46"></circle>
+              <circle class="bg" cx="460" cy="280" r="31"></circle>
+              <circle class="glyph" cx="456" cy="276" r="9"></circle><line class="glyph" x1="463" y1="283" x2="471" y2="291"></line>
+              <text x="460" y="340" text-anchor="middle" class="tag">AGENT</text>
+            </g>
+            <g class="node r-agent" id="loop-n2">
+              <circle class="halo" cx="280" cy="460" r="46"></circle>
+              <circle class="bg" cx="280" cy="460" r="31"></circle>
+              <line class="glyph" x1="269" y1="451" x2="291" y2="451"></line><line class="glyph" x1="269" y1="460" x2="291" y2="460"></line><line class="glyph" x1="269" y1="469" x2="283" y2="469"></line>
+              <text x="280" y="520" text-anchor="middle" class="tag">AGENT</text>
+            </g>
+            <g class="node r-eval" id="loop-n3">
+              <circle class="halo" cx="100" cy="280" r="46"></circle>
+              <circle class="bg" cx="100" cy="280" r="31"></circle>
+              <polyline class="glyph" points="89,281 97,289 112,272"></polyline>
+              <text x="100" y="340" text-anchor="middle" class="tag">EVALUATOR</text>
+            </g>
+
+            <text id="loop-l0" x="280" y="56" text-anchor="middle" class="lab">New data release</text>
+            <text id="loop-l1" x="460" y="362" text-anchor="middle" class="lab">Agent Analysis</text>
+            <text id="loop-l2" x="280" y="542" text-anchor="middle" class="lab">Report</text>
+            <text id="loop-l3" x="100" y="362" text-anchor="middle" class="lab">Score &amp; feedback</text>
+
+            <circle id="loop-glow" r="18" class="glow" cx="280" cy="100"></circle>
+            <circle id="loop-dot" r="9.5" class="dot" cx="280" cy="100"></circle>
+          </svg>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="section section-ruled" id="results">
+    <div class="container">
+      <p class="section-kicker reveal">Results</p>
+      <h2 class="section-title reveal">Evaluating Agentic Time Series Analysis in Evolving Environments
+        <span class="section-title-sub"><span class="nowrap">Sequential-Stateful</span> vs. <span class="nowrap">Independent-Stateless</span></span></h2>
+
+      <div class="hiw-wrap reveal">
+        <svg class="hiw-svg" viewBox="0 0 820 290" preserveAspectRatio="xMidYMid meet" role="img"
+             aria-label="A scenario's releases are played two ways: sequentially, where memory and feedback carry forward from period to period, and independently, where the agent starts fresh at each period. Gain is the difference between the two scores.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow-head"/></marker>
+            <marker id="ahm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="arrow-muted-head"/></marker>
+          </defs>
+
+          <!-- Scenario pill with a tiny series -->
+          <rect x="8" y="110" width="104" height="70" rx="10" class="pill"/>
+          <polyline points="20,170 32,162 44,167 56,152 68,159 80,144 92,151 100,140" class="series"/>
+          <text x="60" y="128" text-anchor="middle" class="pill-text">scenario</text>
+
+          <path d="M 112 145 C 124 145 124 72 136 72" class="arrow-muted" marker-end="url(#ahm)"/>
+          <path d="M 112 145 C 124 145 124 214 136 214" class="arrow-muted" marker-end="url(#ahm)"/>
+
+          <!-- Sequential arm -->
+          <text x="138" y="24" class="row-label lbl-accent">SEQUENTIAL · MEMORY + FEEDBACK</text>
+          <g>
+            <rect x="138" y="44" width="92" height="56" rx="10" class="box-ep"/>
+            <text x="184" y="72" text-anchor="middle" class="box-text">P₁</text>
+            <text x="184" y="90" text-anchor="middle" class="sub-text">2024-07</text>
+            <line x1="230" y1="72" x2="252" y2="72" class="arrow" marker-end="url(#ah)"/>
+            <rect x="252" y="44" width="92" height="56" rx="10" class="box-ep"/>
+            <text x="298" y="72" text-anchor="middle" class="box-text">P₂</text>
+            <text x="298" y="90" text-anchor="middle" class="sub-text">2024-08</text>
+            <line x1="344" y1="72" x2="366" y2="72" class="arrow" marker-end="url(#ah)"/>
+            <rect x="366" y="44" width="92" height="56" rx="10" class="box-ep"/>
+            <text x="412" y="72" text-anchor="middle" class="box-text">P₃</text>
+            <text x="412" y="90" text-anchor="middle" class="sub-text">2024-09</text>
+            <line x1="458" y1="72" x2="480" y2="72" class="arrow" marker-end="url(#ah)"/>
+            <rect x="480" y="44" width="92" height="56" rx="10" class="box-ep"/>
+            <text x="526" y="72" text-anchor="middle" class="box-text">P₂₄</text>
+            <text x="526" y="90" text-anchor="middle" class="sub-text">2026-06</text>
+            <!-- feedback loops -->
+            <path d="M 198 44 C 210 30 230 30 252 38" class="feedback"/>
+            <path d="M 312 44 C 324 30 344 30 366 38" class="feedback"/>
+            <path d="M 426 44 C 438 30 458 30 480 38" class="feedback"/>
+            <text x="590" y="40" class="feedback-text">feedback after each period</text>
+          </g>
+          <line x1="572" y1="72" x2="618" y2="72" class="arrow" marker-end="url(#ah)"/>
+          <text x="626" y="76" class="end-ep">sequential score</text>
+
+          <!-- Independent arm -->
+          <text x="138" y="166" class="row-label lbl-dim">INDEPENDENT · FRESH EACH PERIOD</text>
+          <g>
+            <rect x="138" y="186" width="92" height="56" rx="10" class="box-ind"/>
+            <text x="184" y="214" text-anchor="middle" class="box-text-muted">P₁</text>
+            <text x="184" y="232" text-anchor="middle" class="sub-text">2024-07</text>
+            <rect x="252" y="186" width="92" height="56" rx="10" class="box-ind"/>
+            <text x="298" y="214" text-anchor="middle" class="box-text-muted">P₂</text>
+            <text x="298" y="232" text-anchor="middle" class="sub-text">2024-08</text>
+            <rect x="366" y="186" width="92" height="56" rx="10" class="box-ind"/>
+            <text x="412" y="214" text-anchor="middle" class="box-text-muted">P₃</text>
+            <text x="412" y="232" text-anchor="middle" class="sub-text">2024-09</text>
+            <rect x="480" y="186" width="92" height="56" rx="10" class="box-ind"/>
+            <text x="526" y="214" text-anchor="middle" class="box-text-muted">P₂₄</text>
+            <text x="526" y="232" text-anchor="middle" class="sub-text">2026-06</text>
+            <text x="184" y="262" text-anchor="middle" class="sub-text">reset</text>
+            <text x="298" y="262" text-anchor="middle" class="sub-text">reset</text>
+            <text x="412" y="262" text-anchor="middle" class="sub-text">reset</text>
+            <text x="526" y="262" text-anchor="middle" class="sub-text">reset</text>
+          </g>
+          <line x1="572" y1="214" x2="618" y2="214" class="arrow-muted" marker-end="url(#ahm)"/>
+          <text x="626" y="218" class="end-ind">independent score</text>
+
+          <path d="M 762 72 L 772 72 L 772 214 L 762 214" class="gain-bracket"/>
+          <text x="780" y="147" class="gain-label">gain</text>
+        </svg>
+      </div>
+
+      <div class="sve-grid" id="sve-grid"></div>
+      <div class="legend reveal">
+        <span><span class="legend-swatch"></span>Sequential (state carried forward)</span>
+        <span><span class="legend-swatch dashed"></span>Independent (fresh each period)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELEASES -->
+  <section class="section section-ruled" id="releases">
+    <div class="container">
+      <p class="section-kicker reveal">Releases</p>
+      <h2 class="section-title reveal">How TimeSage-EV has evolved</h2>
+      <p class="section-lead reveal">
+        The corpus is refreshed as agencies publish new data. Each snapshot fixes a window of periods so results stay
+        comparable; newer snapshots move the window forward.
+      </p>
+
+      <ol class="timeline">
+        <li class="tl-item reveal">
+          <div class="tl-head">
+            <h3 class="tl-title">2026-06 snapshot</h3>
+            <span class="tl-badge">Easy tier</span>
+            <time class="tl-date" datetime="2026-06">June 2026</time>
+          </div>
+          <p class="tl-body">
+            First public release. Every easy scenario keeps its last 24 periods up to June 2026.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- GET STARTED -->
+  <section class="section section-ruled" id="start">
+    <div class="container">
+      <p class="section-kicker reveal">Get started</p>
+      <h2 class="section-title reveal">Quickstart</h2>
+      <p class="section-lead reveal">Python 3.10+ and <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv</a> are required; bubblewrap is optional for sandboxing the agent.</p>
+      <div class="qs-grid">
+        <div class="code-block reveal">
+          <button class="copy-btn" type="button" data-copy="quickstart-code">Copy</button>
+<pre id="quickstart-code">git clone https://github.com/TimeSage-Series/TimeSage-EV && cd TimeSage-EV
+uv sync && source .venv/bin/activate
+git clone https://huggingface.co/datasets/TimeSage-Series/TimeSage-EV evbench/scenarios
+
+cp .env.example .env && set -a && source .env && set +a
+cp experiments/example.yaml experiments/mine.yaml
+
+<span class="c-comment"># one scenario, one period</span>
+evsandbox run evbench/scenarios/easy/climate/noaa_cpc_ao_monthly_phase 2024-05 \
+    --config experiments/mine.yaml
+
+<span class="c-comment"># a whole tier, periods played in order with feedback</span>
+evsandbox sweep --config experiments/mine.yaml --mode episode</pre>
+        </div>
+        <div class="terminal reveal" aria-label="Example evsandbox episode run">
+          <div class="terminal-bar">
+            <div class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="terminal-title">evsandbox — episode · noaa_cpc_ao_monthly_phase</span>
+          </div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
+      </div>
+      <ul class="doc-links doc-links-row reveal">
+        <li><a href="https://github.com/TimeSage-Series/TimeSage-EV/blob/main/docs/installation.md" target="_blank" rel="noopener">Installation <span>uv, pip, extras, bubblewrap</span></a></li>
+        <li><a href="https://github.com/TimeSage-Series/TimeSage-EV/blob/main/docs/configuration.md" target="_blank" rel="noopener">Configuration <span>keys, self-hosted models, outputs</span></a></li>
+        <li><a href="https://github.com/TimeSage-Series/TimeSage-EV/blob/main/docs/tasks.md" target="_blank" rel="noopener">Tasks and the engine <span>the task contract</span></a></li>
+        <li><a href="https://github.com/TimeSage-Series/TimeSage-EV/blob/main/agents/README.md" target="_blank" rel="noopener">Agent contract <span>JSON-stdio protocol</span></a></li>
+        <li><a href="https://github.com/TimeSage-Series/TimeSage-EV/blob/main/evbench/maintainer/README.md" target="_blank" rel="noopener">Maintainer guide <span>refresh &amp; validate data</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SCENARIOS -->
+  <section class="section section-ruled" id="scenarios">
+    <div class="container">
+      <p class="section-kicker reveal">Task suite</p>
+      <h2 class="section-title reveal">Scenarios</h2>
+      <p class="section-lead reveal" id="scenario-lead">
+        Public data series from agencies such as NOAA, EIA, USDA, CDC and the BLS, spanning six domains.
+        In each period the agent labels the latest release of an indicator as a phase, band or direction, using a rule
+        stated in the task.
+      </p>
+
+      <div class="reveal" id="scenario-overview"></div>
+
+      <p style="margin-top:2rem" class="reveal"><a href="scenarios.html" class="btn-primary">Browse all scenarios →</a></p>
+    </div>
+  </section>
+
+  <!-- CITATION -->
+  <section class="section section-ruled" id="cite">
+    <div class="container">
+      <p class="section-kicker reveal">Reference</p>
+      <h2 class="section-title reveal">Citation</h2>
+      <div class="code-block reveal">
+        <button class="copy-btn" type="button" data-copy="bibtex">Copy</button>
+<pre id="bibtex">@article{yao2026timesage,
+  title={TimeSage-EV: A Live Benchmark for Agentic Time Series Analysis in Evolving Environments},
+  author={Yao, Qingren and Kong, Yaxuan and Nie, Yuqi and Li, Yichen and Zohren, Stefan and Vettoruzzo, Anna and Wen, Qingsong and Jin, Ming and Vanschoren, Joaquin},
+  journal={arXiv preprint arXiv:2608.14270},
+  year={2026}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="data/scenarios.js"></script>
+  <script src="data/results.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
