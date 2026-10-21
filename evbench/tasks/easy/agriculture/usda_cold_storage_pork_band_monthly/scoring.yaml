@@ -1,0 +1,26 @@
+method: llm_judge
+fields:
+- name: pork_storage_band
+  type: categorical
+  rule: exact_match
+  options:
+  - tight
+  - low
+  - normal
+  - heavy
+  target_derivation: |
+    Per-month US Total pork storage band, derived from the LATEST
+    row of timeseries.csv:
+      s    = pork_stocks_mlb
+      w    = pork_stocks_mlb of the 5 most recent earlier rows with the
+             same data_month (the reference window)
+      mn   = min(w)
+      m    = mean(w)
+      sig  = population std dev of w
+      if   s <  mn:              "tight"
+      elif s <  m - 0.5 * sig:   "low"
+      elif s <  m + 0.5 * sig:   "normal"
+      else:                       "heavy"
+aggregation:
+  method: mean
+  pass_threshold: 0.8

@@ -1,0 +1,26 @@
+{
+  "id": "bls_jolts_healthcare_monthly_brief",
+  "title": "BLS JOLTS Healthcare & Social Assistance monthly digest",
+  "tier": "middle",
+  "domain": "healthcare",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "U.S. Bureau of Labor Statistics (BLS) Job Openings and Labor Turnover Survey (JOLTS)",
+    "url": "https://www.bls.gov/news.release/jolts.htm"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "as_of_data_month"
+  },
+  "coverage": {
+    "first": "2024-02",
+    "last": "2026-02",
+    "instances": 24
+  }
+}

@@ -1,0 +1,32 @@
+scenario_id: eia_us_commercial_crude_inventory_change_phase_weekly
+tier: easy
+domain: energy
+qa_fields:
+- field: crude_inventory_phase
+  tag: A3
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - build
+  - draw
+  - flat
+  derivation: |
+    US commercial crude inventory phase, from the latest two rows of
+    /root/timeseries.csv (EIA WCESTUS1 weekly Friday week-ending):
+      change = (latest stocks_thousand_bbl - previous week's) / 1000
+      if   change >= +0.5: 'build'
+      elif change <= -0.5: 'draw'
+      else:                'flat'
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier sign-based classification scenario. Single A3 (state.direction)
+
+  question. Threshold cascade is mechanical from the latest row''s
+
+  signed WoW change.
+
+  '

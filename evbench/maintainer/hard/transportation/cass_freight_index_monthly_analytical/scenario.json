@@ -1,0 +1,27 @@
+{
+  "id": "cass_freight_index_monthly_analytical",
+  "title": "Cass Transportation Index monthly trend attribution",
+  "tier": "hard",
+  "domain": "transportation",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "Cass Information Systems",
+    "url": "https://www.cassinfo.com/freight-audit-payment/cass-transportation-indexes"
+  },
+  "license": {
+    "spdx": "proprietary",
+    "verification": "assumed_restricted",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.cassinfo.com/",
+    "note": "Proprietary index; the archived artifact is a full branded web page, not a data extract."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "period"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-03",
+    "instances": 24
+  }
+}

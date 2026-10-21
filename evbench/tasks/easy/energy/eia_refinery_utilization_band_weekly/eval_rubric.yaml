@@ -1,0 +1,14 @@
+scenario_id: eia_refinery_utilization_band_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's US refinery-utilization band against the fixed percent thresholds."
+  required_signals:
+    - "Names the current Friday-ending week explicitly (e.g. 'week ending 2026-05-08')."
+    - "States the refinery-utilization band using one of the controlled enum labels (extreme_low / low / normal / high / extreme_high)."
+  forbidden_signals:
+    - "Speculates about next week or forward utilization trajectory."
+    - "Adds editorial commentary or attributes the band to causes beyond the percent threshold cascade."
+  exemplar: |
+    "For the week ending 2026-05-08, US refinery operable-capacity
+    utilization of 91.7% sits in the 85-92% range, placing the week
+    in the 'normal' utilization band."

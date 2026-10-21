@@ -1,0 +1,28 @@
+{
+  "id": "hhs_us_hospital_inpatient_occupancy_band_weekly",
+  "title": "CDC Weekly US Hospital Inpatient Occupancy band state",
+  "tier": "easy",
+  "domain": "healthcare",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/ua7e-t2fy",
+    "name": "Weekly Hospital Respiratory Data (HRD) Metrics by Jurisdiction — pctinptbedsocc (USA)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "week_ending"
+  },
+  "coverage": {
+    "first": "2025-W48",
+    "last": "2026-W40",
+    "instances": 45,
+    "series_first": "2025-W48"
+  }
+}

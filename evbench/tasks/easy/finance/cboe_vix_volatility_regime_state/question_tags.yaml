@@ -1,0 +1,53 @@
+scenario_id: cboe_vix_volatility_regime_state
+tier: easy
+domain: finance
+qa_fields:
+- field: category
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - low
+  - normal
+  - elevated
+  - crisis
+  derivation: "CBOE VIX volatility regime for the latest available week, derived\nfrom the latest row\
+    \ of /root/timeseries.csv (Friday close of the\nquery ISO week, or the most recent prior weekday when\
+    \ Friday was a\nUS equity-market holiday) by applying the fixed VIX threshold\ncascade to vix_close:\n\
+    \  if   vix_close >= 40: 'crisis'\n  elif vix_close >= 25: 'elevated'\n  elif vix_close >= 15: 'normal'\n\
+    \  else:                 'low'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier A1 state.category scenario for the CBOE VIX volatility
+
+  regime. Sourced from FRED VIXCLS (daily close) downsampled to weekly
+
+  Friday closes; threshold-derived enum {low, normal, elevated, crisis}
+
+  partitions the VIX number line at the standard market-practitioner
+
+  cutoffs 15 / 25 / 40. Rule 7 derivation (threshold cascade on
+
+  vix_close) is stated verbatim in question_template.md. GT files
+
+  populate {category, as_of_date} on every spot-sampled instance
+
+  (always_present by construction — the format pipeline writes both
+
+  fields on every weekly observation). No tier-downgrade flag.
+
+  as_of_date is included in answer_schema.json for completeness; its
+
+  value is supplied in the prompt''s query-period anchor and is not
+
+  scored as an independent QA field. Not a member of a Rule 8 family
+
+  (independent finance scenario; VIX/Sahm/yield-curve share tier and
+
+  shape but use disjoint enums and source series).
+
+  '

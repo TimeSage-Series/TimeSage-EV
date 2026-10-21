@@ -1,0 +1,29 @@
+{
+  "id": "paho_measles_rubella_biweekly",
+  "title": "PAHO bi-weekly Measles-Rubella bulletin digest summary",
+  "tier": "middle",
+  "domain": "healthcare",
+  "cadence": "biweekly",
+  "source": {
+    "publisher": "Pan American Health Organization (PAHO)",
+    "url": "https://www.paho.org/en/documents",
+    "name": "Measles-Rubella bi-Weekly Bulletin"
+  },
+  "license": {
+    "spdx": "CC-BY-NC-SA-3.0-IGO",
+    "verification": "unconfirmed",
+    "redistribution": "on_demand",
+    "attribution": "© Pan American Health Organization.",
+    "terms_url": "https://www.paho.org/en/publications",
+    "note": "Expected to follow WHO's CC BY-NC-SA 3.0 IGO policy, but the copyright page could not be reached."
+  },
+  "period": {
+    "format": "iso_week_range",
+    "column": "week_ending"
+  },
+  "coverage": {
+    "first": "2025-W21-22",
+    "last": "2026-W15-16",
+    "instances": 24
+  }
+}

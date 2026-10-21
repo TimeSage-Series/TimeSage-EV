@@ -1,0 +1,28 @@
+scenario_id: cboe_vix_volatility_regime_state
+keypoints:
+- id: kp_vix_regime
+  description: 'CBOE VIX volatility regime (low / normal / elevated / crisis) for the latest weekly observation,
+    per fixed thresholds: low (<15), normal (15 to <25), elevated (25 to <40), crisis (>=40).'
+  answer_field: category
+  question_tag: A1
+  verification_question: What is the CBOE VIX volatility regime for the latest weekly observation?
+  answer_type: enum
+  enum_options:
+  - low
+  - normal
+  - elevated
+  - crisis
+- id: kp_threshold_rationale
+  description: Report acknowledges the fixed-VIX threshold rule (e.g. cites one of the cutoffs 15/25/40
+    or shows the underlying vix_close value alongside the regime).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the 15/25/40 VIX cutoffs or show the vix_close value?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - observation_date
+    - vix_close
+  tier3_external: true

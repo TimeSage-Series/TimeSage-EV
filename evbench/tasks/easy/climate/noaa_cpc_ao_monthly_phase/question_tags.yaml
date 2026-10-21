@@ -1,0 +1,55 @@
+scenario_id: noaa_cpc_ao_monthly_phase
+tier: easy
+domain: climate
+qa_fields:
+- field: ao_phase
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - Positive
+  - Negative
+  - Neutral
+  derivation: "Arctic Oscillation phase, derived from the LATEST row of\n/root/timeseries.csv using the\
+    \ ±0.5 sigma threshold on the\nmonthly AO index value (standardised SLP anomaly, sigma-units,\nbase\
+    \ period 1979–2000):\n  if   ao_value >= +0.5: 'Positive'\n  elif ao_value <= -0.5: 'Negative'\n \
+    \ else:                  'Neutral'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A1 (state.category) is the correct pick —
+
+  the answer is a categorical phase enum drawn from a closed 3-option
+
+  vocabulary, not a signed-direction tag (A3) or a numeric level (A2).
+
+  Conceptually parallels the ONI ENSO-phase scenario (same ±0.5
+
+  threshold shape over a different index); they are independent
+
+  scenarios rather than a Rule-8 family because the underlying
+
+  phenomenon (polar-vortex strength vs Pacific equatorial SST) and
+
+  enum vocabulary differ. GT fields populate 3/3 spot-sampled
+
+  instances (2024-05 Neutral, 2025-05 Positive, 2026-04 Neutral);
+
+  full 24/24 implied by the deterministic threshold derivation, which
+
+  the format pipeline guarantees on every monthly value. Rule 7
+
+  derivation (±0.5 sigma cutoff) stated verbatim in
+
+  question_template.md. No tier-downgrade flag — natively A-group,
+
+  matches Easy by design. as_of_month is included for schema
+
+  completeness; its scoring weight is 0 because the month is supplied
+
+  in the prompt.
+
+  '

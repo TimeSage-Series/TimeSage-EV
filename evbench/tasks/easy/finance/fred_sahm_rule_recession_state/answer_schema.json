@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fred_sahm_rule_recession_state answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "category",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "elevated_no_signal",
+        "recession_signal"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+scenario_id: usda_cold_storage_butter_band_monthly
+tier: easy
+domain: agriculture
+qa_fields:
+- field: butter_storage_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - tight
+  - low
+  - normal
+  - heavy
+  derivation: |
+    US butter cold-storage band, from the LATEST row of
+    /root/timeseries.csv against its reference window: butter_stocks_mlb
+    of the 5 most recent earlier rows with the same data_month
+    (min, mean, population sigma):
+      if   butter_stocks_mlb < min:              'tight'
+      elif butter_stocks_mlb < mean - 0.5*sigma: 'low'
+      elif butter_stocks_mlb < mean + 0.5*sigma: 'normal'
+      else:                                 'heavy'
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A1 (state.category) is the correct pick --
+
+  the answer is a categorical-band enum derived from a numeric
+
+  cascade against a same-calendar-month 5-year reference window.
+
+  Rule 7 derivation (4-band cascade) stated verbatim in
+
+  question_template.md / session_brief.md. No tier-downgrade flag.
+
+  as_of_data_month scoring weight 0 because the month is supplied in
+
+  the prompt.
+
+  '

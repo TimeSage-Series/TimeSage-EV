@@ -1,0 +1,15 @@
+scenario_id: eia_wti_crude_oil_price_band_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the latest week's WTI crude oil price band per fixed USD/bbl thresholds."
+  required_signals:
+    - "Names the latest observation date explicitly (e.g. '2024-04-19' or 'week ending 2024-04-19')."
+    - "States the band using one of the controlled enum labels (low / normal / elevated / extreme)."
+  forbidden_signals:
+    - "Speculates about next week's price or future direction."
+    - "Adds editorial commentary or attributes the band to causes beyond the fixed USD/bbl threshold rule."
+    - "Cites a contemporaneous EIA This Week in Petroleum or analyst note as the source (deterministic rule on FRED DCOILWTICO weekly close suffices)."
+  exemplar: |
+    "WTI crude oil settled at $82.14/bbl on the 2024-04-19 weekly
+    close (FRED DCOILWTICO), placing it in the normal band (60 to
+    <90 USD/bbl)."

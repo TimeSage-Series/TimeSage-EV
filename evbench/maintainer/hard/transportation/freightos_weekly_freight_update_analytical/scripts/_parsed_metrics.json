@@ -1,0 +1,224 @@
+{
+  "2025-12-03": {
+    "fbx_asia_uswc_pct_wow": -10.0,
+    "fbx_asia_usec_pct_wow": -17.0,
+    "fbx_asia_med_pct_wow": -2.0,
+    "fai_china_neur_pct_wow": 4.0,
+    "fai_neur_na_pct_wow": 5.0,
+    "publication_date": "2025-12-03"
+  },
+  "2025-12-09": {
+    "fbx_asia_uswc_pct_wow": 22.0,
+    "fbx_asia_usec_pct_wow": 2.0,
+    "fbx_asia_med_pct_wow": 15.0,
+    "fai_china_na_pct_wow": 18.0,
+    "fai_china_neur_pct_wow": -12.0,
+    "fai_neur_na_pct_wow": 2.0,
+    "publication_date": "2025-12-09"
+  },
+  "2025-12-12": {
+    "fbx_asia_uswc_pct_wow": -6.0,
+    "fbx_asia_usec_pct_wow": 8.0,
+    "fbx_asia_neur_pct_wow": -1.0,
+    "fbx_asia_med_pct_wow": -1.0,
+    "fai_china_na_pct_wow": 5.0,
+    "fai_china_neur_pct_wow": -4.0,
+    "fai_neur_na_pct_wow": 2.0,
+    "publication_date": "2025-12-12"
+  },
+  "2025-12-23": {
+    "fbx_asia_uswc_pct_wow": 8.0,
+    "fbx_asia_usec_pct_wow": -3.0,
+    "fbx_asia_neur_pct_wow": 11.0,
+    "fbx_asia_med_pct_wow": 15.0,
+    "fai_china_na_pct_wow": -7.0,
+    "fai_china_neur_pct_wow": 6.0,
+    "fai_neur_na_pct_wow": -1.0,
+    "publication_date": "2025-12-23"
+  },
+  "2025-12-30": {
+    "fbx_asia_uswc_pct_wow": 1.0,
+    "fbx_asia_usec_pct_wow": 10.0,
+    "fbx_asia_neur_pct_wow": 1.0,
+    "fbx_asia_med_pct_wow": 4.0,
+    "fai_china_na_pct_wow": -16.0,
+    "fai_china_neur_pct_wow": -5.0,
+    "fai_neur_na_pct_wow": -14.0,
+    "publication_date": "2025-12-30"
+  },
+  "2026-01-06": {
+    "fbx_asia_uswc_pct_wow": 22.0,
+    "fbx_asia_usec_pct_wow": 12.0,
+    "fbx_asia_neur_pct_wow": 9.0,
+    "fbx_asia_med_pct_wow": 21.0,
+    "fai_china_na_pct_wow": -1.0,
+    "fai_china_neur_pct_wow": -2.0,
+    "fai_neur_na_pct_wow": -7.0,
+    "publication_date": "2026-01-06"
+  },
+  "2026-01-13": {
+    "fbx_asia_uswc_pct_wow": 5.0,
+    "fbx_asia_usec_pct_wow": 7.0,
+    "fbx_asia_neur_pct_wow": -1.0,
+    "fai_china_na_pct_wow": -4.0,
+    "fai_china_neur_pct_wow": 6.0,
+    "fai_neur_na_pct_wow": 5.0,
+    "publication_date": "2026-01-13"
+  },
+  "2026-01-21": {
+    "fbx_asia_uswc_pct_wow": -3.0,
+    "fbx_asia_usec_pct_wow": -2.0,
+    "fbx_asia_neur_pct_wow": -3.0,
+    "fbx_asia_med_pct_wow": -5.0,
+    "fai_china_na_pct_wow": -8.0,
+    "fai_china_neur_pct_wow": -1.0,
+    "fai_neur_na_pct_wow": 2.0,
+    "publication_date": "2026-01-21"
+  },
+  "2026-01-27": {
+    "fbx_asia_neur_pct_wow": 1.0,
+    "fbx_asia_med_pct_wow": -5.0,
+    "fai_china_na_pct_wow": 14.0,
+    "fai_china_neur_pct_wow": -1.0,
+    "fai_neur_na_pct_wow": 7.0,
+    "publication_date": "2026-01-27"
+  },
+  "2026-02-03": {
+    "fbx_asia_uswc_pct_wow": -10.0,
+    "fbx_asia_usec_pct_wow": -2.0,
+    "fbx_asia_neur_pct_wow": -5.0,
+    "fbx_asia_med_pct_wow": -5.0,
+    "fai_china_na_pct_wow": 8.0,
+    "fai_china_neur_pct_wow": -4.0,
+    "fai_neur_na_pct_wow": 10.0,
+    "publication_date": "2026-02-03"
+  },
+  "2026-02-10": {
+    "fbx_asia_uswc_pct_wow": -21.0,
+    "fbx_asia_usec_pct_wow": -10.0,
+    "fbx_asia_neur_pct_wow": -8.0,
+    "fbx_asia_med_pct_wow": -9.0,
+    "fai_china_na_pct_wow": 9.0,
+    "fai_china_neur_pct_wow": -3.0,
+    "fai_neur_na_pct_wow": 1.0,
+    "publication_date": "2026-02-10"
+  },
+  "2026-02-17": {
+    "fbx_asia_uswc_pct_wow": -2.0,
+    "fbx_asia_usec_pct_wow": -12.0,
+    "fbx_asia_neur_pct_wow": -5.0,
+    "fbx_asia_med_pct_wow": -4.0,
+    "fai_china_na_pct_wow": 1.0,
+    "fai_china_neur_pct_wow": 8.0,
+    "fai_neur_na_pct_wow": 4.0,
+    "publication_date": "2026-02-17"
+  },
+  "2026-02-24": {
+    "fbx_asia_uswc_pct_wow": -3.0,
+    "fbx_asia_usec_pct_wow": -1.0,
+    "fbx_asia_neur_pct_wow": -1.0,
+    "fbx_asia_med_pct_wow": 2.0,
+    "fai_china_na_pct_wow": -15.0,
+    "fai_china_neur_pct_wow": -9.0,
+    "publication_date": "2026-02-24"
+  },
+  "2026-03-04": {
+    "fbx_asia_neur_pct_wow": -1.0,
+    "fbx_asia_med_pct_wow": -2.0,
+    "fai_china_na_pct_wow": 2.0,
+    "fai_china_neur_pct_wow": 7.0,
+    "fai_neur_na_pct_wow": 3.0,
+    "publication_date": "2026-03-04"
+  },
+  "2026-03-10": {
+    "fbx_asia_uswc_pct_wow": 10.0,
+    "fbx_asia_usec_pct_wow": -9.0,
+    "fbx_asia_neur_pct_wow": 6.0,
+    "fbx_asia_med_pct_wow": 2.0,
+    "fai_china_na_pct_wow": 11.0,
+    "fai_china_neur_pct_wow": 2.0,
+    "fai_neur_na_pct_wow": -9.0,
+    "publication_date": "2026-03-10"
+  },
+  "2026-03-17": {
+    "fbx_asia_uswc_pct_wow": 1.0,
+    "fbx_asia_usec_pct_wow": 9.0,
+    "fbx_asia_neur_pct_wow": 10.0,
+    "fbx_asia_med_pct_wow": 15.0,
+    "fai_china_na_pct_wow": -6.0,
+    "fai_china_neur_pct_wow": 13.0,
+    "fai_neur_na_pct_wow": -2.0,
+    "publication_date": "2026-03-17"
+  },
+  "2026-03-24": {
+    "fbx_asia_uswc_pct_wow": 3.0,
+    "fbx_asia_usec_pct_wow": 4.0,
+    "fai_china_na_pct_wow": 9.0,
+    "fai_china_neur_pct_wow": 25.0,
+    "publication_date": "2026-03-24"
+  },
+  "2026-03-31": {
+    "fbx_asia_uswc_pct_wow": 4.0,
+    "fbx_asia_usec_pct_wow": 3.0,
+    "fbx_asia_med_pct_wow": -8.0,
+    "fai_china_na_pct_wow": 3.0,
+    "fai_china_neur_pct_wow": -6.0,
+    "fai_neur_na_pct_wow": 1.0,
+    "publication_date": "2026-03-31"
+  },
+  "2026-04-07": {
+    "fbx_asia_uswc_pct_wow": 11.0,
+    "fbx_asia_usec_pct_wow": 5.0,
+    "fbx_asia_neur_pct_wow": 2.0,
+    "fbx_asia_med_pct_wow": -2.0,
+    "fai_china_na_pct_wow": -16.0,
+    "fai_neur_na_pct_wow": -3.0,
+    "publication_date": "2026-04-07"
+  },
+  "2026-04-14": {
+    "fbx_asia_uswc_pct_wow": 3.0,
+    "fbx_asia_usec_pct_wow": 10.0,
+    "fbx_asia_neur_pct_wow": -4.0,
+    "fai_china_neur_pct_wow": 7.0,
+    "fai_neur_na_pct_wow": -3.0,
+    "publication_date": "2026-04-14"
+  },
+  "2026-04-21": {
+    "fbx_asia_uswc_pct_wow": 7.0,
+    "fbx_asia_usec_pct_wow": 4.0,
+    "fbx_asia_neur_pct_wow": -3.0,
+    "fbx_asia_med_pct_wow": -5.0,
+    "fai_china_na_pct_wow": 2.0,
+    "fai_china_neur_pct_wow": 2.0,
+    "fai_neur_na_pct_wow": 1.0,
+    "publication_date": "2026-04-21"
+  },
+  "2026-04-28": {
+    "fbx_asia_uswc_pct_wow": 1.0,
+    "fbx_asia_usec_pct_wow": 3.0,
+    "fbx_asia_neur_pct_wow": -3.0,
+    "fbx_asia_med_pct_wow": -3.0,
+    "fai_china_neur_pct_wow": -1.0,
+    "fai_neur_na_pct_wow": -1.0,
+    "publication_date": "2026-04-28"
+  },
+  "2026-05-05": {
+    "fbx_asia_uswc_pct_wow": 2.0,
+    "fbx_asia_usec_pct_wow": 10.0,
+    "fbx_asia_neur_pct_wow": -3.0,
+    "fbx_asia_med_pct_wow": 7.0,
+    "fai_china_na_pct_wow": -14.0,
+    "fai_china_neur_pct_wow": 5.0,
+    "fai_neur_na_pct_wow": -1.0,
+    "publication_date": "2026-05-05"
+  },
+  "2026-05-12": {
+    "fbx_asia_uswc_pct_wow": 4.0,
+    "fbx_asia_usec_pct_wow": 1.0,
+    "fbx_asia_neur_pct_wow": 10.0,
+    "fbx_asia_med_pct_wow": -5.0,
+    "fai_china_neur_pct_wow": -3.0,
+    "fai_neur_na_pct_wow": -3.0,
+    "publication_date": "2026-05-12"
+  }
+}

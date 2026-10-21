@@ -1,0 +1,15 @@
+method: llm_judge
+fields:
+- name: category
+  type: categorical
+  rule: exact_match
+  options:
+  - low
+  - normal
+  - elevated
+  - extreme
+  target_derivation: |
+    The WTI crude-oil spot price band derived from the LATEST (highest observation_date) row of /root/timeseries.csv, using the fixed USD/barrel thresholds: low (<60), normal (60 to <90), elevated (90 to <110), extreme (>=110). Vocabulary is the fixed enum [low, normal, elevated, extreme].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

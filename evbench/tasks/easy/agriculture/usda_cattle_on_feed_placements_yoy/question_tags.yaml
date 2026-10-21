@@ -1,0 +1,39 @@
+scenario_id: usda_cattle_on_feed_placements_yoy
+tier: easy
+domain: agriculture
+qa_fields:
+  - field: placements_yoy_class
+    tag: A3
+    answer_format: single_choice
+    scoring: exact_match
+    decomposition: atomic
+    options: [above_prior_year, below_prior_year, equal_to_prior_year]
+    derivation: |
+      Direction of feedlot placements vs. same month one year prior:
+      placements_million on the latest row of /root/timeseries.csv
+      compared with the row whose release_label is 12 months earlier
+      (same data_month_name):
+        higher -> above_prior_year
+        lower  -> below_prior_year
+        equal  -> equal_to_prior_year
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: |
+  Single-tag Easy scenario; A3 (state.direction_tag) is the correct
+  pick because the answer is a signed-direction enum (above/below/
+  equal) rather than a categorical state (A1) or a numeric level (A2).
+  The CSV carries placement levels only; USDA's signed YoY % is left
+  out because its sign is the answer. GT is the USDA headline
+  direction, and format.py's gt step fails any instance where the
+  CSV comparison does not reproduce it. Rule 7 derivation stated
+  verbatim in session_brief.md.
+  No tier-downgrade flag — natively A-group, matches Easy by design.
+  The 2025-10 release gap (USDA non-publication during the Oct 2025
+  US federal shutdown) is documented in scenario.yaml. It leaves a
+  2026-10 instance without a prior-year row, so the gt step refuses
+  to build one. as_of_release_month is informational (schema
+  completeness); the release month is given in the prompt, so it
+  carries zero scoring weight.

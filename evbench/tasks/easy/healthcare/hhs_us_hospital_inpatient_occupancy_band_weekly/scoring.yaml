@@ -1,0 +1,15 @@
+method: llm_judge
+fields:
+- name: occupancy_band
+  type: categorical
+  rule: exact_match
+  options:
+  - low
+  - normal
+  - elevated
+  - surge
+  target_derivation: |
+    The US hospital inpatient occupancy band derived from the LATEST (highest week_ending) row of /root/timeseries.csv, using the fixed percent thresholds: low (<70), normal (70 to <73), elevated (73 to <76), surge (>=76). Vocabulary is the fixed enum [low, normal, elevated, surge].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

@@ -1,0 +1,49 @@
+scenario_id: noaa_cpc_pna_phase_monthly
+tier: easy
+domain: climate
+qa_fields:
+- field: pna_phase
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - positive_phase
+  - negative_phase
+  - neutral
+  derivation: "Pacific/North American (PNA) teleconnection phase, derived from\nthe LATEST row of /root/timeseries.csv\
+    \ using the +/-0.5 sigma\nthreshold on the monthly PNA index value (standardised 500-hPa\nheight-anomaly\
+    \ sigma-units, base period 1950-2001):\n  if   pna_value >= +0.5: 'positive_phase'\n  elif pna_value\
+    \ <= -0.5: 'negative_phase'\n  else:                  'neutral'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A1 (state.category) is the correct pick --
+
+  the answer is a categorical phase enum drawn from a closed 3-option
+
+  vocabulary, not a signed-direction tag (A3) or a numeric level (A2).
+
+  Conceptually parallels the AO scenario (same +/-0.5 sigma threshold
+
+  shape over a different index); they are independent scenarios
+
+  rather than a Rule-8 family because the underlying phenomenon
+
+  (mid-latitude wave train over the Pacific / North America vs the
+
+  Northern-Hemisphere annular polar-vortex pattern) and enum
+
+  vocabulary differ. Rule 7 derivation (+/-0.5 sigma cutoff) stated
+
+  verbatim in question_template.md. No tier-downgrade flag -- natively
+
+  A-group, matches Easy by design. as_of_data_month is included for
+
+  schema completeness; its scoring weight is 0 because the month is
+
+  supplied in the prompt.
+
+  '

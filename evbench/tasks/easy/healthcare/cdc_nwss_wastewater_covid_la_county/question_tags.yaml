@@ -1,0 +1,27 @@
+scenario_id: cdc_nwss_wastewater_covid_la_county
+tier: easy
+domain: healthcare
+qa_fields:
+- field: wow_direction
+  tag: A3
+  scoring: exact_match
+  answer_format: single_choice
+  options:
+  - rising
+  - falling
+  - stable
+  description: Direction of WoW change in site_wval; ±10% deadband around 0.
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: |
+  Easy-tier sign-based direction scenario. Single A3 (state.direction_tag)
+  question: the week-over-week % change in site_wval against the prior
+  MMWR week, with a +/-10% deadband (rising / falling / stable). The CSV
+  carries site_wval only; the agent computes the change from the latest
+  two rows. format.py's gt step derives the answer from exactly those
+  rows and fails any instance without the prior week's row, so the first
+  series week (2025-W47) is history only, not an instance.
+  No tier-downgrade flag — natively A-group, matches Easy by design.

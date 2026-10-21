@@ -1,0 +1,14 @@
+scenario_id: noaa_cpc_mjo_phase_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current ISO week's MJO Wheeler-Hendon phase."
+  required_signals:
+    - "Names the current ISO week or week-ending Friday explicitly."
+    - "States the MJO phase using one of the controlled enum labels (weak / phase_1..phase_8)."
+  forbidden_signals:
+    - "Speculates about next week or future MJO propagation."
+    - "Adds editorial commentary beyond what the amplitude/phase rule yields."
+  exemplar: |
+    "In the ISO week ending 2026-05-15, the MJO is in phase_3
+    (rmm1=+0.8, rmm2=-1.4, amplitude=1.6, in the Indian-Ocean
+    convective sector of the Wheeler-Hendon phase wheel)."

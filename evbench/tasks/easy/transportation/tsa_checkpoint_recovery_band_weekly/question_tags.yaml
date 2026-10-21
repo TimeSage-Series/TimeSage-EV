@@ -1,0 +1,42 @@
+scenario_id: tsa_checkpoint_recovery_band_weekly
+tier: easy
+domain: transportation
+qa_fields:
+- field: recovery_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - well_below
+  - still_below
+  - approaching
+  - recovered
+  derivation: |
+    TSA checkpoint weekly throughput recovery band vs 2019 same-week
+    baseline, from the latest row of /root/timeseries.csv:
+      recovery = throughput / baseline_2019
+      if   recovery >= 1.05: 'recovered'
+      elif recovery >= 0.95: 'approaching'
+      elif recovery >= 0.75: 'still_below'
+      else:                  'well_below'
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier 4-band classification scenario. Single A1 (state.category)
+
+  question. DISTINCT from the previously-quarantined
+
+  tsa_checkpoint_4week_momentum (B7 momentum direction). The
+
+  agent divides throughput by the 2019 same-week baseline itself
+
+  (the ratio is not in the CSV); the cascade is then mechanical. as_of_week_ending is
+
+  included for schema completeness; its scoring weight is reduced
+
+  because the date is supplied in the prompt.
+
+  '

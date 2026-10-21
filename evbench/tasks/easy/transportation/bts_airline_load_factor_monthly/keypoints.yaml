@@ -1,0 +1,25 @@
+scenario_id: bts_airline_load_factor_monthly
+keypoints:
+- id: kp_year_high_flag
+  description: 'Boolean: TRUE iff the current data month''s U.S. system-wide passenger load factor is
+    strictly greater than each of the 11 immediately preceding monthly observations (max across trailing
+    12 months including itself). FALSE when fewer than 11 prior months exist.'
+  answer_field: is_year_high_load_factor
+  question_tag: B6
+  verification_question: Is the current data month's BTS / FRED LOADFACTOR a 12-month trailing high?
+  answer_type: boolean
+- id: kp_threshold_rationale
+  description: Report acknowledges the trailing-12 window rule (e.g. cites the 11-prior-month comparison
+    or shows the current month load_factor alongside trailing-window context).
+  answer_field: null
+  question_tag: B6
+  verification_question: Does the report cite the trailing-12-month strict-maximum rule or show the current
+    load_factor alongside trailing context?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - as_of_data_month
+    - load_factor
+  tier3_external: true

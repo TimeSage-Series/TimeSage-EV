@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "noaa_cpc_oni_global_enso_phase answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "enso_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "enso_phase": {
+      "type": "string",
+      "enum": [
+        "El Nino",
+        "La Nina",
+        "ENSO-Neutral"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

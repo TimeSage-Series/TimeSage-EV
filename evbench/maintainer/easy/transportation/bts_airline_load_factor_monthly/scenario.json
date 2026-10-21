@@ -1,0 +1,28 @@
+{
+  "id": "bts_airline_load_factor_monthly",
+  "title": "BTS / FRED LOADFACTOR — Is current month a trailing-12 high?",
+  "tier": "easy",
+  "domain": "transportation",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "U.S. Bureau of Transportation Statistics (BTS) / FRED mirror",
+    "url": "https://fred.stlouisfed.org/series/LOADFACTOR",
+    "name": "System-wide U.S. airline passenger load factor (%)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "data_month"
+  },
+  "coverage": {
+    "first": "2024-01",
+    "last": "2026-06",
+    "instances": 30,
+    "series_first": "2024-01"
+  }
+}

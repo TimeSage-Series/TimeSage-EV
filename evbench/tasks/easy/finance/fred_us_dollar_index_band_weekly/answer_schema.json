@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fred_us_dollar_index_band_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "dxy_band",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "dxy_band": {
+      "type": "string",
+      "enum": [
+        "weak",
+        "normal",
+        "firm",
+        "strong",
+        "extreme"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

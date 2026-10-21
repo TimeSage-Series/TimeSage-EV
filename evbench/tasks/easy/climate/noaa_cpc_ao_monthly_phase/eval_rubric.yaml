@@ -1,0 +1,13 @@
+scenario_id: noaa_cpc_ao_monthly_phase
+tier: easy
+quality_rubric:
+  genre: "1–2 sentence plain factual statement of the current month's AO phase."
+  required_signals:
+    - "Names the current month explicitly (e.g. 'May 2024')."
+    - "States the AO phase using one of the controlled enum labels (Positive / Negative / Neutral)."
+  forbidden_signals:
+    - "Speculates about next month or future periods."
+    - "Adds editorial commentary or attributes the phase to causes beyond the ±0.5σ threshold."
+  exemplar: |
+    "In May 2024, the Arctic Oscillation is in a Neutral phase (AO index −0.05σ,
+    within the ±0.5σ threshold band that separates Positive from Negative)."

@@ -1,0 +1,57 @@
+scenario_id: bts_airline_load_factor_monthly
+tier: easy
+domain: transportation
+qa_fields:
+- field: is_year_high_load_factor
+  tag: B6
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - true
+  - false
+  derivation: 'Boolean. TRUE iff the LOADFACTOR value in the latest row of
+
+    /root/timeseries.csv is strictly greater than each of the 11
+
+    immediately preceding monthly rows'' LOADFACTOR values (a 12-month
+
+    trailing maximum, inclusive of the latest row). If fewer than 11
+
+    prior rows exist in /root/timeseries.csv, set FALSE.
+
+    '
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; B6 (temporal.is_extremum) is the correct
+
+  pick because the answer is a boolean indicator over a fixed trailing
+
+  window (12 months) — not a categorical state (A1), not a numeric
+
+  level (A2), and not a sign / direction tag (A3). Rule 7 derivation
+
+  (trailing-12 strict maximum, FALSE if fewer than 11 priors exist) is
+
+  stated verbatim in question_template.md and session_brief.md so the
+
+  agent does not have to infer the window length or strict-vs-weak
+
+  comparison policy. The 25-month instance window (2024-01 .. 2026-01)
+
+  contains 25 distinct booleans; the seasonal pattern of U.S. air
+
+  traffic (summer-month peaks) gives natural variability across the
+
+  TRUE / FALSE buckets. V8 distribution is recorded in
+
+  provenance.history after format_gt.py executes. Not part of a Rule 8
+
+  family — independent transportation Easy scenario. as_of_data_month
+
+  is informational only; it carries zero scoring weight.
+
+  '

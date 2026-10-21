@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "eia_refinery_utilization_band_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "refinery_utilization_band",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "refinery_utilization_band": {
+      "type": "string",
+      "enum": [
+        "extreme_low",
+        "low",
+        "normal",
+        "high",
+        "extreme_high"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

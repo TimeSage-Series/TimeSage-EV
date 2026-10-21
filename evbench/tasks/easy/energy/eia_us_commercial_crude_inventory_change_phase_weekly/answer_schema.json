@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "eia_us_commercial_crude_inventory_change_phase_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "crude_inventory_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "crude_inventory_phase": {
+      "type": "string",
+      "enum": [
+        "build",
+        "draw",
+        "flat"
+      ],
+      "question_tag": "A3"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

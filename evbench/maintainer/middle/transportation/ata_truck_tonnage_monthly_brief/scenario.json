@@ -1,0 +1,28 @@
+{
+  "id": "ata_truck_tonnage_monthly_brief",
+  "title": "ATA Truck Tonnage Index Monthly Brief (FRED proxy TRUCKD11)",
+  "tier": "middle",
+  "domain": "transportation",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "American Trucking Associations (ATA)",
+    "url": "https://www.trucking.org/news-insights",
+    "name": "ATA Truck Tonnage Index (monthly press release)"
+  },
+  "license": {
+    "spdx": "proprietary",
+    "verification": "assumed_restricted",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.trucking.org/",
+    "note": "Subscription series."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "release_label"
+  },
+  "coverage": {
+    "first": "2024-03",
+    "last": "2026-02",
+    "instances": 24
+  }
+}

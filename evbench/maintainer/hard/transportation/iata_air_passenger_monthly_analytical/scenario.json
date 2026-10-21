@@ -1,0 +1,27 @@
+{
+  "id": "iata_air_passenger_monthly_analytical",
+  "title": "IATA Air Passenger Market Analysis monthly attribution",
+  "tier": "hard",
+  "domain": "transportation",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "IATA",
+    "url": "https://www.iata.org/en/iata-repository/publications/economic-reports"
+  },
+  "license": {
+    "spdx": "proprietary",
+    "verification": "verified_restricted",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.iata.org/en/terms-conditions/",
+    "note": "Commercial publication."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "period"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-03",
+    "instances": 24
+  }
+}

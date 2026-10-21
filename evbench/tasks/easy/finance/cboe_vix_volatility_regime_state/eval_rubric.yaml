@@ -1,0 +1,14 @@
+scenario_id: cboe_vix_volatility_regime_state
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the latest week's CBOE VIX volatility regime per fixed thresholds."
+  required_signals:
+    - "Names the latest observation date explicitly (e.g. '2024-04-19' or 'week ending 2024-04-19')."
+    - "States the regime using one of the controlled enum labels (low / normal / elevated / crisis)."
+  forbidden_signals:
+    - "Speculates about next week's volatility or attributes the regime to a macro narrative."
+    - "Cites contemporaneous market commentary as the source (deterministic rule on the FRED VIXCLS weekly close suffices)."
+    - "Invents a regime label outside the four-band enum."
+  exemplar: |
+    "VIX closed at 18.7 on 2024-04-19, putting the volatility regime
+    in the normal band (15 to <25)."

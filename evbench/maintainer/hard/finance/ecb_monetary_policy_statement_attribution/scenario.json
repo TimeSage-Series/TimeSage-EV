@@ -1,0 +1,29 @@
+{
+  "id": "ecb_monetary_policy_statement_attribution",
+  "title": "ECB Combined Monetary Policy Decisions and Statement — meeting-level analytical brief",
+  "tier": "hard",
+  "domain": "finance",
+  "cadence": "irregular",
+  "source": {
+    "publisher": "European Central Bank (Governing Council)",
+    "url": "https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/shared/pdf",
+    "name": "Combined monetary policy decisions and statement"
+  },
+  "license": {
+    "spdx": "LicenseRef-ECB-Terms",
+    "verification": "verified_permissive",
+    "redistribution": "bundled",
+    "attribution": "Source: European Central Bank.",
+    "terms_url": "https://www.ecb.europa.eu/services/disclaimer/html/index.en.html",
+    "note": "Terms page read: reproduction allowed provided the ECB is cited as the source. A stricter rule applies to author-attributed working papers, which this scenario does not use."
+  },
+  "period": {
+    "format": "custom",
+    "column": "meeting_label"
+  },
+  "coverage": {
+    "first": "2023-Dec14",
+    "last": "2026-Mar19",
+    "instances": 24
+  }
+}

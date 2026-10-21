@@ -1,0 +1,60 @@
+scenario_id: noaa_cpc_oni_global_enso_phase
+tier: easy
+domain: climate
+qa_fields:
+- field: enso_phase
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - El Nino
+  - La Nina
+  - ENSO-Neutral
+  derivation: "ENSO phase, derived from the LATEST row of /root/timeseries.csv\nusing the per-season ±0.5\
+    \ °C ONI threshold on nino34_anomaly_c\n(the ONI value; Niño 3.4 SST anomaly vs 1991–2020 base period):\n\
+    \  if   nino34_anomaly_c >= +0.5: 'El Nino'\n  elif nino34_anomaly_c <= -0.5: 'La Nina'\n  else: \
+    \                         'ENSO-Neutral'\nPer-season rule, NOT the 5-consecutive-season confirmed-episode\n\
+    rule.\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A1 (state.category) is the correct pick —
+
+  the answer is a categorical ENSO-phase enum drawn from a closed
+
+  3-option vocabulary, not a signed-direction tag (A3) or a numeric
+
+  level (A2). Conceptually parallel to noaa_cpc_ao_monthly_phase
+
+  (same ±0.5 threshold shape over a different index) but the two are
+
+  independent scenarios rather than a Rule-8 family because the
+
+  underlying phenomenon (Pacific equatorial SST vs polar-vortex
+
+  strength) and the enum vocabulary differ. GT fields populate 3/3
+
+  spot-sampled instances (2024-AMJ Neutral, 2025-AMJ Neutral,
+
+  2026-FMA Neutral; with V8 confirming 1 El Nino + 20 Neutral + 3
+
+  La Nina across the 24 instances per scenario.yaml). Full 24/24
+
+  always_present is guaranteed by the deterministic threshold
+
+  derivation. Rule 7 derivation (±0.5 °C cutoff on nino34_anomaly_c)
+
+  stated verbatim in question_template.md and explicitly contrasted
+
+  with the 5-season confirmed-episode rule, which is NOT applied.
+
+  No tier-downgrade flag — natively A-group, matches Easy by design.
+
+  as_of_season is included for schema completeness; its scoring
+
+  weight is 0 because the season is supplied in the prompt.
+
+  '

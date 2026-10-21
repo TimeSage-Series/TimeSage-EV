@@ -1,0 +1,27 @@
+scenario_id: noaa_cpc_oni_global_enso_phase
+keypoints:
+- id: kp_enso_phase
+  description: Current ENSO phase (El Nino / La Nina / ENSO-Neutral) per the per-season +/-0.5 deg C ONI
+    threshold rule applied to nino34_anomaly_c, 1991-2020 base period.
+  answer_field: enso_phase
+  question_tag: A1
+  verification_question: What is the ENSO phase for the current season per the +/-0.5 deg C ONI rule?
+  answer_type: enum
+  enum_options:
+  - El Nino
+  - La Nina
+  - ENSO-Neutral
+- id: kp_threshold_rationale
+  description: Report acknowledges the +/-0.5 deg C ONI deadband (e.g. cites the threshold or shows the
+    underlying nino34_anomaly_c value alongside the phase).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the +/-0.5 deg C ONI threshold or show nino34_anomaly_c?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - season_label
+    - nino34_anomaly_c
+  tier3_external: true

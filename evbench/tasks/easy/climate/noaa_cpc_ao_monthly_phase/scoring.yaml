@@ -1,0 +1,18 @@
+method: llm_judge
+fields:
+- name: ao_phase
+  type: categorical
+  rule: exact_match
+  options:
+  - Positive
+  - Negative
+  - Neutral
+  target_derivation: |
+    Per-month AO phase, derived from the LATEST row of timeseries.csv:
+      ao = ao_value
+      if ao >= +0.5:   "Positive"
+      elif ao <= -0.5: "Negative"
+      else:             "Neutral"
+aggregation:
+  method: mean
+  pass_threshold: 0.8

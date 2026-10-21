@@ -1,0 +1,6 @@
+{
+  "comment": "CPC ENSO Diagnostic Discussion per-issue URLs. Pattern: /products/analysis_monitoring/enso_disc_<mmm><YYYY>/ensodisc.shtml (lowercase 3-letter month + 4-digit year). Cadence: 2nd Thursday of each month. Verified live for May 2024 through April 2026 at session date 2026-05-12.",
+  "instance_window": {"start": "2024-05", "end": "2026-04", "count": 24},
+  "missing_months_known": [],
+  "url_pattern": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_{mmm}{year}/ensodisc.shtml"
+}

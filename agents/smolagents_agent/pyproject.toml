@@ -1,0 +1,22 @@
+[project]
+name = "timesage-agent-smolagents"
+version = "0.1.0"
+description = "TimeSage agent built on smolagents CodeAgent: Python-as-action, audited web search, multi-step memory. Implements the evsandbox agent contract."
+requires-python = ">=3.10"
+dependencies = [
+    "smolagents>=1.25",
+    "openai>=1.40",
+    "pandas>=2.0",
+    "pypdf>=4.0",
+    "timesage-evsandbox",
+]
+
+[project.optional-dependencies]
+# lm_provider=anthropic goes through LiteLLM; the other providers need only openai.
+anthropic = ["smolagents[litellm]>=1.25"]
+
+[tool.uv.sources]
+timesage-evsandbox = { workspace = true }
+
+[tool.setuptools]
+packages = ["smolagents_agent"]

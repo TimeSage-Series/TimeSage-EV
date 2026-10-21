@@ -1,0 +1,32 @@
+scenario_id: bls_diesel_retail_price_band_weekly
+keypoints:
+- id: kp_diesel_price_band
+  description: 'US retail #2 diesel price band classification (cheap / normal / elevated / extreme) for
+    the current Monday observation week, per the 3.50/4.25/5.00 USD/gal threshold cascade.'
+  answer_field: diesel_price_band
+  question_tag: A1
+  verification_question: What is the retail-diesel price band for the current week?
+  answer_type: enum
+  enum_options:
+  - cheap
+  - normal
+  - elevated
+  - extreme
+- id: kp_threshold_rationale
+  description: Report acknowledges the USD/gallon threshold cascade (cites the 3.50/4.25/5.00 levels or
+    the underlying price_usd_per_gal alongside the band label).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the USD/gallon thresholds or show the underlying price alongside
+    the band?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - observation_date
+    - iso_week
+    - price_usd_per_gal
+    - diesel_price_band
+  - prior_pdfs_glob: gt_source/*.json
+  tier3_external: true

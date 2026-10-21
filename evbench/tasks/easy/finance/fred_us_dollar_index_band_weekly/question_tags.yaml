@@ -1,0 +1,33 @@
+scenario_id: fred_us_dollar_index_band_weekly
+tier: easy
+domain: finance
+qa_fields:
+- field: dxy_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - weak
+  - normal
+  - firm
+  - strong
+  - extreme
+  derivation: "USD-strength band derived from the latest row of /root/timeseries.csv\n(FRED DTWEXBGS Nominal\
+    \ Broad U.S. Dollar Index weekly Friday close)\nusing fixed index thresholds:\n  if   dxy_index <\
+    \  118: 'weak'\n  elif dxy_index <  119: 'normal'\n  elif dxy_index <  120: 'firm'\n  elif dxy_index\
+    \ <  121: 'strong'\n  else:                  'extreme'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier 5-band classification scenario on a public FRED series.
+
+  Single A1 (state.category) question. Thresholds recalibrated to the
+
+  DTWEXBGS scale (the ICE DXY is not on FRED; DTWEXBGS is the closest
+
+  public series and uses a different normalization).
+
+  '

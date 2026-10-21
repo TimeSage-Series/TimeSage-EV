@@ -1,0 +1,14 @@
+scenario_id: noaa_cpc_oni_global_enso_phase
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current season's ENSO phase per the ONI threshold rule."
+  required_signals:
+    - "Names the current season explicitly in YYYY-SEAS form (e.g. '2026-FMA')."
+    - "States the phase using one of the controlled enum labels (El Nino / La Nina / ENSO-Neutral)."
+  forbidden_signals:
+    - "Speculates about next season or future ENSO trajectory."
+    - "Adds editorial commentary or attributes the phase to causes beyond the +/-0.5 deg C ONI rule."
+  exemplar: |
+    "For 2026-FMA, NOAA CPC's ONI (nino34_anomaly_c = +0.7 deg C vs
+    the 1991-2020 base) sits above the +0.5 deg C threshold, putting
+    the global ENSO phase at El Nino."

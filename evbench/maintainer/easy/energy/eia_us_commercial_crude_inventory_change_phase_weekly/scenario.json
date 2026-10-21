@@ -1,0 +1,28 @@
+{
+  "id": "eia_us_commercial_crude_inventory_change_phase_weekly",
+  "title": "EIA Weekly US Commercial Crude Inventory Change phase",
+  "tier": "easy",
+  "domain": "energy",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "U.S. Energy Information Administration (EIA)",
+    "url": "https://www.eia.gov/petroleum/weekly",
+    "name": "Weekly U.S. Ending Stocks excluding SPR of Crude Oil (Thousand Barrels)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "week_ending"
+  },
+  "coverage": {
+    "first": "2025-W48",
+    "last": "2026-W40",
+    "instances": 45,
+    "series_first": "2025-W47"
+  }
+}

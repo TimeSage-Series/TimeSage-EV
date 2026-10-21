@@ -1,0 +1,28 @@
+scenario_id: eia_wti_crude_oil_price_band_weekly
+keypoints:
+- id: kp_price_band
+  description: 'WTI crude oil weekly price band (low / normal / elevated / extreme) per fixed USD/bbl
+    thresholds: low (<60), normal (60 to <90), elevated (90 to <110), extreme (>=110).'
+  answer_field: category
+  question_tag: A1
+  verification_question: What is the WTI crude oil price-band category for the latest weekly observation?
+  answer_type: enum
+  enum_options:
+  - low
+  - normal
+  - elevated
+  - extreme
+- id: kp_threshold_rationale
+  description: Report acknowledges the fixed-USD threshold rule (e.g. cites one of the cutoffs 60/90/110
+    or shows the underlying price_usd_per_bbl alongside the band).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the 60/90/110 USD cutoffs or show price_usd_per_bbl?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - observation_date
+    - price_usd_per_bbl
+  tier3_external: true

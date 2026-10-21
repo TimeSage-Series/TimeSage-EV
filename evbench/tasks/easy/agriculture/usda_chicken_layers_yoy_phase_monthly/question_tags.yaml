@@ -1,0 +1,48 @@
+scenario_id: usda_chicken_layers_yoy_phase_monthly
+tier: easy
+domain: agriculture
+qa_fields:
+- field: layer_flock_yoy_phase
+  tag: A3
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - expansion
+  - contraction
+  - steady
+  derivation: |
+    US chicken layer flock YoY phase, from the LATEST row of
+    /root/timeseries.csv and the row for the same month one year
+    earlier, each at its latest known level (layers_revised_klb if
+    filled, else layers_klb), against a +/-0.5% deadband:
+      yoy = (latest level - prior-year level) / prior-year level * 100
+      if   yoy >  +0.5: 'expansion'
+      elif yoy <  -0.5: 'contraction'
+      else:             'steady'
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A3 (state.direction_tag) is the correct
+
+  pick -- the answer is a sign-based 3-option direction enum on a
+
+  signed YoY% (computed by the agent from this month''s and the same
+
+  month a year earlier''s flock levels; the CSV carries neither the YoY%
+
+  nor a prior-year column) with a +/-0.5% deadband (the deadband makes the
+
+  classification genuinely categorical and distinguishable from a
+
+  raw numeric readout). Rule 7 derivation (sign + deadband) stated
+
+  verbatim in question_template.md / session_brief.md. No tier-
+
+  downgrade flag. as_of_data_month scoring weight 0 because the data
+
+  month is supplied in the prompt.
+
+  '

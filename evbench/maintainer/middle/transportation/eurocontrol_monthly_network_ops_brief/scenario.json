@@ -1,0 +1,28 @@
+{
+  "id": "eurocontrol_monthly_network_ops_brief",
+  "title": "Eurocontrol Network Operations Report monthly digest",
+  "tier": "middle",
+  "domain": "transportation",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "Eurocontrol — Network Manager",
+    "url": "https://www.eurocontrol.int/publication",
+    "name": "Network Operations Report (NOR)"
+  },
+  "license": {
+    "spdx": "LicenseRef-UNCONFIRMED",
+    "verification": "unconfirmed",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.eurocontrol.int/",
+    "note": "No copyright or reuse page located."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "report_month"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-03",
+    "instances": 24
+  }
+}

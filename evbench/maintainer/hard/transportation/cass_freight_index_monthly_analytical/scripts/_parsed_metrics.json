@@ -1,0 +1,194 @@
+{
+  "2024-04": {
+    "shipments_index": 1.098,
+    "shipments_yoy_pct": -4.0,
+    "expenditures_index": 3.227,
+    "expenditures_yoy_pct": -16.8,
+    "inferred_rate_per_shipment": 2.939,
+    "period": "2024-04"
+  },
+  "2024-05": {
+    "shipments_index": 1.098,
+    "shipments_yoy_pct": -5.8,
+    "expenditures_index": 3.288,
+    "expenditures_yoy_pct": -9.0,
+    "inferred_rate_per_shipment": 2.9945,
+    "period": "2024-05"
+  },
+  "2024-06": {
+    "shipments_index": 1.078,
+    "shipments_yoy_pct": -6.0,
+    "expenditures_index": 3.189,
+    "expenditures_yoy_pct": -9.4,
+    "inferred_rate_per_shipment": 2.9583,
+    "period": "2024-06"
+  },
+  "2024-07": {
+    "shipments_index": 1.11,
+    "shipments_yoy_pct": -1.1,
+    "expenditures_index": 3.211,
+    "expenditures_yoy_pct": -6.2,
+    "inferred_rate_per_shipment": 2.8928,
+    "period": "2024-07"
+  },
+  "2024-08": {
+    "shipments_index": 1.121,
+    "shipments_yoy_pct": -1.9,
+    "expenditures_index": 3.147,
+    "expenditures_yoy_pct": -9.0,
+    "inferred_rate_per_shipment": 2.8073,
+    "period": "2024-08"
+  },
+  "2024-09": {
+    "shipments_index": 1.102,
+    "shipments_yoy_pct": -5.2,
+    "expenditures_index": 3.224,
+    "expenditures_yoy_pct": -6.6,
+    "inferred_rate_per_shipment": 2.9256,
+    "period": "2024-09"
+  },
+  "2024-10": {
+    "shipments_index": 1.081,
+    "shipments_yoy_pct": -2.4,
+    "expenditures_index": 3.175,
+    "expenditures_yoy_pct": -5.9,
+    "inferred_rate_per_shipment": 2.9371,
+    "period": "2024-10"
+  },
+  "2024-11": {
+    "shipments_index": 1.086,
+    "shipments_yoy_pct": -0.7,
+    "expenditures_index": 3.203,
+    "expenditures_yoy_pct": -3.8,
+    "inferred_rate_per_shipment": 2.9494,
+    "period": "2024-11"
+  },
+  "2024-12": {
+    "shipments_index": 1.007,
+    "shipments_yoy_pct": -6.5,
+    "expenditures_index": 3.12,
+    "expenditures_yoy_pct": -3.4,
+    "inferred_rate_per_shipment": 3.0983,
+    "period": "2024-12"
+  },
+  "2025-01": {
+    "shipments_index": 0.954,
+    "shipments_yoy_pct": -8.2,
+    "expenditures_index": 2.971,
+    "expenditures_yoy_pct": -4.2,
+    "inferred_rate_per_shipment": 3.1143,
+    "period": "2025-01"
+  },
+  "2025-02": {
+    "shipments_index": 1.054,
+    "shipments_yoy_pct": -5.5,
+    "expenditures_index": 3.078,
+    "expenditures_yoy_pct": -4.6,
+    "inferred_rate_per_shipment": 2.9203,
+    "period": "2025-02"
+  },
+  "2025-03": {
+    "shipments_index": 1.054,
+    "shipments_yoy_pct": -5.3,
+    "expenditures_index": 3.163,
+    "expenditures_yoy_pct": -2.0,
+    "inferred_rate_per_shipment": 3.0009,
+    "period": "2025-03"
+  },
+  "2025-04": {
+    "shipments_index": 1.058,
+    "shipments_yoy_pct": -3.6,
+    "expenditures_index": 3.267,
+    "expenditures_yoy_pct": 1.2,
+    "inferred_rate_per_shipment": 3.0879,
+    "period": "2025-04"
+  },
+  "2025-05": {
+    "shipments_index": 1.054,
+    "shipments_yoy_pct": -4.0,
+    "expenditures_index": 3.313,
+    "expenditures_yoy_pct": 0.8,
+    "inferred_rate_per_shipment": 3.1433,
+    "period": "2025-05"
+  },
+  "2025-06": {
+    "shipments_index": 1.052,
+    "shipments_yoy_pct": -2.4,
+    "expenditures_index": 3.273,
+    "expenditures_yoy_pct": 2.6,
+    "inferred_rate_per_shipment": 3.1112,
+    "period": "2025-06"
+  },
+  "2025-07": {
+    "shipments_index": 1.033,
+    "shipments_yoy_pct": -6.9,
+    "expenditures_index": 3.225,
+    "expenditures_yoy_pct": 0.4,
+    "inferred_rate_per_shipment": 3.122,
+    "period": "2025-07"
+  },
+  "2025-08": {
+    "shipments_index": 1.017,
+    "shipments_yoy_pct": -9.3,
+    "expenditures_index": 3.135,
+    "expenditures_yoy_pct": -0.4,
+    "inferred_rate_per_shipment": 3.0826,
+    "period": "2025-08"
+  },
+  "2025-09": {
+    "shipments_index": 1.042,
+    "shipments_yoy_pct": -5.4,
+    "expenditures_index": 3.296,
+    "expenditures_yoy_pct": 2.2,
+    "inferred_rate_per_shipment": 3.1631,
+    "period": "2025-09"
+  },
+  "2025-10": {
+    "shipments_index": 0.997,
+    "shipments_yoy_pct": -7.8,
+    "expenditures_index": 3.169,
+    "expenditures_yoy_pct": -0.2,
+    "inferred_rate_per_shipment": 3.1785,
+    "period": "2025-10"
+  },
+  "2025-11": {
+    "shipments_index": 1.004,
+    "shipments_yoy_pct": -7.6,
+    "expenditures_index": 3.163,
+    "expenditures_yoy_pct": -1.2,
+    "inferred_rate_per_shipment": 3.1504,
+    "period": "2025-11"
+  },
+  "2025-12": {
+    "shipments_index": 0.932,
+    "shipments_yoy_pct": -7.5,
+    "expenditures_index": 3.101,
+    "expenditures_yoy_pct": -0.6,
+    "inferred_rate_per_shipment": 3.3273,
+    "period": "2025-12"
+  },
+  "2026-01": {
+    "shipments_index": 0.886,
+    "shipments_yoy_pct": -7.1,
+    "expenditures_index": 2.99,
+    "expenditures_yoy_pct": 0.6,
+    "inferred_rate_per_shipment": 3.3747,
+    "period": "2026-01"
+  },
+  "2026-02": {
+    "shipments_index": 0.978,
+    "shipments_yoy_pct": -7.2,
+    "expenditures_index": 3.143,
+    "expenditures_yoy_pct": 2.1,
+    "inferred_rate_per_shipment": 3.2137,
+    "period": "2026-02"
+  },
+  "2026-03": {
+    "shipments_index": 1.007,
+    "shipments_yoy_pct": -4.5,
+    "expenditures_index": 3.296,
+    "expenditures_yoy_pct": 4.2,
+    "inferred_rate_per_shipment": 3.2731,
+    "period": "2026-03"
+  }
+}

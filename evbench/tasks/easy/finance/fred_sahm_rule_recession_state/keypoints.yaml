@@ -1,0 +1,28 @@
+scenario_id: fred_sahm_rule_recession_state
+keypoints:
+- id: kp_sahm_bucket
+  description: 'Sahm-rule bucket (normal / elevated_no_signal / recession_signal) for the latest available
+    month of the FRED SAHMCURRENT series per fixed thresholds: normal (<0.30), elevated_no_signal (0.30
+    to <0.50), recession_signal (>=0.50).'
+  answer_field: category
+  question_tag: A1
+  verification_question: What is the Sahm-rule bucket for the latest monthly SAHMCURRENT observation?
+  answer_type: enum
+  enum_options:
+  - normal
+  - elevated_no_signal
+  - recession_signal
+- id: kp_threshold_rationale
+  description: Report acknowledges the fixed Sahm-rule threshold rule (e.g. cites the 0.30 / 0.50 cutoffs
+    or shows the underlying sahm_rule_value alongside the bucket).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the 0.30/0.50 Sahm-rule cutoffs or show the sahm_rule_value?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - observation_date
+    - sahm_rule_value
+  tier3_external: true

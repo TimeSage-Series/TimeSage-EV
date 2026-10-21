@@ -1,0 +1,29 @@
+scenario_id: usda_cold_storage_pork_band_monthly
+keypoints:
+- id: kp_pork_band
+  description: US Total pork cold-storage band classification (tight / low / normal / heavy) for the latest
+    data month, per the same-month 5-year-reference 4-band rule.
+  answer_field: pork_storage_band
+  question_tag: A1
+  verification_question: What is the US Total pork cold-storage band for the current data month?
+  answer_type: enum
+  enum_options:
+  - tight
+  - low
+  - normal
+  - heavy
+- id: kp_threshold_rationale
+  description: Report acknowledges the 5-year-reference 4-band threshold (e.g. by citing the band cutoffs
+    or showing the underlying pork_stocks_mlb alongside the 5-year statistics).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the 5-year-reference cutoffs or show pork_stocks_mlb alongside the five-year mean?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - pork_stocks_mlb
+    - period_label
+  - prior_pdfs_glob: gt_source/*.pdf
+  tier3_external: true

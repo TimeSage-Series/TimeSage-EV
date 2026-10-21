@@ -1,0 +1,35 @@
+scenario_id: eia_refinery_utilization_band_weekly
+tier: easy
+domain: energy
+qa_fields:
+- field: refinery_utilization_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - extreme_low
+  - low
+  - normal
+  - high
+  - extreme_high
+  derivation: "US refinery-utilization band, derived from the latest row of\n/root/timeseries.csv (EIA\
+    \ WPULEUS3 weekly Friday week-ending) using\nfixed percent thresholds:\n  if   utilization_pct < \
+    \ 70: 'extreme_low'\n  elif utilization_pct <  85: 'low'\n  elif utilization_pct <  92: 'normal'\n\
+    \  elif utilization_pct <  96: 'high'\n  else:                       'extreme_high'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier 5-band classification scenario. Single A1 (state.category)
+
+  question. Threshold cascade is mechanical from the latest row. The
+
+  as_of_week_ending field is included for schema completeness;
+
+  its scoring weight is reduced because the date is supplied in the
+
+  prompt.
+
+  '

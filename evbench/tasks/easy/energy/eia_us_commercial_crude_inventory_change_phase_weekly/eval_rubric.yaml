@@ -1,0 +1,14 @@
+scenario_id: eia_us_commercial_crude_inventory_change_phase_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's US commercial crude inventory change phase against the +/-0.5 MMbbl deadband."
+  required_signals:
+    - "Names the current Friday-ending week explicitly (e.g. 'week ending 2026-05-08')."
+    - "States the crude inventory phase using one of the controlled enum labels (build / draw / flat)."
+  forbidden_signals:
+    - "Speculates about next week's stocks trajectory or production/demand outlook."
+    - "Adds editorial commentary or attributes the phase to causes beyond the week-over-week change sign cascade."
+  exemplar: |
+    "For the week ending 2026-05-08, US commercial crude stocks fell
+    by 4.31 million barrels week-over-week, which is below the -0.5
+    MMbbl threshold and places the week in the 'draw' inventory phase."

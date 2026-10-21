@@ -1,0 +1,13 @@
+scenario_id: noaa_cpc_pna_phase_monthly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current month's PNA phase."
+  required_signals:
+    - "Names the current month explicitly (e.g. 'May 2024')."
+    - "States the PNA phase using one of the controlled enum labels (positive_phase / negative_phase / neutral)."
+  forbidden_signals:
+    - "Speculates about next month or future periods."
+    - "Adds editorial commentary or attributes the phase to causes beyond the +/-0.5 sigma threshold."
+  exemplar: |
+    "In May 2024, the Pacific/North American teleconnection is in a negative_phase
+    (PNA index -2.74 sigma, below the -0.5 sigma threshold)."

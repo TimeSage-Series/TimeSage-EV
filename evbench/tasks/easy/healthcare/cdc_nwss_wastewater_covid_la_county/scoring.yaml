@@ -1,0 +1,20 @@
+method: llm_judge
+fields:
+- name: wow_direction
+  type: categorical
+  rule: exact_match
+  options:
+  - rising
+  - falling
+  - stable
+  target_derivation: |
+    WoW direction of site_wval (numeric activity index) for the LA-county
+    NWSS COVID-19 sentinel site. Signed WoW % change in site_wval against
+    the prior MMWR week, deadbanded at +-10%:
+      WoW% >  +10 -> rising
+      WoW% <  -10 -> falling
+      otherwise   -> stable
+    Derived from the LATEST (highest week_end) row of /root/timeseries.csv.
+aggregation:
+  method: mean
+  pass_threshold: 0.8

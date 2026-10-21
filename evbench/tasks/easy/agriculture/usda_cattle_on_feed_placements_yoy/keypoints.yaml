@@ -1,0 +1,21 @@
+scenario_id: usda_cattle_on_feed_placements_yoy
+keypoints:
+  - id: kp_placements_yoy_class
+    description: "Direction of US feedlot placements (covered data month) versus the same calendar month one year earlier, from comparing the two placements_million values."
+    answer_field: placements_yoy_class
+    question_tag: A3
+    verification_question: "What is the US feedlot placements YoY direction tag for the current release month?"
+    answer_type: enum
+    enum_options: [above_prior_year, below_prior_year, equal_to_prior_year]
+  - id: kp_threshold_rationale
+    description: "Report grounds the direction tag in the comparison (e.g. cites placements for the data month and for the same month one year earlier, or the resulting YoY change)."
+    answer_field: null
+    question_tag: A3
+    verification_question: "Does the report cite the two placements figures compared (or the YoY change they imply) grounding the direction tag?"
+    answer_type: boolean
+
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+    - csv_columns: [release_label, data_month_name, prior_year, placements_million]
+  tier3_external: true

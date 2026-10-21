@@ -1,0 +1,14 @@
+scenario_id: fred_us_dollar_index_band_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's USD-strength band against the fixed DTWEXBGS index thresholds."
+  required_signals:
+    - "Names the current Friday-ending week explicitly (e.g. 'week ending 2026-05-08')."
+    - "States the dxy band using one of the controlled enum labels (weak / normal / firm / strong / extreme)."
+  forbidden_signals:
+    - "Speculates about next week's USD trajectory or Fed rate-path implications."
+    - "Adds editorial commentary or attributes the band to causes beyond the threshold cascade."
+  exemplar: |
+    "For the week ending 2026-05-08, the FRED DTWEXBGS Broad Dollar
+    Index closed at 118.04, which is in the 118-119 corridor and
+    places the week in the 'normal' USD-strength band."

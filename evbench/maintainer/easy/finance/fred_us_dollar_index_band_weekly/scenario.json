@@ -1,0 +1,29 @@
+{
+  "id": "fred_us_dollar_index_band_weekly",
+  "title": "FRED Weekly US Dollar Index (DTWEXBGS) band state",
+  "tier": "easy",
+  "domain": "finance",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "Federal Reserve Bank of St. Louis (FRED)",
+    "url": "https://fred.stlouisfed.org/series/DTWEXBGS",
+    "name": "Nominal Broad U.S. Dollar Index (Goods + Services, trade-weighted, Jan 2006 = 100)",
+    "cadence": "daily"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "FRED series DTWEXBGS is the Federal Reserve Board's Nominal Broad U.S. Dollar Index; Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "week_ending"
+  },
+  "coverage": {
+    "first": "2025-W48",
+    "last": "2026-W40",
+    "instances": 45,
+    "series_first": "2025-W48"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "eia_wpsr_weekly_petroleum_brief",
+  "title": "U.S. Weekly Petroleum Status Brief (EIA WPSR Middle)",
+  "tier": "middle",
+  "domain": "energy",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "U.S. Energy Information Administration",
+    "url": "https://www.eia.gov/petroleum/supply/weekly/archive",
+    "name": "Weekly Petroleum Status Report — Highlights PDF"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month_day",
+    "column": "period"
+  },
+  "coverage": {
+    "first": "2025-10-31",
+    "last": "2026-04-29",
+    "instances": 24
+  }
+}

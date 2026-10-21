@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+"""Download this scenario's source artifacts.
+
+    python scripts/download.py                 # every step, in order: timeseries -> gt
+    python scripts/download.py timeseries    # one step
+    python scripts/download.py gt [flags]    # …with that step's own flags
+    python scripts/download.py all [flags]     # every step, flags forwarded to each
+    python scripts/download.py --list          # list the steps
+
+Merged from download_timeseries.py and download_gt.py. Each step keeps the argument
+parser it had before, so every flag that used to work still works — pass it
+after the step name.
+"""
+from __future__ import annotations
+import argparse
+import subprocess
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent))
+from _common import TS_SOURCE, SERIES, FRED_BASE  # noqa: E402
+
+
+# --- step: timeseries ----------------------------------------------------
+
+
+def _step_timeseries() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--force", action="store_true")
+    args = ap.parse_args()
+
+    TS_SOURCE.mkdir(parents=True, exist_ok=True)
+    ok = 0
+    for label, series_id in SERIES.items():
+        out = TS_SOURCE / f"{series_id}.csv"
+        if out.exists() and not args.force:
+            print(f"[skip] {label}/{series_id}", flush=True)
+            ok += 1
+            continue
+        url = f"{FRED_BASE}{series_id}"
+        print(f"[fetch] {url}", flush=True)
+        r = subprocess.run(
+            ["curl", "-sSL", "--max-time", "30", "-o", str(out), url],
+            check=False,
+        )
+        if r.returncode != 0 or not out.exists() or out.stat().st_size < 200:
+            print(f"[err] {label}/{series_id} rc={r.returncode}", flush=True)
+            continue
+        print(f"[ok] {label}/{series_id}: {out.stat().st_size} bytes", flush=True)
+        ok += 1
+    return 0 if ok == len(SERIES) else 1
+
+
+# --- step: gt ------------------------------------------------------------
+def _step_gt() -> None:
+    root = Path(__file__).resolve().parents[1]
+    print(f"GT source artifacts are checked in under {root / 'gt_source'}")
+
+# ---------------------------------------------------------------------------
+# dispatcher
+# ---------------------------------------------------------------------------
+
+#: Execution order. The ground truth is derived from the series, so timeseries runs first.
+STEPS = ("timeseries", "gt")
+
+_STEP_FUNCS = {
+    "timeseries": _step_timeseries,
+    "gt": _step_gt,
+}
+
+
+def _run_step(step: str, args: list) -> int:
+    """Invoke one step with `args` as its argv, then restore the real argv."""
+    saved = sys.argv
+    sys.argv = [f"{Path(__file__).name} {step}"] + list(args)
+    try:
+        return int(_STEP_FUNCS[step]() or 0)
+    finally:
+        sys.argv = saved
+
+
+def main() -> int:
+    argv = sys.argv[1:]
+
+    if argv and argv[0] in ("-h", "--help"):
+        print(__doc__)
+        return 0
+    if argv and argv[0] == "--list":
+        for step in STEPS:
+            print(step)
+        return 0
+
+    if argv and argv[0] in STEPS:
+        return _run_step(argv[0], argv[1:])
+
+    # No step named: run all of them. Bare invocation passes no flags; an
+    # explicit `all` forwards whatever follows to every step.
+    rest = argv[1:] if (argv and argv[0] == "all") else []
+    if argv and argv[0] != "all":
+        print(f"unknown step {argv[0]!r}; expected one of {', '.join(STEPS)}, "
+              f"or 'all'", file=sys.stderr)
+        return 2
+
+    for step in STEPS:
+        rc = _run_step(step, rest)
+        if rc:
+            print(f"[{Path(__file__).name}] step {step!r} exited {rc}; stopping",
+                  file=sys.stderr)
+            return rc
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

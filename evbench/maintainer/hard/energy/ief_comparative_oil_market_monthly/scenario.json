@@ -1,0 +1,28 @@
+{
+  "id": "ief_comparative_oil_market_monthly",
+  "title": "IEF Comparative Analysis — oil-market forecaster synthesis (Hard)",
+  "tier": "hard",
+  "domain": "energy",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "International Energy Forum (IEF)",
+    "url": "https://www.ief.org/_resources/files/news/comparative-analysis-of-monthly-reports-on-the-oil-market",
+    "name": "Comparative Analysis of Monthly Reports on the Oil Market"
+  },
+  "license": {
+    "spdx": "proprietary",
+    "verification": "assumed_restricted",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.ief.org/",
+    "note": "No open licence found."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "month_label"
+  },
+  "coverage": {
+    "first": "2024-05",
+    "last": "2026-04",
+    "instances": 24
+  }
+}

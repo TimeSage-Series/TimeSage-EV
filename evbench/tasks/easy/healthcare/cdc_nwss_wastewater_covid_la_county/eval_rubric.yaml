@@ -1,0 +1,15 @@
+scenario_id: cdc_nwss_wastewater_covid_la_county
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the latest week's week-over-week direction of the CDC NWSS SARS-CoV-2 wastewater viral activity index (site_wval) at site 113 (LA + Ventura)."
+  required_signals:
+    - "Names the latest Saturday week-ending date explicitly (e.g. '2025-11-29')."
+    - "States the direction using one of the controlled enum labels (rising / falling / stable)."
+  forbidden_signals:
+    - "Speculates about next week's wastewater signal or projects a transmission forecast."
+    - "Attributes the direction to causes (variants, holidays) beyond the week-over-week change in site_wval."
+    - "Cites a contemporaneous CDC weekly COVID update as the source (the site_wval rows in /root/timeseries.csv are the basis)."
+  exemplar: |
+    "For the CDC NWSS week ending 2025-11-29, the SARS-CoV-2 wastewater
+    viral activity index at site 113 (LA + Ventura, CA) fell from 1.04
+    to 0.67 week over week (-35.6%), so the direction is falling."

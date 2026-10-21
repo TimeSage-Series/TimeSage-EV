@@ -1,0 +1,34 @@
+scenario_id: eia_refinery_utilization_band_weekly
+keypoints:
+- id: kp_refinery_utilization_band
+  description: US refinery-utilization band classification (extreme_low / low / normal / high / extreme_high)
+    for the current Friday-ending week, per the fixed 70/85/92/96 percent thresholds on the latest utilization_pct
+    value.
+  answer_field: refinery_utilization_band
+  question_tag: A1
+  verification_question: What is the refinery-utilization band for the current week?
+  answer_type: enum
+  enum_options:
+  - extreme_low
+  - low
+  - normal
+  - high
+  - extreme_high
+- id: kp_threshold_rationale
+  description: Report acknowledges the percent-threshold cascade (cites the 70/85/92/96 levels or the
+    underlying utilization_pct alongside the band label).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the percent thresholds or show the utilization_pct value
+    alongside the band?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - utilization_pct
+    - refinery_utilization_band
+    - week_ending
+    - iso_week
+  - prior_pdfs_glob: gt_source/*.json
+  tier3_external: true

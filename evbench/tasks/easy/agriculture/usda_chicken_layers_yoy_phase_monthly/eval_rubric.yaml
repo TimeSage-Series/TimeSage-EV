@@ -1,0 +1,14 @@
+scenario_id: usda_chicken_layers_yoy_phase_monthly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current data month's US chicken layer flock YoY phase."
+  required_signals:
+    - "Names the current data month explicitly (e.g. 'March 2026')."
+    - "States the phase using one of the controlled enum labels (expansion / contraction / steady)."
+  forbidden_signals:
+    - "Speculates about next month or future periods."
+    - "Adds editorial commentary or attributes the phase to causes beyond the +/-0.5% deadband rule."
+  exemplar: |
+    "In March 2026, the US chicken layer flock was in expansion versus
+    March 2025 (average flock 375.9 vs 357.0 million, YoY +5.3%,
+    above the +0.5% deadband)."

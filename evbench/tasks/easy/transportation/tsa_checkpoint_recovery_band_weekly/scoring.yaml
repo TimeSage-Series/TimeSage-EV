@@ -1,0 +1,15 @@
+method: llm_judge
+fields:
+- name: recovery_band
+  type: categorical
+  rule: exact_match
+  options:
+  - well_below
+  - still_below
+  - approaching
+  - recovered
+  target_derivation: |
+    The TSA checkpoint weekly throughput recovery band derived from the LATEST (highest week_ending) row of /root/timeseries.csv, using the fixed ratio thresholds on the ratio `throughput / baseline_2019`: well_below (<0.75), still_below (0.75 to <0.95), approaching (0.95 to <1.05), recovered (>=1.05). Vocabulary is the fixed enum [well_below, still_below, approaching, recovered].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

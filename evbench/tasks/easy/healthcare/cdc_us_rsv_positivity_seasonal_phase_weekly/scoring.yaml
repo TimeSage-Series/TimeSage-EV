@@ -1,0 +1,15 @@
+method: llm_judge
+fields:
+- name: rsv_phase
+  type: categorical
+  rule: exact_match
+  options:
+  - off_season
+  - active
+  - elevated
+  - peak
+  target_derivation: |
+    The US national RSV seasonal phase derived from the LATEST (highest week_ending) row of /root/timeseries.csv, using the 5-year same-MMWR-week percentile rule: off_season (<p25), active (p25 to <p50), elevated (p50 to <p75), peak (>=p75). Percentiles use Python statistics.quantiles(n=4) exclusive method. Vocabulary is the fixed enum [off_season, active, elevated, peak].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

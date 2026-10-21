@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "usda_chicken_layers_yoy_phase_monthly answer (Easy tier — state.direction_tag)",
+  "type": "object",
+  "required": [
+    "layer_flock_yoy_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "layer_flock_yoy_phase": {
+      "type": "string",
+      "enum": [
+        "expansion",
+        "contraction",
+        "steady"
+      ],
+      "question_tag": "A3"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

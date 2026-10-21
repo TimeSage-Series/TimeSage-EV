@@ -1,0 +1,28 @@
+{
+  "id": "iri_enso_quick_look_monthly",
+  "title": "IRI ENSO QuickLook — objective monthly plume-based ENSO forecast",
+  "tier": "hard",
+  "domain": "climate",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "IRI (International Research Institute for Climate and Society, Columbia University)",
+    "url": "https://iri.columbia.edu/our-expertise/climate/forecasts/enso",
+    "name": "ENSO QuickLook (Technical ENSO Update)"
+  },
+  "license": {
+    "spdx": "LicenseRef-UNCONFIRMED",
+    "verification": "unconfirmed",
+    "redistribution": "on_demand",
+    "terms_url": "https://iri.columbia.edu/",
+    "note": "No terms-of-use page located."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "season_label"
+  },
+  "coverage": {
+    "first": "2024-05",
+    "last": "2026-04",
+    "instances": 24
+  }
+}

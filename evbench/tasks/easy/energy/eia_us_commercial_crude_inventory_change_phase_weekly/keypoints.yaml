@@ -1,0 +1,30 @@
+scenario_id: eia_us_commercial_crude_inventory_change_phase_weekly
+keypoints:
+- id: kp_crude_inventory_phase
+  description: US commercial crude inventory phase classification (build / draw / flat) for the current
+    Friday-ending week, per the fixed +/-0.5 MMbbl sign cascade on the latest week-over-week change in stocks.
+  answer_field: crude_inventory_phase
+  question_tag: A3
+  verification_question: What is the crude inventory phase for the current week?
+  answer_type: enum
+  enum_options:
+  - build
+  - draw
+  - flat
+- id: kp_threshold_rationale
+  description: Report acknowledges the +/-0.5 MMbbl sign cascade (cites the deadband or the underlying
+    week-over-week change alongside the phase label).
+  answer_field: null
+  question_tag: A3
+  verification_question: Does the report cite the +/-0.5 MMbbl deadband or show the week-over-week change
+    alongside the phase?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - stocks_thousand_bbl
+    - week_ending
+    - iso_week
+  - prior_pdfs_glob: gt_source/*.json
+  tier3_external: true

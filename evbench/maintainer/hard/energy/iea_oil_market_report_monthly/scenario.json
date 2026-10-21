@@ -1,0 +1,28 @@
+{
+  "id": "iea_oil_market_report_monthly",
+  "title": "IEA Oil Market Report — monthly causal-reasoning brief (Hard)",
+  "tier": "hard",
+  "domain": "energy",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "International Energy Agency",
+    "url": "https://www.iea.org/reports/oil-market-report",
+    "name": "Oil Market Report (OMR) — Highlights / Free version"
+  },
+  "license": {
+    "spdx": "proprietary",
+    "verification": "verified_restricted",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.iea.org/terms",
+    "note": "IEA terms reserve all rights."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "issue_label"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-04",
+    "instances": 24
+  }
+}

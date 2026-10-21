@@ -1,0 +1,27 @@
+{
+  "id": "eia_natural_gas_monthly_brief",
+  "title": "EIA Natural Gas Monthly — descriptive summary",
+  "tier": "middle",
+  "domain": "energy",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "US EIA",
+    "url": "https://www.eia.gov/naturalgas/monthly/archive",
+    "name": "Natural Gas Monthly (NGM)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "issue_label"
+  },
+  "coverage": {
+    "first": "2024-05",
+    "last": "2026-04",
+    "instances": 24
+  }
+}

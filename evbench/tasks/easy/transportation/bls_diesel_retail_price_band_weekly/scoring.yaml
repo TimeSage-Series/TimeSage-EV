@@ -1,0 +1,15 @@
+method: llm_judge
+fields:
+- name: diesel_price_band
+  type: categorical
+  rule: exact_match
+  options:
+  - cheap
+  - normal
+  - elevated
+  - extreme
+  target_derivation: |
+    The US retail #2 diesel pump-price band derived from the LATEST (highest observation_date) row of /root/timeseries.csv, using the fixed USD/gallon thresholds: cheap (<3.50), normal (3.50 to <4.25), elevated (4.25 to <5.00), extreme (>=5.00). Vocabulary is the fixed enum [cheap, normal, elevated, extreme].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

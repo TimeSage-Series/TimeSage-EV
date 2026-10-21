@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "noaa_cpc_ao_monthly_phase answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "ao_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "ao_phase": {
+      "type": "string",
+      "enum": [
+        "Positive",
+        "Negative",
+        "Neutral"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

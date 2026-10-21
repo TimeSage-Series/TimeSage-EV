@@ -1,0 +1,124 @@
+{
+  "comment": "IEA Oil Market Report (OMR) \u2014 Highlights / Free version. Published monthly (~2nd-3rd Tuesday). The landing page URL is deterministic from the calendar month: https://www.iea.org/reports/oil-market-report-<month>-<year> (e.g. oil-market-report-april-2026). The PDF lives on iea.blob.core.windows.net behind a per-issue UUID prefix; the asset URL is NOT deterministically derivable, so download_gt.py scrapes the landing HTML to find the .pdf link. Where the direct asset URL is verified ahead of time it is recorded under pdf_urls; otherwise the download script discovers it at runtime. Issue window: 2024-05 (May 15, 2024) through 2026-04 (Apr 14, 2026) = 24 monthly issues.",
+  "issues": {
+    "2024-05": {
+      "published_approx": "2024-05-15"
+    },
+    "2024-06": {
+      "published_approx": "2024-06-12"
+    },
+    "2024-07": {
+      "published_approx": "2024-07-11"
+    },
+    "2024-08": {
+      "published_approx": "2024-08-13"
+    },
+    "2024-09": {
+      "published_approx": "2024-09-12"
+    },
+    "2024-10": {
+      "published_approx": "2024-10-15"
+    },
+    "2024-11": {
+      "published_approx": "2024-11-14"
+    },
+    "2024-12": {
+      "published_approx": "2024-12-12"
+    },
+    "2025-01": {
+      "published_approx": "2025-01-15"
+    },
+    "2025-02": {
+      "published_approx": "2025-02-13"
+    },
+    "2025-03": {
+      "published_approx": "2025-03-13"
+    },
+    "2025-04": {
+      "published_approx": "2025-04-15"
+    },
+    "2025-05": {
+      "published_approx": "2025-05-15"
+    },
+    "2025-06": {
+      "published_approx": "2025-06-17"
+    },
+    "2025-07": {
+      "published_approx": "2025-07-11"
+    },
+    "2025-08": {
+      "published_approx": "2025-08-13"
+    },
+    "2025-09": {
+      "published_approx": "2025-09-11"
+    },
+    "2025-10": {
+      "published_approx": "2025-10-14"
+    },
+    "2025-11": {
+      "published_approx": "2025-11-13"
+    },
+    "2025-12": {
+      "published_approx": "2025-12-11"
+    },
+    "2026-01": {
+      "published_approx": "2026-01-21"
+    },
+    "2026-03": {
+      "published_approx": "2026-03-12"
+    },
+    "2026-04": {
+      "published_approx": "2026-04-14"
+    },
+    "2024-04": {
+      "published_approx": "2024-04-12"
+    }
+  },
+  "landing_urls": {
+    "2024-05": "https://www.iea.org/reports/oil-market-report-may-2024",
+    "2024-06": "https://www.iea.org/reports/oil-market-report-june-2024",
+    "2024-07": "https://www.iea.org/reports/oil-market-report-july-2024",
+    "2024-08": "https://www.iea.org/reports/oil-market-report-august-2024",
+    "2024-09": "https://www.iea.org/reports/oil-market-report-september-2024",
+    "2024-10": "https://www.iea.org/reports/oil-market-report-october-2024",
+    "2024-11": "https://www.iea.org/reports/oil-market-report-november-2024",
+    "2024-12": "https://www.iea.org/reports/oil-market-report-december-2024",
+    "2025-01": "https://www.iea.org/reports/oil-market-report-january-2025",
+    "2025-02": "https://www.iea.org/reports/oil-market-report-february-2025",
+    "2025-03": "https://www.iea.org/reports/oil-market-report-march-2025",
+    "2025-04": "https://www.iea.org/reports/oil-market-report-april-2025",
+    "2025-05": "https://www.iea.org/reports/oil-market-report-may-2025",
+    "2025-06": "https://www.iea.org/reports/oil-market-report-june-2025",
+    "2025-07": "https://www.iea.org/reports/oil-market-report-july-2025",
+    "2025-08": "https://www.iea.org/reports/oil-market-report-august-2025",
+    "2025-09": "https://www.iea.org/reports/oil-market-report-september-2025",
+    "2025-10": "https://www.iea.org/reports/oil-market-report-october-2025",
+    "2025-11": "https://www.iea.org/reports/oil-market-report-november-2025",
+    "2025-12": "https://www.iea.org/reports/oil-market-report-december-2025",
+    "2026-01": "https://www.iea.org/reports/oil-market-report-january-2026",
+    "2026-02": "https://www.iea.org/reports/oil-market-report-february-2026",
+    "2026-03": "https://www.iea.org/reports/oil-market-report-march-2026",
+    "2026-04": "https://www.iea.org/reports/oil-market-report-april-2026",
+    "2024-04": "https://www.iea.org/reports/oil-market-report-april-2024"
+  },
+  "pdf_urls": {
+    "_comment": "Direct PDF asset URLs verified via web-indexed Azure blob storage at corpus-build time. Used as a fallback when landing-page scrape fails. Issues without a pdf_urls entry MUST be resolved by landing-page scrape at runtime.",
+    "2024-05": "https://iea.blob.core.windows.net/assets/9780437d-2467-427d-a1a5-fb710cdfd0a1/-15MAY2024_OilMarketReport.pdf",
+    "2024-06": "https://iea.blob.core.windows.net/assets/a04f62be-0136-47a1-a280-0045d0d45f99/-12JUN2024_OilMarketReport.pdf",
+    "2024-07": "https://iea.blob.core.windows.net/assets/7f5f398a-f043-4385-b758-d01c9b17dc01/-11JUL2024_OilMarketReport.pdf",
+    "2024-10": "https://iea.blob.core.windows.net/assets/d6004423-13bd-4026-b5c0-5aaeb1340894/-15OCT2024_OilMarketReport.pdf",
+    "2024-11": "https://iea.blob.core.windows.net/assets/90728a4f-dc69-45ea-a188-391affa2bc71/-14NOV2024_OilMarketReport.pdf",
+    "2024-12": "https://iea.blob.core.windows.net/assets/209af090-8713-42b6-ac5b-650c6e68bccc/-12DEC2024_OilMarketReport.pdf",
+    "2025-01": "https://iea.blob.core.windows.net/assets/d83cb366-e7c8-491a-8dd3-21c7e7e369c0/-15JAN2025_OilMarketReport.pdf",
+    "2025-03": "https://iea.blob.core.windows.net/assets/55130583-c3cd-48cb-8b25-fbc5804cab4b/-13MAR2025_OilMarketReport.pdf",
+    "2025-06": "https://iea.blob.core.windows.net/assets/49666e25-2275-47cc-9343-cebb3477619c/-17JUNE2025_OilMarketReport_Corrigendum.pdf",
+    "2025-07": "https://iea.blob.core.windows.net/assets/988cb913-d08e-4f2e-9a8d-f337d50525e0/-11JULY2025_OilMarketReport.pdf",
+    "2025-08": "https://iea.blob.core.windows.net/assets/6e8bf347-c9af-4549-a3ac-07e5361813e9/-13AUG2025_OilMarketReport.pdf",
+    "2025-09": "https://iea.blob.core.windows.net/assets/9912e52f-d73e-4871-b3e2-a5c4779ba511/-11SEPT2025_OilMarketReport.pdf",
+    "2025-10": "https://iea.blob.core.windows.net/assets/7a568f37-ed86-48bc-ae93-40c6ebbd7311/-14OCT2025_OilMarketReport.pdf",
+    "2026-01": "https://iea.blob.core.windows.net/assets/b308b876-554c-4339-ab9f-72e96eac6cdd/-21JAN2026_OilMarketReport.pdf",
+    "2026-03": "https://iea.blob.core.windows.net/assets/a25ddf53-cd6c-4910-ac90-16bfd28399e7/-12MAR2026_OilMarketReport.pdf",
+    "2026-04": "https://iea.blob.core.windows.net/assets/515f3128-df1a-4d6c-beb4-fd91d2434bef/-14APR2026_OilMarketReport_Free_version1.pdf"
+  },
+  "missing_pdf_urls_note": "The following issues do not yet have a verified direct PDF asset URL and MUST be resolved by landing-page scrape at runtime: 2024-08, 2024-09, 2025-02, 2025-04, 2025-05, 2025-11, 2025-12, 2026-02. The landing-page scrape is the canonical path; pdf_urls is fallback only."
+}

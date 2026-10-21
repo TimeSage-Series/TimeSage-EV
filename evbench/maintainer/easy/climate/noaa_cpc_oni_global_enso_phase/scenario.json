@@ -1,0 +1,28 @@
+{
+  "id": "noaa_cpc_oni_global_enso_phase",
+  "title": "NOAA CPC Oceanic Niño Index — current ENSO phase (per-season rule)",
+  "tier": "easy",
+  "domain": "climate",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "NOAA Climate Prediction Center",
+    "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/ensostuff/ONI_v5.php",
+    "name": "Oceanic Niño Index (ONI)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "season_label"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-08",
+    "instances": 29,
+    "series_first": "2024-04"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "eia_natural_gas_weekly_update_hard",
+  "title": "EIA Natural Gas Weekly Update -- weekly analytical brief",
+  "tier": "hard",
+  "domain": "energy",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "U.S. Energy Information Administration (EIA)",
+    "url": "https://www.eia.gov/naturalgas/weekly/archivenew_ngwu",
+    "name": "Natural Gas Weekly Update"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month_day",
+    "column": "publication_thursday"
+  },
+  "coverage": {
+    "first": "2025-07-24",
+    "last": "2026-01-22",
+    "instances": 24
+  }
+}

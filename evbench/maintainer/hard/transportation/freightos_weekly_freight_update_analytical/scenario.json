@@ -1,0 +1,27 @@
+{
+  "id": "freightos_weekly_freight_update_analytical",
+  "title": "Freightos Weekly Freight Update analytical brief",
+  "tier": "hard",
+  "domain": "transportation",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "Freightos",
+    "url": "https://www.freightos.com/freight-industry-updates/weekly-freight-updates"
+  },
+  "license": {
+    "spdx": "proprietary",
+    "verification": "assumed_restricted",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.freightos.com/",
+    "note": "Proprietary index."
+  },
+  "period": {
+    "format": "year_month_day",
+    "column": "publication_date"
+  },
+  "coverage": {
+    "first": "2025-12-03",
+    "last": "2026-05-12",
+    "instances": 24
+  }
+}

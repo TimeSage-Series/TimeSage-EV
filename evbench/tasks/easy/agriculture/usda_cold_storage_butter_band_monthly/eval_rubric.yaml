@@ -1,0 +1,14 @@
+scenario_id: usda_cold_storage_butter_band_monthly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current data month's US butter cold-storage band."
+  required_signals:
+    - "Names the current data month explicitly (e.g. 'March 2026')."
+    - "States the band using one of the controlled enum labels (tight / low / normal / heavy)."
+  forbidden_signals:
+    - "Speculates about next month or future periods."
+    - "Adds editorial commentary or attributes the band to causes beyond the 5-year-reference rule."
+  exemplar: |
+    "March 2026 US butter cold storage stood at 289 million pounds, a
+    `low` reading versus the 2021-2025 March five-year window
+    (min=315, mean=355, sigma=33; below mean-0.5sigma=338)."

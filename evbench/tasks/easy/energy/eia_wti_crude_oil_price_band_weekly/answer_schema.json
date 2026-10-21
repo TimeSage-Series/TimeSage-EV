@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "eia_wti_crude_oil_price_band_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "category",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "low",
+        "normal",
+        "elevated",
+        "extreme"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

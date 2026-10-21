@@ -1,0 +1,27 @@
+{
+  "id": "usda_wasde_crop_balance_monthly_brief",
+  "title": "U.S. WASDE Monthly Crop-Balance Brief (USDA WAOB)",
+  "tier": "middle",
+  "domain": "agriculture",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "USDA World Agricultural Outlook Board (WAOB)",
+    "url": "https://www.usda.gov/oce/commodity/wasde",
+    "name": "World Agricultural Supply and Demand Estimates (WASDE)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "release_label"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-05",
+    "instances": 24
+  }
+}

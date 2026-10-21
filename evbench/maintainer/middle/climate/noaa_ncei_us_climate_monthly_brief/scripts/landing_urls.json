@@ -1,0 +1,15 @@
+{
+  "url_pattern": "https://www.ncei.noaa.gov/news/national-climate-{YYYYMM}",
+  "url_pattern_notes": [
+    "YYYYMM has MM in 01..12 for the monthly briefs covered by this scenario.",
+    "MM=13 is the annual rollup and is OUT OF SCOPE.",
+    "Verified live at Stage 1 (2026-05-12) for 202401, 202406, 202408, 202413."
+  ],
+  "instance_window": {
+    "start": "2024-05",
+    "end":   "2026-04",
+    "count": 24
+  },
+  "known_missing_or_late_periods": [],
+  "manual_overrides": {}
+}

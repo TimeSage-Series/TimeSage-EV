@@ -1,0 +1,35 @@
+scenario_id: cdc_us_rsv_positivity_seasonal_phase_weekly
+tier: easy
+domain: healthcare
+qa_fields:
+- field: rsv_phase
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - off_season
+  - active
+  - elevated
+  - peak
+  derivation: "US national RSV seasonal phase, derived from the latest row of\n/root/timeseries.csv (CDC\
+    \ NREVSS dataset rgnm-fkqb,\npathogen=RSV, level=National, subtype='Combined Type',\nSaturday MMWR\
+    \ week-ending) using the 5-year same-MMWR-week\npercentile cascade:\n  target_year, target_week =\
+    \ ISO year and week of latest row\n  baseline = percent_pos values in [target_year-5, target_year-1]\n\
+    \             with the same MMWR week number as the latest row\n  p25, p50, p75 = exclusive quartiles\
+    \ of baseline\n  if   percent_pos <  p25: 'off_season'\n  elif percent_pos <  p50: 'active'\n  elif\
+    \ percent_pos <  p75: 'elevated'\n  else:                    'peak'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier 4-band classification scenario using a same-week historical
+
+  percentile rule. Single A1 (state.category) question. The percentile
+
+  baseline is fully encoded in the cumulative CSV so the agent can
+
+  recompute the rule deterministically.
+
+  '

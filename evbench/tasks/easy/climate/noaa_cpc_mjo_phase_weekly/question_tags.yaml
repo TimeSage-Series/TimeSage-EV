@@ -1,0 +1,47 @@
+scenario_id: noaa_cpc_mjo_phase_weekly
+tier: easy
+domain: climate
+qa_fields:
+- field: mjo_phase
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - weak
+  - phase_1
+  - phase_2
+  - phase_3
+  - phase_4
+  - phase_5
+  - phase_6
+  - phase_7
+  - phase_8
+  derivation: "Madden-Julian Oscillation Wheeler-Hendon phase, derived from the\nLATEST row of /root/timeseries.csv\
+    \ using the canonical RMM\nclassification:\n  amplitude = sqrt(rmm1^2 + rmm2^2)\n  if amplitude <\
+    \ 1.0: 'weak'\n  else: 8-sector Wheeler-Hendon phase wheel (phase_1..phase_8)\n        per the (rmm1,\
+    \ rmm2) sign/magnitude rule in\n        session_brief.md.\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A1 (state.category) is the correct pick --
+
+  the answer is a closed-vocabulary 9-option phase enum. The
+
+  Wheeler-Hendon RMM phase wheel is a deterministic categorical
+
+  classification on two numeric inputs (RMM1, RMM2). Rule 7
+
+  derivation (amplitude threshold + 8-sector wheel) stated verbatim
+
+  in session_brief.md and question_template.md context. No tier-
+
+  downgrade flag -- natively A-group, matches Easy by design.
+
+  as_of_week_ending has weight 0 because the ISO week is supplied in
+
+  the prompt.
+
+  '

@@ -1,0 +1,53 @@
+scenario_id: fred_sahm_rule_recession_state
+tier: easy
+domain: finance
+qa_fields:
+- field: category
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - normal
+  - elevated_no_signal
+  - recession_signal
+  derivation: "Sahm-rule bucket for the latest available month, derived from the\nlatest row of /root/timeseries.csv\
+    \ (first-of-month observation of\nFRED series SAHMCURRENT) by applying the fixed threshold cascade\n\
+    to sahm_value:\n  if   sahm_value >= 0.50: 'recession_signal'\n  elif sahm_value >= 0.30: 'elevated_no_signal'\n\
+    \  else:                    'normal'\nThe 0.50 cutoff is the canonical Sahm-rule trigger (3m-MA\n\
+    unemployment rate >= 0.50 pp above its trailing 12-month minimum);\nthe 0.30 cutoff is a scenario-internal\
+    \ warning band so the answer\nis not constant during low-unemployment regimes.\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier A1 state.category scenario for the Sahm Rule recession
+
+  indicator. Sourced from FRED SAHMCURRENT (monthly, real-time variant).
+
+  Threshold-derived 3-option enum {normal, elevated_no_signal,
+
+  recession_signal} with the 0.50 Sahm trigger as the operative
+
+  recession-signal cutoff and 0.30 as a scenario-internal warning band.
+
+  Rule 7 derivation (threshold cascade on sahm_value) is stated verbatim
+
+  in question_template.md. GT files populate {category, as_of_date} on
+
+  every spot-sampled instance (always_present by construction — the
+
+  format pipeline writes both fields on every monthly observation; the
+
+  GT also carries sahm_value as a convenience numeric, not a QA field).
+
+  No tier-downgrade flag. as_of_date is included in answer_schema.json
+
+  for completeness; its value is supplied in the prompt''s query-period
+
+  anchor and is not scored as an independent QA field. Not a member of
+
+  a Rule 8 family (independent finance scenario).
+
+  '

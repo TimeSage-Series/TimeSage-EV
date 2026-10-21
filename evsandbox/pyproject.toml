@@ -1,0 +1,23 @@
+[project]
+name = "timesage-evsandbox"
+version = "0.1.0"
+description = "Environment engine for TimeSage agent evaluation. Builds sandboxes, drives subprocess agents, scores via evbench.evaluator."
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml>=6",
+    "requests>=2.31",
+    "timesage-ev",
+]
+
+[project.scripts]
+evsandbox = "evsandbox.cli:main"
+
+# timesage-ev (the repo root, which ships the `evbench` package) is not a PyPI
+# package. uv resolves it as a member of the root workspace; with plain pip,
+# install the repo root first (see README).
+[tool.uv.sources]
+timesage-ev = { workspace = true }
+
+[tool.setuptools]
+packages = ["evsandbox"]

@@ -1,0 +1,2 @@
+# Scenario-specific Python dependencies.
+# Standard-library-only maintenance hooks by default.

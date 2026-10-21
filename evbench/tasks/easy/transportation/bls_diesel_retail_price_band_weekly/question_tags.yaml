@@ -1,0 +1,36 @@
+scenario_id: bls_diesel_retail_price_band_weekly
+tier: easy
+domain: transportation
+qa_fields:
+- field: diesel_price_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - cheap
+  - normal
+  - elevated
+  - extreme
+  derivation: "US retail #2 diesel pump-price band, derived from the latest row of\n/root/timeseries.csv\
+    \ (FRED GASDESW weekly Monday observation) using\nfixed USD/gallon thresholds:\n  if   price_usd_per_gal\
+    \ >= 5.00: 'extreme'\n  elif price_usd_per_gal >= 4.25: 'elevated'\n  elif price_usd_per_gal >= 3.50:\
+    \ 'normal'\n  else:                            'cheap'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier 4-band classification scenario. Single A1 (state.category)
+
+  question. DISTINCT from eia_wti_crude_oil_price_band_weekly (WTI
+
+  crude futures, USD/bbl, [110/90/60] thresholds) — these are RETAIL
+
+  diesel pump prices with USD/gallon thresholds (5.00/4.25/3.50). The
+
+  as_of_week_ending field is included for schema completeness; its
+
+  scoring weight is reduced because the date is supplied in the prompt.
+
+  '

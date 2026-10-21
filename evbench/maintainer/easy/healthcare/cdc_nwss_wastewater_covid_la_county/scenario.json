@@ -1,0 +1,28 @@
+{
+  "id": "cdc_nwss_wastewater_covid_la_county",
+  "title": "Wastewater viral activity — COVID-19 (SARS-CoV-2) — Los Angeles County (site ID:113) — week-over-week direction",
+  "tier": "easy",
+  "domain": "healthcare",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "US CDC, National Wastewater Surveillance System",
+    "url": "https://data.cdc.gov/d/atcp-73re",
+    "name": "CDC Wastewater Viral Activity Level for SARS-CoV-2, Influenza A and RSV"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "week_end"
+  },
+  "coverage": {
+    "first": "2025-W48",
+    "last": "2026-W40",
+    "instances": 45,
+    "series_first": "2025-W47"
+  }
+}

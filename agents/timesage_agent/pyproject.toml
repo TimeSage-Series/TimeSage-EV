@@ -1,0 +1,17 @@
+[project]
+name = "timesage-agent"
+version = "0.1.0"
+description = "TimeSage agent harness with skill induction + retrieval. Thin wrapper on smolagents_agent that adds a per-sweep skill library (markdown + .py companions auto-registered as live tools)."
+requires-python = ">=3.10"
+dependencies = [
+    "timesage-agent-smolagents",
+    "timesage-evsandbox",
+    "pyyaml>=6",
+]
+
+[tool.uv.sources]
+timesage-agent-smolagents = { workspace = true }
+timesage-evsandbox = { workspace = true }
+
+[tool.setuptools]
+packages = ["timesage_agent"]

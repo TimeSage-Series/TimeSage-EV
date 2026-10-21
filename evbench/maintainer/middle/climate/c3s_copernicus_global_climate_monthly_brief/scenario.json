@@ -1,0 +1,29 @@
+{
+  "id": "c3s_copernicus_global_climate_monthly_brief",
+  "title": "Copernicus C3S monthly Surface Air Temperature — global digest",
+  "tier": "middle",
+  "domain": "climate",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "ECMWF / Copernicus Climate Change Service (C3S)",
+    "url": "https://climate.copernicus.eu",
+    "name": "Climate Bulletin — Surface Air Temperature"
+  },
+  "license": {
+    "spdx": "LicenseRef-Copernicus-Products",
+    "verification": "verified_permissive",
+    "redistribution": "bundled",
+    "attribution": "Generated using Copernicus Climate Change Service information.",
+    "terms_url": "https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products",
+    "note": "Terms page read: free reuse and redistribution, commercial use allowed, attribution required."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "period"
+  },
+  "coverage": {
+    "first": "2023-10",
+    "last": "2026-04",
+    "instances": 25
+  }
+}

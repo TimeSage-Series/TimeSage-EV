@@ -1,0 +1,28 @@
+{
+  "id": "usda_cold_storage_butter_band_monthly",
+  "title": "USDA NASS Cold Storage -- monthly US butter stocks band",
+  "tier": "easy",
+  "domain": "agriculture",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "USDA National Agricultural Statistics Service (NASS)",
+    "url": "https://esmis.nal.usda.gov/publication/cold-storage",
+    "name": "Cold Storage (monthly)"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "period_label"
+  },
+  "coverage": {
+    "first": "2024-02",
+    "last": "2026-08",
+    "instances": 29,
+    "series_first": "2024-02"
+  }
+}

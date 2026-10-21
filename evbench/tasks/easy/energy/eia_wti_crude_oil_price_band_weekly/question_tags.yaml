@@ -1,0 +1,34 @@
+scenario_id: eia_wti_crude_oil_price_band_weekly
+tier: easy
+domain: energy
+qa_fields:
+- field: category
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - low
+  - normal
+  - elevated
+  - extreme
+  derivation: "WTI crude-oil spot price band, derived from the latest row of\n/root/timeseries.csv (FRED\
+    \ DCOILWTICO weekly Friday close) using\nfixed USD/barrel thresholds:\n  if   price_usd_per_bbl >=\
+    \ 110: 'extreme'\n  elif price_usd_per_bbl >=  90: 'elevated'\n  elif price_usd_per_bbl >=  60: 'normal'\n\
+    \  else:                          'low'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: "Family member of the EIA price-band family\n{eia_gasoline_retail_price_band_weekly,\n eia_henry_hub_natgas_price_band_weekly,\n\
+  \ eia_wti_crude_oil_price_band_weekly}. Templates are near-identical\nacross the family per Rule 8,\
+  \ differing only in the commodity name,\nthe FRED series ID, the price unit (USD/gal vs USD/MMBtu vs\
+  \ USD/bbl),\nand the numeric thresholds; the 4-option enum\n(low/normal/elevated/extreme) and the threshold-cascade\
+  \ derivation\nshape are identical across the family. Rule 7 derivation\n(USD/barrel band cascade with\
+  \ thresholds 60 / 90 / 110) stated\nverbatim in question_template.md. Single-tag Easy scenario; A1\n\
+  (state.category) is the correct pick because the answer is a\ncategorical-band enum derived from a numeric\
+  \ threshold. GT files\npopulate {category, as_of_date} in spot-sampled instances\n(always_present by\
+  \ construction — the format pipeline writes both\nfields on every weekly Friday close). No tier-downgrade\
+  \ flag.\nas_of_date is included for schema completeness; its scoring weight\nis 0 because the observation\
+  \ date is supplied in the prompt.\n"

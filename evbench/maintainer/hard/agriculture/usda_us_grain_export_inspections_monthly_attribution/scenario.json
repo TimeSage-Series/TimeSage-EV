@@ -1,0 +1,26 @@
+{
+  "id": "usda_us_grain_export_inspections_monthly_attribution",
+  "title": "USDA US Grain Export Inspections monthly attribution",
+  "tier": "hard",
+  "domain": "agriculture",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "USDA AMS / FAS via FRED IQAG + IMF commodity prices",
+    "url": "https://fred.stlouisfed.org/series/IQAG"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "period"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-03",
+    "instances": 24
+  }
+}

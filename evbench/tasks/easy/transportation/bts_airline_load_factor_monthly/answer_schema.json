@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "bts_airline_load_factor_monthly answer (Easy tier — temporal.is_extremum boolean)",
+  "type": "object",
+  "required": [
+    "is_year_high_load_factor",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "is_year_high_load_factor": {
+      "type": "boolean",
+      "enum": [
+        true,
+        false
+      ],
+      "question_tag": "B6"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

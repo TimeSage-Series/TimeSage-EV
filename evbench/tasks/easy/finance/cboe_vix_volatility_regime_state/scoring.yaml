@@ -1,0 +1,15 @@
+method: llm_judge
+fields:
+- name: category
+  type: categorical
+  rule: exact_match
+  options:
+  - low
+  - normal
+  - elevated
+  - crisis
+  target_derivation: |
+    The volatility regime category derived from the LATEST (highest observation_date) row of /root/timeseries.csv, using the fixed VIX thresholds: low (<15), normal (15 to <25), elevated (25 to <40), crisis (>=40). Vocabulary is the fixed enum [low, normal, elevated, crisis].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

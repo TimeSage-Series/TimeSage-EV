@@ -1,0 +1,19 @@
+{
+  "_doc": "EIA Natural Gas Weekly Update -- candidate publication Thursdays. URL pattern is deterministic: https://www.eia.gov/naturalgas/weekly/archivenew_ngwu/<YYYY>/<MM>_<DD>/. Each entry verified via direct HEAD/GET at corpus build time. 4 holiday gaps in window are documented separately.",
+  "url_pattern": "https://www.eia.gov/naturalgas/weekly/archivenew_ngwu/<YYYY>/<MM>_<DD>/",
+  "candidate_dates": [
+    "2025-07-24", "2025-07-31",
+    "2025-08-07", "2025-08-14", "2025-08-21", "2025-08-28",
+    "2025-09-04", "2025-09-11", "2025-09-18", "2025-09-25",
+    "2025-10-02", "2025-10-09", "2025-10-16", "2025-10-23", "2025-10-30",
+    "2025-11-06", "2025-11-13", "2025-11-20",
+    "2025-12-04", "2025-12-11", "2025-12-18",
+    "2026-01-08", "2026-01-15", "2026-01-22"
+  ],
+  "known_publication_gaps": [
+    "2025-11-27 (Thanksgiving)",
+    "2025-12-25 (Christmas)",
+    "2026-01-01 (New Year)"
+  ],
+  "note": "After 2026-01-22 the EIA NGW listing on /naturalgas/weekly/includes/archive.php has not posted new issues (verified at corpus build time 2026-05-12). Instance window thus ends at 2026-01-22; the scenario carries an explicit 'as-of' temporal anchor and remains valid for any task whose query date is on-or-before 2026-01-22."
+}

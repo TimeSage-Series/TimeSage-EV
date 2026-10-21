@@ -1,0 +1,2 @@
+requests>=2.31
+pdfplumber>=0.11

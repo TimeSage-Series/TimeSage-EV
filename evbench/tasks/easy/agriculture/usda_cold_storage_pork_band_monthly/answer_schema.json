@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "usda_cold_storage_pork_band_monthly answer (Easy tier -- state.category)",
+  "type": "object",
+  "required": [
+    "pork_storage_band",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "pork_storage_band": {
+      "type": "string",
+      "enum": [
+        "tight",
+        "low",
+        "normal",
+        "heavy"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

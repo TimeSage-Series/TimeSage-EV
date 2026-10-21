@@ -1,0 +1,26 @@
+{
+  "id": "bls_us_health_employment_monthly_brief",
+  "title": "BLS monthly US health-services employment digest",
+  "tier": "middle",
+  "domain": "healthcare",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "U.S. Bureau of Labor Statistics (BLS) Current Employment Statistics (CES)",
+    "url": "https://www.bls.gov/ces/"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "as_of_data_month"
+  },
+  "coverage": {
+    "first": "2024-03",
+    "last": "2026-02",
+    "instances": 24
+  }
+}

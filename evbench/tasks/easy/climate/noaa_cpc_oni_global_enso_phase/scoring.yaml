@@ -1,0 +1,19 @@
+method: llm_judge
+fields:
+- name: enso_phase
+  type: categorical
+  rule: exact_match
+  options:
+  - El Nino
+  - La Nina
+  - ENSO-Neutral
+  target_derivation: |
+    Per-season ENSO phase, derived from the LATEST row of
+    timeseries.csv:
+      anomaly = nino34_anomaly_c   (the ONI value)
+      if anomaly >= +0.5:  "El Nino"
+      elif anomaly <= -0.5: "La Nina"
+      else:                 "ENSO-Neutral"
+aggregation:
+  method: mean
+  pass_threshold: 0.8

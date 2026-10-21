@@ -1,0 +1,33 @@
+scenario_id: hhs_us_hospital_inpatient_occupancy_band_weekly
+keypoints:
+- id: kp_occupancy_band
+  description: US hospital inpatient occupancy band classification (low / normal / elevated / surge) for
+    the current Saturday-ending MMWR week, per the fixed 70/73/76 percent thresholds on the latest pctinptbedsocc
+    value.
+  answer_field: occupancy_band
+  question_tag: A1
+  verification_question: What is the hospital inpatient occupancy band for the current week?
+  answer_type: enum
+  enum_options:
+  - low
+  - normal
+  - elevated
+  - surge
+- id: kp_threshold_rationale
+  description: Report acknowledges the percent-threshold cascade (cites the 70/73/76 levels or the underlying
+    pctinptbedsocc value alongside the band label).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the percent thresholds or show the pctinptbedsocc value
+    alongside the band?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - pctinptbedsocc
+    - occupancy_band
+    - week_ending
+    - iso_week
+  - prior_pdfs_glob: gt_source/*.json
+  tier3_external: true

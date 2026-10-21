@@ -1,0 +1,28 @@
+{
+  "id": "boe_monetary_policy_summary_attribution",
+  "title": "Bank of England MPC Monetary Policy Summary — Hard-tier causal-reasoning brief",
+  "tier": "hard",
+  "domain": "finance",
+  "cadence": "irregular",
+  "source": {
+    "publisher": "Bank of England (Monetary Policy Committee)",
+    "url": "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes",
+    "name": "Monetary Policy Summary and Minutes"
+  },
+  "license": {
+    "spdx": "LicenseRef-UNCONFIRMED",
+    "verification": "unconfirmed",
+    "redistribution": "on_demand",
+    "terms_url": "https://www.bankofengland.co.uk/legal",
+    "note": "The Bank of England is not a UK government department, so its publications are not automatically Open Government Licence, and the terms page is unreachable."
+  },
+  "period": {
+    "format": "custom",
+    "column": "meeting_label"
+  },
+  "coverage": {
+    "first": "2023-August03",
+    "last": "2026-March19",
+    "instances": 27
+  }
+}

@@ -1,0 +1,14 @@
+scenario_id: cdc_us_rsv_positivity_seasonal_phase_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's US RSV seasonal phase against the 5-year same-week percentile baseline."
+  required_signals:
+    - "Names the current Saturday-ending MMWR week explicitly (e.g. 'week ending 2026-05-09')."
+    - "States the RSV phase using one of the controlled enum labels (off_season / active / elevated / peak)."
+  forbidden_signals:
+    - "Speculates about next week or forward RSV trajectory."
+    - "Adds editorial commentary or attributes the phase to causes beyond the percentile cascade."
+  exemplar: |
+    "For the week ending 2026-05-09, US RSV NAAT percent_pos of 2.09
+    sits above the 5-year same-week 75th-percentile baseline of 1.20,
+    placing the week in the 'peak' RSV phase."

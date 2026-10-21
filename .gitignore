@@ -1,0 +1,40 @@
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Scenario data trees — never committed here.
+#   evbench/scenarios/  built scenarios; its own git repo, published to Hugging Face
+#   scenarios_hf/       pipeline working tree, populated by download_all.sh
+/evbench/scenarios/
+/scenarios_hf/
+/scenarios_unfinished/
+
+# Pipeline, evaluator and sandbox run output
+/logs/
+evbench/evaluator/reports/
+/exp/
+/evsandbox/runs/
+
+# Python
+**/__pycache__/
+*.py[cod]
+**/.venv/
+venv/
+**/*.egg-info/
+build/
+dist/
+**/.pytest_cache/
+**/.ruff_cache/
+**/.mypy_cache/
+
+# Caches
+**/.pdftext_cache/
+.cache/
+
+# Editors / OS
+**/.DS_Store
+.idea/
+.vscode/
+.claude/

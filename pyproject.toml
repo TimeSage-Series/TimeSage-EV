@@ -1,0 +1,60 @@
+[project]
+name = "timesage-ev"
+version = "0.1.0"
+description = "TimeSage-EV benchmark core: scenario build code (evbench.maintainer), task engine (evbench.engine) and the four-axis evaluator (evbench.evaluator)."
+requires-python = ">=3.10"
+readme = "README.md"
+dependencies = [
+    "pydantic>=2",
+    "pyyaml>=6",
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "anthropic>=0.40",
+    "openai>=1.40",
+]
+
+[project.scripts]
+eval-suite = "evbench.evaluator.cli:main"
+
+[project.optional-dependencies]
+# Scenario data pipeline + corpus tools under evbench/maintainer/.
+# Pulls in the PDF / HTML / XLS parsers used by the per-scenario scripts.
+maintainer = [
+    "pandas>=2.0",
+    "pypdf>=4.0",
+    "pdfplumber>=0.11",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "openpyxl>=3.1",
+    "xlrd>=2.0",
+    "requests>=2.31",
+    "huggingface_hub",
+]
+dev = [
+    "pytest>=8",
+    "ruff>=0.5",
+]
+
+# `uv sync` / `uv run` install the default `dev` group, so the runner and
+# both baseline agents are always present in the workspace venv.
+[dependency-groups]
+dev = ["timesage-evsandbox", "timesage-agent-smolagents", "timesage-agent"]
+# lm_provider=anthropic (LiteLLM):  uv sync --group anthropic
+anthropic = ["timesage-agent-smolagents[anthropic]"]
+
+[tool.uv.sources]
+timesage-evsandbox = { workspace = true }
+timesage-agent-smolagents = { workspace = true }
+timesage-agent = { workspace = true }
+
+[tool.uv.workspace]
+members = ["evsandbox", "agents/smolagents_agent", "agents/timesage_agent"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# evbench/maintainer/ is build code run as scripts, evbench/tasks/ is data the
+# engine reads in place, and evbench/scenarios/ is a separate data repo.
+[tool.setuptools]
+packages = ["evbench", "evbench.engine", "evbench.evaluator", "evbench.evaluator.scorers", "evbench.evaluator.tests"]

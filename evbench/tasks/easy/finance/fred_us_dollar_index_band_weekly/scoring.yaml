@@ -1,0 +1,16 @@
+method: llm_judge
+fields:
+- name: dxy_band
+  type: categorical
+  rule: exact_match
+  options:
+  - weak
+  - normal
+  - firm
+  - strong
+  - extreme
+  target_derivation: |
+    The USD-strength band derived from the LATEST (highest week_ending) row of /root/timeseries.csv, using the fixed index thresholds: weak (<118), normal (118 to <119), firm (119 to <120), strong (120 to <121), extreme (>=121). Vocabulary is the fixed enum [weak, normal, firm, strong, extreme].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

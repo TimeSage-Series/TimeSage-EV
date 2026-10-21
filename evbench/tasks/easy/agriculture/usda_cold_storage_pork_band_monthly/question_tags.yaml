@@ -1,0 +1,59 @@
+scenario_id: usda_cold_storage_pork_band_monthly
+tier: easy
+domain: agriculture
+qa_fields:
+- field: pork_storage_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - tight
+  - low
+  - normal
+  - heavy
+  derivation: |
+    US Total pork cold-storage band, from the LATEST row of
+    /root/timeseries.csv against its reference window: pork_stocks_mlb
+    of the 5 most recent earlier rows with the same data_month
+    (min, mean, population sigma):
+      if   pork_stocks_mlb < min:              'tight'
+      elif pork_stocks_mlb < mean - 0.5*sigma: 'low'
+      elif pork_stocks_mlb < mean + 0.5*sigma: 'normal'
+      else:                                 'heavy'
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Single-tag Easy scenario; A1 (state.category) is the correct pick --
+
+  the answer is a categorical-band enum derived from a numeric
+
+  cascade against a same-calendar-month 5-year reference window.
+
+  Conceptually parallels the butter scenario (same source pipeline,
+
+  same 4-band rule), but operates on a DIFFERENT commodity column
+
+  (frozen red meat ''Total pork'' row vs the dairy ''Butter'' row). Pork
+
+  cold-storage stocks track hog-slaughter cycles, pork-belly bacon
+
+  demand, and export flows -- a distinct supply/demand driver from
+
+  butter (milk-fat allocation, dairy export demand). The two series
+
+  are not lockstep, so the two scenarios produce independent label
+
+  trajectories across the 24-instance window.
+
+  Rule 7 derivation (4-band cascade) stated verbatim in
+
+  question_template.md / session_brief.md. No tier-downgrade flag.
+
+  as_of_data_month scoring weight 0 because the month is supplied in
+
+  the prompt.
+
+  '

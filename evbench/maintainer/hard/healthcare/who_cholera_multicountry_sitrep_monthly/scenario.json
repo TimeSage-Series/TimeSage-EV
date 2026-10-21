@@ -1,0 +1,29 @@
+{
+  "id": "who_cholera_multicountry_sitrep_monthly",
+  "title": "WHO Multi-country cholera External Situation Report — monthly analytical brief",
+  "tier": "hard",
+  "domain": "healthcare",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "World Health Organization (WHO)",
+    "url": "https://www.who.int/publications/m/item",
+    "name": "Multi-country outbreak of cholera, External Situation Report (from issue"
+  },
+  "license": {
+    "spdx": "CC-BY-NC-SA-3.0-IGO",
+    "verification": "verified_noncommercial",
+    "redistribution": "on_demand",
+    "attribution": "© World Health Organization. Licensed under CC BY-NC-SA 3.0 IGO.",
+    "terms_url": "https://www.who.int/about/policies/publishing/copyright",
+    "note": "Terms page read. Redistribution is permitted, but NC forbids commercial use and SA obliges derivatives to carry the same licence."
+  },
+  "period": {
+    "format": "year_month_m",
+    "column": "iso_month"
+  },
+  "coverage": {
+    "first": "2024-M01",
+    "last": "2026-M02",
+    "instances": 24
+  }
+}

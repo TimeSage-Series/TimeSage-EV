@@ -1,0 +1,29 @@
+{
+  "id": "ecdc_cdtr_weekly_threats_digest",
+  "title": "ECDC weekly Communicable Disease Threats Report digest summary",
+  "tier": "middle",
+  "domain": "healthcare",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "European Centre for Disease Prevention and Control (ECDC)",
+    "url": "https://www.ecdc.europa.eu/en/publications-data",
+    "name": "Communicable Disease Threats Report (CDTR)"
+  },
+  "license": {
+    "spdx": "CC-BY-4.0",
+    "verification": "verified_permissive",
+    "redistribution": "bundled",
+    "attribution": "Source: European Centre for Disease Prevention and Control (ECDC). Licensed under CC BY 4.0.",
+    "terms_url": "https://www.ecdc.europa.eu/en/copyright",
+    "note": "Terms page read. Caveat: the licence does not cover third-party content quoted inside CDTR issues."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "week_ending"
+  },
+  "coverage": {
+    "first": "2025-W42",
+    "last": "2026-W15",
+    "instances": 24
+  }
+}

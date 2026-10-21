@@ -1,0 +1,31 @@
+{
+  "id": "cboe_vix_volatility_regime_state",
+  "title": "CBOE VIX volatility regime — weekly Friday close",
+  "tier": "easy",
+  "domain": "finance",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "Federal Reserve Bank of St. Louis (FRED)",
+    "url": "https://fred.stlouisfed.org/series/VIXCLS",
+    "name": "CBOE Volatility Index: VIX",
+    "cadence": "daily"
+  },
+  "license": {
+    "spdx": "LicenseRef-FRED-Terms",
+    "verification": "unconfirmed",
+    "redistribution": "on_demand",
+    "attribution": "CBOE Volatility Index (VIX) via FRED, Federal Reserve Bank of St. Louis.",
+    "terms_url": "https://fredhelp.stlouisfed.org/fred/about/about-fred/can-i-use-fred-data/",
+    "note": "The VIX is CBOE's commercial index. What ships here is 24 individual weekly closing values — facts rather than the index database — so the exposure is minimal, but the terms were not confirmed."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "observation_date"
+  },
+  "coverage": {
+    "first": "2025-W47",
+    "last": "2026-W41",
+    "instances": 47,
+    "series_first": "2025-W47"
+  }
+}

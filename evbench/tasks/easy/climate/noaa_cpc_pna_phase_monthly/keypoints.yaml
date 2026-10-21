@@ -1,0 +1,30 @@
+scenario_id: noaa_cpc_pna_phase_monthly
+keypoints:
+- id: kp_pna_phase
+  description: Pacific/North American (PNA) phase classification (positive_phase / negative_phase / neutral)
+    for the current month, per the +/-0.5 sigma threshold rule on the monthly PNA index.
+  answer_field: pna_phase
+  question_tag: A1
+  verification_question: What is the PNA phase for the current month?
+  answer_type: enum
+  enum_options:
+  - positive_phase
+  - negative_phase
+  - neutral
+- id: kp_threshold_rationale
+  description: Report acknowledges the +/-0.5 sigma classification threshold (e.g. by citing the threshold
+    or the numeric PNA index alongside the phase label).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the +/-0.5 sigma classification threshold or show the underlying
+    PNA index value?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - pna_value
+    - derived_phase
+    - period_label
+  - prior_pdfs_glob: gt_source/*.html
+  tier3_external: true

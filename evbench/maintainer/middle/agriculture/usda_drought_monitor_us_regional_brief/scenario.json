@@ -1,0 +1,28 @@
+{
+  "id": "usda_drought_monitor_us_regional_brief",
+  "title": "U.S. National Drought Monitor weekly digest (USDM Middle)",
+  "tier": "middle",
+  "domain": "agriculture",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "National Drought Mitigation Center (NDMC) / USDA / NOAA",
+    "url": "https://droughtmonitor.unl.edu/Summary.aspx",
+    "name": "U.S. Drought Monitor — Summary.aspx weekly digest"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "attribution": "U.S. Drought Monitor, a joint product of NDMC, USDA and NOAA.",
+    "note": "Joint federal-university product released without copyright."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "observation_date"
+  },
+  "coverage": {
+    "first": "2025-W46",
+    "last": "2026-W19",
+    "instances": 26
+  }
+}

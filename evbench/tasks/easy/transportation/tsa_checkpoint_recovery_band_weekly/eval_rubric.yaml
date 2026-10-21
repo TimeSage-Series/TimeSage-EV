@@ -1,0 +1,14 @@
+scenario_id: tsa_checkpoint_recovery_band_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's TSA-checkpoint recovery band against the 2019 same-week baseline."
+  required_signals:
+    - "Names the current ISO week / week-ending Sunday explicitly (e.g. 'week ending 2026-05-10')."
+    - "States the recovery band using one of the controlled enum labels (well_below / still_below / approaching / recovered)."
+  forbidden_signals:
+    - "Speculates about next week or forward recovery trajectory."
+    - "Adds editorial commentary or attributes the band to causes beyond the recovery-ratio threshold cascade."
+  exemplar: |
+    "For the week ending 2026-05-10, TSA checkpoint throughput of
+    17.8 million sits at 107% of the 2019 same-week baseline (16.6
+    million), placing the week in the 'recovered' band."

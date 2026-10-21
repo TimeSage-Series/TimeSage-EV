@@ -1,0 +1,32 @@
+scenario_id: hhs_us_hospital_inpatient_occupancy_band_weekly
+tier: easy
+domain: healthcare
+qa_fields:
+- field: occupancy_band
+  tag: A1
+  answer_format: single_choice
+  scoring: exact_match
+  decomposition: atomic
+  options:
+  - low
+  - normal
+  - elevated
+  - surge
+  derivation: "US hospital inpatient occupancy band, derived from the latest row of\n/root/timeseries.csv\
+    \ (CDC dataset ua7e-t2fy, jurisdiction='USA',\ncolumn pctinptbedsocc, Saturday MMWR week-ending) using\
+    \ fixed\npercent thresholds:\n  if   pctinptbedsocc <  70: 'low'\n  elif pctinptbedsocc <  73: 'normal'\n\
+    \  elif pctinptbedsocc <  76: 'elevated'\n  else:                      'surge'\n"
+coverage_check:
+  distinct_tags: 1
+  rule_5_satisfied: true
+  rule_9_atomic_methods_only: true
+  rule_10_shapes_only: true
+notes: 'Easy-tier 4-band classification scenario. Single A1 (state.category)
+
+  question. Threshold cascade is mechanical from the latest row. The
+
+  as_of_week_ending field is included for schema completeness; its
+
+  scoring weight is reduced because the date is supplied in the prompt.
+
+  '

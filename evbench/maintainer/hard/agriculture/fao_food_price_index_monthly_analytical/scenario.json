@@ -1,0 +1,29 @@
+{
+  "id": "fao_food_price_index_monthly_analytical",
+  "title": "FAO Food Price Index Monthly Causal Brief (UN FAO)",
+  "tier": "hard",
+  "domain": "agriculture",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "UN Food and Agriculture Organization (FAO)",
+    "url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en",
+    "name": "FAO Food Price Index (monthly release)"
+  },
+  "license": {
+    "spdx": "CC-BY-NC-SA-3.0-IGO",
+    "verification": "verified_noncommercial",
+    "redistribution": "on_demand",
+    "attribution": "© FAO.",
+    "terms_url": "https://www.fao.org/contact-us/terms/en/",
+    "note": "Same NC/SA caveat as the WHO entry."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "release_label"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-03",
+    "instances": 24
+  }
+}

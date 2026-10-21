@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "hhs_us_hospital_inpatient_occupancy_band_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "occupancy_band",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "occupancy_band": {
+      "type": "string",
+      "enum": [
+        "low",
+        "normal",
+        "elevated",
+        "surge"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

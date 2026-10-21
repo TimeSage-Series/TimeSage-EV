@@ -1,0 +1,14 @@
+scenario_id: usda_cattle_on_feed_placements_yoy
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current release month's US feedlot placements YoY direction tag."
+  required_signals:
+    - "Names the current release month explicitly (e.g. 'April 2024' or '2024-04')."
+    - "States the direction tag using one of the controlled enum labels (above_prior_year / below_prior_year / equal_to_prior_year)."
+  forbidden_signals:
+    - "Speculates about next month's placements or future direction."
+    - "Adds editorial commentary or attributes the direction tag to causes beyond the year-over-year placements comparison."
+  exemplar: |
+    "The April 2024 USDA Cattle on Feed release reports March 2024
+    placements of 1.75 million head versus 1.99 million in March 2023,
+    so the direction tag is below_prior_year."

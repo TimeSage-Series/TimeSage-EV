@@ -1,0 +1,20 @@
+scenario_id: cdc_nwss_wastewater_covid_la_county
+keypoints:
+- id: kp_wow_direction
+  description: Week-over-week direction (rising / falling / stable) of the NWSS site_wval wastewater signal for LA County.
+  question_tag: A3
+  answer_field: wow_direction
+  answer_type: enum
+  enum_options:
+  - rising
+  - falling
+  - stable
+  verification_question: What is the week-over-week direction (rising / falling / stable) of NWSS site_wval?
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - week_end
+    - iso_week
+    - site_wval
+  tier3_external: true

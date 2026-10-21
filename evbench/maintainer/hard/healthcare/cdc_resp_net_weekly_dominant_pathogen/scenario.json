@@ -1,0 +1,27 @@
+{
+  "id": "cdc_resp_net_weekly_dominant_pathogen",
+  "title": "CDC RESP-NET weekly dominant respiratory pathogen brief (COVID-NET / FluSurv-NET / RSV-NET)",
+  "tier": "hard",
+  "domain": "healthcare",
+  "cadence": "biweekly",
+  "source": {
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC) — RESP-NET surveillance umbrella (COVID-NET + FluSurv-NET + RSV-NET)",
+    "url": "https://data.cdc.gov/d/kvib-3txy",
+    "cadence": "weekly"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month_day",
+    "column": "week_ending"
+  },
+  "coverage": {
+    "first": "2024-04-06",
+    "last": "2026-04-25",
+    "instances": 24
+  }
+}

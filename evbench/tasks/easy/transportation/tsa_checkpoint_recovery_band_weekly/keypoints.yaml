@@ -1,0 +1,33 @@
+scenario_id: tsa_checkpoint_recovery_band_weekly
+keypoints:
+- id: kp_recovery_band
+  description: TSA checkpoint weekly recovery band classification (well_below / still_below / approaching
+    / recovered) for the current ISO week vs 2019 same-week baseline, per the 0.75/0.95/1.05 recovery-ratio
+    thresholds.
+  answer_field: recovery_band
+  question_tag: A1
+  verification_question: What is the TSA-checkpoint recovery band for the current week?
+  answer_type: enum
+  enum_options:
+  - well_below
+  - still_below
+  - approaching
+  - recovered
+- id: kp_threshold_rationale
+  description: Report acknowledges the recovery-ratio threshold cascade (cites the 0.75 / 0.95 / 1.05
+    levels or the underlying recovery ratio (throughput / baseline_2019) alongside the band label).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite the recovery-ratio thresholds or show the underlying recovery ratio
+    alongside the band?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - throughput
+    - baseline_2019
+    - week_ending
+    - iso_week
+  - prior_pdfs_glob: gt_source/*.json
+  tier3_external: true

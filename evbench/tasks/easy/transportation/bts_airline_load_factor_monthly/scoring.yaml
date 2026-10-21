@@ -1,0 +1,13 @@
+method: llm_judge
+fields:
+- name: is_year_high_load_factor
+  type: boolean
+  rule: exact_match
+  options:
+  - true
+  - false
+  target_derivation: |
+    TRUE iff the latest row's LOADFACTOR value in /root/timeseries.csv is strictly greater than each of the 11 immediately preceding monthly rows' LOADFACTOR values (12-month trailing window inclusive of the latest row). If fewer than 11 prior rows are available, set FALSE.
+aggregation:
+  method: mean
+  pass_threshold: 0.8

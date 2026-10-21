@@ -1,0 +1,14 @@
+method: llm_judge
+fields:
+- name: crude_inventory_phase
+  type: categorical
+  rule: exact_match
+  options:
+  - build
+  - draw
+  - flat
+  target_derivation: |
+    The US commercial crude inventory phase derived from the LATEST (highest week_ending) row of /root/timeseries.csv, using the fixed sign cascade on the week-over-week change ((latest stocks_thousand_bbl - previous week's) / 1000, in MMbbl) with a +/-0.5 MMbbl deadband: build (>= +0.5), draw (<= -0.5), flat (else). Vocabulary is the fixed enum [build, draw, flat].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

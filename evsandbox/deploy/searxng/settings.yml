@@ -1,0 +1,47 @@
+# SearXNG settings for TimeSage agent evaluation.
+# Goals: programmatic JSON access; discovery only (time filtering is done by CDX);
+# disable social/video noise engines.
+
+use_default_settings: true
+
+general:
+  instance_name: "timesage"
+
+server:
+  bind_address: "0.0.0.0"     # inside the container; host port is 127.0.0.1-only
+  port: 8080
+  secret_key: "change-me-locally"
+  limiter: false              # we are the only client; no rate-limiting
+  image_proxy: false
+
+search:
+  safe_search: 1
+  autocomplete: ""
+  default_lang: "en"
+  formats:
+    - html
+    - json                    # required for programmatic access
+
+engines:
+  - name: google
+    disabled: false
+  - name: bing
+    disabled: false
+  - name: duckduckgo
+    disabled: false
+  - name: google scholar
+    disabled: false
+  - name: google news
+    disabled: false
+
+  # Noise engines: explicitly disabled.
+  - name: reddit
+    disabled: true
+  - name: youtube
+    disabled: true
+  - name: twitter
+    disabled: true
+  - name: tiktok
+    disabled: true
+  - name: 9gag
+    disabled: true

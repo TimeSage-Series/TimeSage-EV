@@ -1,0 +1,26 @@
+{
+  "id": "fred_consumer_credit_monthly_brief",
+  "title": "FRED G.19 Consumer Credit — monthly analytical brief",
+  "tier": "middle",
+  "domain": "finance",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "Federal Reserve / FRED — G.19 Consumer Credit release",
+    "url": "https://fred.stlouisfed.org/release?rid=42"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "FRED series TOTALSL and the G.19 release are Federal Reserve Board publications; Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "data_month"
+  },
+  "coverage": {
+    "first": "2024-02",
+    "last": "2026-03",
+    "instances": 26
+  }
+}

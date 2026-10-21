@@ -1,0 +1,16 @@
+method: llm_judge
+fields:
+- name: refinery_utilization_band
+  type: categorical
+  rule: exact_match
+  options:
+  - extreme_low
+  - low
+  - normal
+  - high
+  - extreme_high
+  target_derivation: |
+    The US refinery-utilization band derived from the LATEST (highest week_ending) row of /root/timeseries.csv, using the fixed percent thresholds: extreme_low (<70), low (70 to <85), normal (85 to <92), high (92 to <96), extreme_high (>=96). Vocabulary is the fixed enum [extreme_low, low, normal, high, extreme_high].
+aggregation:
+  method: mean
+  pass_threshold: 0.8

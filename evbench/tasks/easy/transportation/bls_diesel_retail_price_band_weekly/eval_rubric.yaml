@@ -1,0 +1,14 @@
+scenario_id: bls_diesel_retail_price_band_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's US retail #2 diesel price band against the fixed USD/gallon thresholds."
+  required_signals:
+    - "Names the current observation week explicitly (e.g. 'week of 2026-05-11')."
+    - "States the diesel price band using one of the controlled enum labels (cheap / normal / elevated / extreme)."
+  forbidden_signals:
+    - "Speculates about next week or forward price trajectory."
+    - "Adds editorial commentary or attributes the band to causes beyond the threshold cascade."
+  exemplar: |
+    "For the week of 2026-05-11, US national-average retail #2 diesel
+    of $5.64/gal sits above the $5.00 threshold, placing the week in
+    the 'extreme' price band."

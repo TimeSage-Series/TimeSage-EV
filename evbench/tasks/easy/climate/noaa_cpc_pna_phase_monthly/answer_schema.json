@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "noaa_cpc_pna_phase_monthly answer (Easy tier -- state.category)",
+  "type": "object",
+  "required": [
+    "pna_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "pna_phase": {
+      "type": "string",
+      "enum": [
+        "positive_phase",
+        "negative_phase",
+        "neutral"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

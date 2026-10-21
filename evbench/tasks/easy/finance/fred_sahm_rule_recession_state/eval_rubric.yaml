@@ -1,0 +1,13 @@
+scenario_id: fred_sahm_rule_recession_state
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the latest month's Sahm-rule bucket per fixed thresholds."
+  required_signals:
+    - "Names the latest observation month explicitly (e.g. 'March 2026' or '2026-03-01')."
+    - "States the bucket using one of the controlled enum labels (normal / elevated_no_signal / recession_signal)."
+  forbidden_signals:
+    - "Speculates about next month's labour-market trajectory or makes a recession forecast call beyond what the bucket label encodes."
+    - "Invents a bucket label outside the three-band enum."
+  exemplar: |
+    "FRED SAHMCURRENT printed 0.24 pp for 2026-03, below the 0.30
+    cutoff, so the Sahm-rule bucket is normal."

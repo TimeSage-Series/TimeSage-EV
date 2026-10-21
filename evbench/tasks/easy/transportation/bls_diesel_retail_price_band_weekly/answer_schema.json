@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "bls_diesel_retail_price_band_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "diesel_price_band",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "diesel_price_band": {
+      "type": "string",
+      "enum": [
+        "cheap",
+        "normal",
+        "elevated",
+        "extreme"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

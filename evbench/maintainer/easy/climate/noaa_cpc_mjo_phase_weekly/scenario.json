@@ -1,0 +1,29 @@
+{
+  "id": "noaa_cpc_mjo_phase_weekly",
+  "title": "NOAA PSL/CPC Madden-Julian Oscillation -- weekly Wheeler-Hendon phase",
+  "tier": "easy",
+  "domain": "climate",
+  "cadence": "weekly",
+  "source": {
+    "publisher": "NOAA Physical Sciences Laboratory (PSL) / NOAA CPC",
+    "url": "https://www.psl.noaa.gov/mjo",
+    "name": "Real-time OLR-based MJO Index (ROMI), Wheeler-Hendon phase plane",
+    "cadence": "daily"
+  },
+  "license": {
+    "spdx": "LicenseRef-US-PublicDomain",
+    "verification": "public_domain",
+    "redistribution": "bundled",
+    "note": "Work of the U.S. federal government; public domain under 17 U.S.C. §105."
+  },
+  "period": {
+    "format": "iso_week",
+    "column": "observation_date"
+  },
+  "coverage": {
+    "first": "2025-W47",
+    "last": "2026-W41",
+    "instances": 47,
+    "series_first": "2025-W47"
+  }
+}

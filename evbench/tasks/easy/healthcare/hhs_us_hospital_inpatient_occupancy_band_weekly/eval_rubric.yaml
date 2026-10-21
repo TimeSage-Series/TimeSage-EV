@@ -1,0 +1,14 @@
+scenario_id: hhs_us_hospital_inpatient_occupancy_band_weekly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of the current week's US hospital inpatient occupancy band against the fixed percent thresholds."
+  required_signals:
+    - "Names the current Saturday-ending MMWR week explicitly (e.g. 'week ending 2026-05-09')."
+    - "States the inpatient-occupancy band using one of the controlled enum labels (low / normal / elevated / surge)."
+  forbidden_signals:
+    - "Speculates about next week or forward occupancy trajectory."
+    - "Adds editorial commentary or attributes the band to causes beyond the percent threshold cascade."
+  exemplar: |
+    "For the week ending 2026-05-09, US inpatient bed occupancy of 71.6%
+    sits in the 70-73% range, placing the week in the 'normal'
+    occupancy band."

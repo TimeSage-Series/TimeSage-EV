@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "cdc_us_rsv_positivity_seasonal_phase_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "rsv_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "rsv_phase": {
+      "type": "string",
+      "enum": [
+        "off_season",
+        "active",
+        "elevated",
+        "peak"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

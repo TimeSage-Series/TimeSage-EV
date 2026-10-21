@@ -1,0 +1,8 @@
+{
+  "comment": "IRI ENSO QuickLook per-issue URLs. Pattern: /our-expertise/climate/forecasts/enso/<YYYY>-<month_long>-quick-look/ (lowercase full month name). Cadence: monthly, around the 19th-20th. Verified live for May 2024 through March 2026 at session date 2026-05-12; the April 2026 issue lives at /enso/current/ rather than its dated slug (rotates on next release).",
+  "instance_window": {"start": "2024-05", "end": "2026-04", "count": 24},
+  "missing_months_known": [],
+  "url_pattern": "https://iri.columbia.edu/our-expertise/climate/forecasts/enso/{year}-{month_long}-quick-look/",
+  "current_issue_alternate_url": "https://iri.columbia.edu/our-expertise/climate/forecasts/enso/current/",
+  "current_issue_period": "2026-04"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "portla_monthly_cargo_stats_brief",
+  "title": "Port of Los Angeles monthly cargo statistics digest",
+  "tier": "middle",
+  "domain": "transportation",
+  "cadence": "monthly",
+  "source": {
+    "publisher": "Port of Los Angeles",
+    "url": "https://portoflosangeles.org/business/statistics/container-statistics"
+  },
+  "license": {
+    "spdx": "LicenseRef-PortOfLA-Terms",
+    "verification": "unconfirmed",
+    "redistribution": "on_demand",
+    "attribution": "Source: Port of Los Angeles.",
+    "terms_url": "https://portoflosangeles.org/business/statistics",
+    "note": "A search summary states the statistics are free to use with credit, but the terms page itself returns 403 and could not be read."
+  },
+  "period": {
+    "format": "year_month",
+    "column": "report_month"
+  },
+  "coverage": {
+    "first": "2024-04",
+    "last": "2026-03",
+    "instances": 24
+  }
+}

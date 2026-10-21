@@ -1,0 +1,33 @@
+scenario_id: cdc_us_rsv_positivity_seasonal_phase_weekly
+keypoints:
+- id: kp_rsv_phase
+  description: US national RSV seasonal phase classification (off_season / active / elevated / peak) for
+    the current Saturday-ending MMWR week, per the 5-year same-MMWR-week percentile cascade (p25/p50/p75)
+    on the latest percent_pos value.
+  answer_field: rsv_phase
+  question_tag: A1
+  verification_question: What is the RSV seasonal phase for the current week?
+  answer_type: enum
+  enum_options:
+  - off_season
+  - active
+  - elevated
+  - peak
+- id: kp_threshold_rationale
+  description: Report acknowledges the 5-year same-week percentile rule (cites at least one of the p25/p50/p75
+    baseline values or the underlying percent_pos value alongside the phase label).
+  answer_field: null
+  question_tag: A1
+  verification_question: Does the report cite a same-week percentile baseline value or the percent_pos
+    number alongside the phase?
+  answer_type: boolean
+faithfulness_sources:
+  tier1_keypoints: true
+  tier2_context:
+  - csv_columns:
+    - percent_pos
+    - rsv_phase
+    - week_ending
+    - iso_week
+  - prior_pdfs_glob: gt_source/*.json
+  tier3_external: true

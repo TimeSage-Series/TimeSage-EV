@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "noaa_cpc_mjo_phase_weekly answer (Easy tier — state.category)",
+  "type": "object",
+  "required": [
+    "mjo_phase",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "mjo_phase": {
+      "type": "string",
+      "enum": [
+        "weak",
+        "phase_1",
+        "phase_2",
+        "phase_3",
+        "phase_4",
+        "phase_5",
+        "phase_6",
+        "phase_7",
+        "phase_8"
+      ],
+      "question_tag": "A1"
+    },
+    "report": {
+      "type": "string",
+      "maxLength": 800,
+      "question_tag": "report"
+    }
+  }
+}

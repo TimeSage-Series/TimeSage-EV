@@ -1,0 +1,15 @@
+scenario_id: bts_airline_load_factor_monthly
+tier: easy
+quality_rubric:
+  genre: "1-2 sentence plain factual statement of whether the current data month's BTS airline passenger load factor is a trailing-12-month high."
+  required_signals:
+    - "Names the current data month explicitly (e.g. 'July 2024' or '2024-07')."
+    - "States is_year_high_load_factor as TRUE or FALSE."
+  forbidden_signals:
+    - "Speculates about next month's load factor or future seasonal peaks."
+    - "Attributes the flag to causes (jet fuel prices, demand recovery) beyond the trailing-12 strict-max rule."
+    - "Cites a contemporaneous BTS press release narrative as a source."
+  exemplar: |
+    "For 2024-07, U.S. system-wide passenger load_factor of 86.4
+    exceeded all 11 immediately preceding monthly observations, so
+    is_year_high_load_factor is TRUE."
