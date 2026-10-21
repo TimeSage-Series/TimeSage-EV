@@ -1,4 +1,18 @@
-# TimeSage-EV
+<div align="center">
+  <h3>
+    <b>TimeSage-EV</b><br>
+    <sub>A Live Benchmark for Agentic Time Series Analysis in Evolving Environments</sub>
+  </h3>
+</div>
+
+<div align="center">
+
+![](https://img.shields.io/github/last-commit/TimeSage-Series/TimeSage-EV?color=green)
+![](https://img.shields.io/github/stars/TimeSage-Series/TimeSage-EV?color=yellow)
+![](https://img.shields.io/github/forks/TimeSage-Series/TimeSage-EV?color=lightblue)
+![](https://img.shields.io/badge/PRs-Welcome-green)
+
+</div>
 
 **TimeSage-EV** measures how well agents analyze periodically released time series data, a defining challenge for agents that operate over long horizons and are expected to improve continuously.
 
@@ -102,3 +116,19 @@ the released ones, and validates the result for structure and leakage.
 
 Contributions are welcome, especially agents that learn across periods and
 new scenarios built on public data series.
+
+## Citation
+
+> 🙋 Please let us know if you find out a mistake or have any suggestions!
+
+> 🌟 If you find the codebase helpful in your research, please consider to star this repository and cite the
+> corresponding [paper](https://arxiv.org/abs/2608.14270):
+
+```
+@article{yao2026timesage,
+  title={TimeSage-EV: A Live Benchmark for Agentic Time Series Analysis in Evolving Environments},
+  author={Yao, Qingren and Kong, Yaxuan and Nie, Yuqi and Li, Yichen and Zohren, Stefan and Vettoruzzo, Anna and Wen, Qingsong and Jin, Ming and Vanschoren, Joaquin},
+  journal={arXiv preprint arXiv:2608.14270},
+  year={2026}
+}
+```
