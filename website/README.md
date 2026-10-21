@@ -39,6 +39,6 @@ python -m http.server -d website 8000   # then open http://localhost:8000
 ## Deploying
 
 `.github/workflows/pages.yml` publishes this folder to GitHub Pages on every
-push to `main` that touches `website/`, at
+push to `master` that touches `website/`, at
 <https://timesage-series.github.io/TimeSage-EV/>. It needs Settings → Pages →
 Source set to **GitHub Actions** once. Any other static host works too.
